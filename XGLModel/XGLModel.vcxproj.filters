@@ -63,6 +63,9 @@
     <ClInclude Include="Tutorial2.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="Tutorial3.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -99,6 +102,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial2.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial3.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
