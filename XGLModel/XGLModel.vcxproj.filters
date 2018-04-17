@@ -16,6 +16,12 @@
     <Filter Include="tutorial">
       <UniqueIdentifier>{a307aae5-2ef2-4386-966f-582b66d21622}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{0a5cb8a5-e617-4f4c-ad29-5c785114d7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{6bab329b-4a76-4374-ada3-31dccce0a543}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,13 +63,19 @@
     <ClInclude Include="TutorialFactory.h">
       <Filter>tutorial</Filter>
     </ClInclude>
-    <ClInclude Include="TutorialInterface.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Tutorial2.h">
       <Filter>tutorial</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial3.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial4.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="XGLUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialInterface.h">
       <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,5 +119,19 @@
     <ClCompile Include="Tutorial3.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="Tutorial4.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XGLUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tutorial4.vs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial4.fs">
+      <Filter>shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

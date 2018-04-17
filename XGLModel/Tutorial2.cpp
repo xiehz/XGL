@@ -34,6 +34,7 @@ void Tutorial2::draw()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(projectMatrix.get());
 
@@ -150,5 +151,10 @@ void XGLModel::Tutorial2::drawByVBO()
 
 	glDisableVertexAttribArray(0);
 }
+
+void XGLModel::Tutorial2::initShader()
+{
+}
+
 
 

@@ -5,7 +5,6 @@ using namespace XGLModel;
 
 REGISTER(Tutorial3)
 
-GLuint vbo;
 Tutorial3::Tutorial3()
 {
 }
@@ -38,6 +37,8 @@ void XGLModel::Tutorial3::init()
 void XGLModel::Tutorial3::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	
+	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(projectMatrix.get());
@@ -72,3 +73,9 @@ void XGLModel::Tutorial3::drawFixedPipeline()
 	glDisableClientState(GL_COLOR_ARRAY);
 
 }
+
+void XGLModel::Tutorial3::initShader()
+{
+}
+
+

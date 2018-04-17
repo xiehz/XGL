@@ -22,7 +22,10 @@ namespace XGLModel {
 		void drawByCalllise();
 		void drawByVBO();
 	private:
-		unsigned int vbo;
+
+
+		// Í¨¹ý TutorialInterface ¼Ì³Ð
+		virtual void initShader() override;
 
 	};
 }

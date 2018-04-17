@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
 #include <map>
+#include "xgl\Log.h"
 #include "TutorialInterface.h"
+
 
 namespace XGLModel {
 	class ModelGL;

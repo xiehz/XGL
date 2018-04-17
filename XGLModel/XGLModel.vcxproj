@@ -162,10 +162,12 @@
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="Tutorial2.h" />
     <ClInclude Include="Tutorial3.h" />
+    <ClInclude Include="Tutorial4.h" />
     <ClInclude Include="TutorialFactory.h" />
     <ClInclude Include="TutorialInterface.h" />
     <ClInclude Include="Vertices.h" />
     <ClInclude Include="XGLModel.h" />
+    <ClInclude Include="XGLUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BitmapFont.cpp" />
@@ -196,14 +198,20 @@
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="Tutorial2.cpp" />
     <ClCompile Include="Tutorial3.cpp" />
+    <ClCompile Include="Tutorial4.cpp" />
     <ClCompile Include="TutorialFactory.cpp" />
     <ClCompile Include="TutorialInterface.cpp" />
     <ClCompile Include="XGLModel.cpp" />
+    <ClCompile Include="XGLUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XGL\XGL.vcxproj">
       <Project>{1c2b47f4-faba-491c-b1be-c464b2f53039}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tutorial4.fs" />
+    <None Include="tutorial4.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
