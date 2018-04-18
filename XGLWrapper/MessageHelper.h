@@ -3,6 +3,8 @@
 
 namespace XGLWrapper {
 
+	extern void ConvertToString(System::String^ str, std::string& text);
+
 	inline int GetX(unsigned int lp)
 	{
 		return (int)(short)LOWORD(lp);
@@ -13,7 +15,7 @@ namespace XGLWrapper {
 		return (int)(short)HIWORD(lp);
 	}
 
-	void ConvertToString(System::String^ str, std::string& text)
+	inline void ConvertToString(System::String^ str, std::string& text)
 	{
 		char* p = (char*)(int)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(str);
 		text = p;

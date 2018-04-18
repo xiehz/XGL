@@ -32,6 +32,7 @@ namespace XGLApp
         {
             this.threeD.Setup(this.comboBox1.Text.Trim());
             this.threeD.Render();
+            this.threeD.SendMsg(0,"test");
         }
     }
 }

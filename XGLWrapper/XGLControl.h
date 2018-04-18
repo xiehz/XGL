@@ -12,6 +12,8 @@ namespace XGLInterface {
 }
 namespace XGLWrapper {
 
+	class XGLInterop;
+
 	/// <summary>
 	/// XGLControl 摘要
 	/// </summary>
@@ -29,6 +31,8 @@ namespace XGLWrapper {
 		void Render();
 		void Setup(String^ name);
 		int Close();
+		virtual int OnViewMsg(int id,String^ mgs) { return 0; }
+		virtual int SendMsg(int id, String^ msg);
 	protected:
 		/// <summary>
 		/// 清理所有正在使用的资源。
@@ -44,12 +48,13 @@ namespace XGLWrapper {
 		!XGLControl();
 
 		virtual void WndProc(System::Windows::Forms::Message% m)override;
-
+		intptr_t getInstance();
 	private:
 		bool dispatchMessage(System::Windows::Forms::Message% m);
 
 	private:
 		XGLInterface::XGLInterface* xgl;
+		XGLInterop* interop;
 		/// <summary>
 		/// 必需的设计器变量。
 		/// </summary>

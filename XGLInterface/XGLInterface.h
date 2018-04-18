@@ -1,14 +1,19 @@
 #pragma once
+#include <functional>
 #include <string>
 #include "stdafx.h"
 #include "Controller.h"
 namespace XGLInterface {
+
+	typedef std::function<int(int,std::string&)> XGLDelegate;
+
 	class XGLInterface {
 
 	public:
 		XGLInterface() {
 			xgl = nullptr;
 			is_Setup = false;
+			deleg = 0;
 		}
 		virtual ~XGLInterface()
 		{
@@ -24,11 +29,14 @@ namespace XGLInterface {
 		virtual void bindWindow(HWND  handle) { 
 			xgl->setHandle(handle); 
 		}
+		void setEventHandler(const XGLDelegate&  deleg) { this->deleg = deleg; }
 
 	public:
 		bool isSetup() { return is_Setup; }
 		virtual int paint() { return xgl->paint(); }
 		virtual int render() { return xgl->render(); }
+		virtual int onMessage(int id,std::string& msg) = 0;
+		virtual int sendViewMsg(int id, std::string& msg) {return this->deleg(id,msg); }
 		virtual void setup(std::string name) = 0;
 		virtual int close() = 0;
 		virtual int lButtonDown(WPARAM state, int x, int y) { return xgl->lButtonDown((WPARAM)state,x,y); }
@@ -42,5 +50,7 @@ namespace XGLInterface {
 	protected:
 		Controller* xgl;
 		bool is_Setup;
+	private:
+		XGLDelegate  deleg;
 	};
 }

@@ -1,12 +1,15 @@
 #include "stdafx.h"
 #include "XGLInterface\XGLInterface.h"
 #include "MessageHelper.h"
+#include "XGLInterop.h"
 #include "XGLControl.h"
 
 void XGLWrapper::XGLControl::BindXGLInterface(intptr_t viewer)
 {
 	xgl = reinterpret_cast<XGLInterface::XGLInterface*>(viewer);
 	xgl->bindWindow((HWND) this->Handle.ToInt64());
+
+	interop = new XGLInterop(viewer,this);
 }
 
 XGLWrapper::XGLControl::!XGLControl()
@@ -15,6 +18,11 @@ XGLWrapper::XGLControl::!XGLControl()
 	{
 		delete xgl;
 		xgl = nullptr;
+	}
+	if (interop != nullptr)
+	{
+		delete interop;
+		interop = nullptr;
 	}
 }
 
@@ -41,6 +49,15 @@ int XGLWrapper::XGLControl::Close()
 	return 0;
 }
 
+int XGLWrapper::XGLControl::SendMsg(int id, String ^ msg)
+{
+	if (xgl != nullptr && interop != nullptr)
+	{
+		return interop->sendMessage(id,msg);
+	}
+	return 0;
+}
+
 void XGLWrapper::XGLControl::WndProc(System::Windows::Forms::Message % m)
 {
 	if (xgl != nullptr && xgl ->isSetup())
@@ -53,6 +70,11 @@ void XGLWrapper::XGLControl::WndProc(System::Windows::Forms::Message % m)
 	else {
 		__super::WndProc(m);
 	}
+}
+
+intptr_t XGLWrapper::XGLControl::getInstance()
+{
+	return (intptr_t)xgl;
 }
 
 bool XGLWrapper::XGLControl::dispatchMessage(System::Windows::Forms::Message % m)

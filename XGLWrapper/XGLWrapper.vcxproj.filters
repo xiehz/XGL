@@ -30,6 +30,9 @@
     <ClInclude Include="MessageHelper.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="XGLInterop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +45,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="XGLControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XGLInterop.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

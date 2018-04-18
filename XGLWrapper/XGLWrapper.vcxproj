@@ -155,6 +155,7 @@
     <ClInclude Include="XGLControl.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="XGLInterop.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -188,6 +189,7 @@
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
     </ClCompile>
+    <ClCompile Include="XGLInterop.cpp" />
     <ClCompile Include="XGLWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>

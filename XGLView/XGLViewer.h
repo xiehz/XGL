@@ -25,6 +25,9 @@ namespace XGLView {
 		XGLModel::ModelGL* model;
 		XGL::ViewGL* viewgl;
 		XGL::Camera* camera;
+
+		// Í¨¹ý XGLInterface ¼Ì³Ð
+		virtual int onMessage(int id, std::string &msg);
 	};
 }
 

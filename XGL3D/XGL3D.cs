@@ -20,5 +20,37 @@ namespace XGL3D
             XGLCreator creator = new XGLCreator();
             this.BindXGLInterface(creator.createXGL());
         }
+
+        public string VertexShader
+        {
+            get;
+            set;
+        }
+
+        public string GeometryShader
+        {
+            get;
+            set;
+        }
+
+        public string TesselationShader
+        {
+            get;
+            set;
+        }
+
+        public string FragmentShader
+        {
+            get;
+            set;
+        }
+
+
+        public override int OnViewMsg(int id, string mgs)
+        {
+            return base.OnViewMsg(id,mgs);
+        }
+
+
     }
 }

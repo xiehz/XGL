@@ -67,4 +67,9 @@ int XGLView::XGLViewer::close()
 	return 1;
 }
 
+int XGLView::XGLViewer::onMessage(int id, std::string &msg)
+{
+	return sendViewMsg(id, msg);
+}
+
 
