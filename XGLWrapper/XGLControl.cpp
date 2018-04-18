@@ -113,6 +113,12 @@ bool XGLWrapper::XGLControl::dispatchMessage(System::Windows::Forms::Message % m
 		break;
 	case WM_ERASEBKGND:
 		return true;
+	case WM_XGL_MODEL:
+	{
+		String^ values = System::Runtime::InteropServices::Marshal::PtrToStringAnsi((IntPtr)lParam);
+		OnViewMsg(int(m.WParam), values);
+	}
+		break;
 	default:
 		break;
 	}

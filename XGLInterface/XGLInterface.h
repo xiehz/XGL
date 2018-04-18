@@ -3,6 +3,11 @@
 #include <string>
 #include "stdafx.h"
 #include "Controller.h"
+#ifndef WM_XGL_MODEL
+#define WM_XGL_MODEL WM_USER+1
+#endif // !WM_XGL_MODEL
+
+
 namespace XGLInterface {
 
 	typedef std::function<int(int,std::string&)> XGLDelegate;

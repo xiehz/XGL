@@ -12,10 +12,12 @@ namespace XGLModel {
 	public:
 		virtual void init() override = 0;
 		virtual void draw() override = 0;
+		virtual int onMessage(int id, std::string& msg) = 0;
 
 	protected:
 		virtual void initShader() = 0;
-		void addShader(GLuint shaderProgram,GLuint shader, const char* shaderSource);
+		void readShader(const char* filename, std::string& source);
+		void addShader(GLuint shaderProgram,GLuint shader, const std::string& source);
 		void linkProgram();
 		void validateProgram();
 
@@ -23,21 +25,27 @@ namespace XGLModel {
 		GLuint vs, fs;
 		GLuint vbo;
 		GLuint ebo;
+		std::string vsSource;
+		std::string gsSource;
+		std::string tsSource;
+		std::string fsSource;
 	};
 
 
-	inline void TutorialInterface::addShader(GLuint program, GLuint shader, const char* fileName)
+	inline void TutorialInterface::readShader(const char * filename,std::string& source)
 	{
-		std::string content;
-		if (!readFile(fileName, content))
+		if (!readShaderFile(filename, source))
 		{
-			XGLERROR(fileName);
+			XGLERROR(filename);
 		}
+	}
 
+	inline void TutorialInterface::addShader(GLuint program, GLuint shader, const std::string& content)
+	{
 		const GLchar* p[1];
 		p[0] = content.c_str();
 		GLint length[1];
-		length[0] = strnlen_s(p[0], 1024);
+		length[0] = (GLint)strnlen_s(p[0], 1024);
 		glShaderSource(shader, 1, p, length);
 		glCompileShader(shader);
 

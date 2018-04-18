@@ -13,6 +13,8 @@ namespace XGL3D
 {
     public partial class XGL3D : XGLControl
     {
+        public delegate void XGLEventDelg(int id,string msg);
+        public event XGLEventDelg EventXGL;
         public XGL3D()
         {
             InitializeComponent();
@@ -48,6 +50,22 @@ namespace XGL3D
 
         public override int OnViewMsg(int id, string mgs)
         {
+            switch(id)
+            {
+                case 1:
+                    VertexShader = mgs;
+                    break;
+                case 2:
+                    GeometryShader = mgs;
+                    break;
+                case 3:
+                    TesselationShader = mgs;
+                    break;
+                case 4:
+                    FragmentShader = mgs;
+                    break;
+            }
+            EventXGL(id,mgs);
             return base.OnViewMsg(id,mgs);
         }
 

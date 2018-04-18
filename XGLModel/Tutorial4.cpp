@@ -51,6 +51,7 @@ void XGLModel::Tutorial4::draw()
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glDisableVertexAttribArray(0);
+
 }
 
 void XGLModel::Tutorial4::initShader()
@@ -68,7 +69,9 @@ void XGLModel::Tutorial4::initShader()
 		return;
 	}
 
-	addShader(program, vs, "..\\..\\XGLModel\\tutorial4.vs");
+	readShader("..\\..\\XGLModel\\tutorial4.vs", vsSource);
+	addShader(program, vs, vsSource);
+	postViewMsg(1, vsSource);
 
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
 	if (!fs)
@@ -76,7 +79,9 @@ void XGLModel::Tutorial4::initShader()
 		XGLERROR("error create shader");
 		return;
 	}
-	addShader(program, fs, "..\\..\\XGLModel\\tutorial4.fs");
+	readShader("..\\..\\XGLModel\\tutorial4.fs",fsSource);
+	addShader(program, fs,fsSource);
+	postViewMsg(4, fsSource);
 
 	linkProgram();
 	validateProgram();
@@ -84,5 +89,12 @@ void XGLModel::Tutorial4::initShader()
 	glUseProgram(program);
 
 }
+
+int XGLModel::Tutorial4::onMessage(int id, std::string & msg)
+{
+	return 0;
+}
+
+
 
 

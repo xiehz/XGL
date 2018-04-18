@@ -35,7 +35,7 @@ void XGLView::XGLViewer::setup(std::string name)
 	viewgl = new ViewGL();
 	camera = new OrbitCamera();
 	model = XGLModel::TutorialFactory::getInstance().getClass(name);
-
+	model->bindHandle(xgl->getHandle());
 
 	camera->lookat(Vector3(0, 0, 2), Vector3(0, 0, 0), Vector3(0, 1, 0));
 	model->setViewMatrix(camera->getViewMatrix());
@@ -71,5 +71,7 @@ int XGLView::XGLViewer::onMessage(int id, std::string &msg)
 {
 	return sendViewMsg(id, msg);
 }
+
+
 
 

@@ -78,4 +78,11 @@ void XGLModel::Tutorial3::initShader()
 {
 }
 
+int XGLModel::Tutorial3::onMessage(int id, std::string & msg)
+{
+	return 0;
+}
+
+
+
 

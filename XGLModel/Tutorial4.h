@@ -13,6 +13,9 @@ namespace XGLModel {
 
 		// 通过 TutorialInterface 继承
 		virtual void initShader() override;
+
+		// 通过 TutorialInterface 继承
+		virtual int onMessage(int id, std::string & msg) override;
 	};
 }
 

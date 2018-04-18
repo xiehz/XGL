@@ -156,5 +156,12 @@ void XGLModel::Tutorial2::initShader()
 {
 }
 
+int XGLModel::Tutorial2::onMessage(int id, std::string & msg)
+{
+	return 0;
+}
+
+
+
 
 

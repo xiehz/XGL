@@ -33,6 +33,7 @@ namespace XGLInterface
 		virtual ~Controller() {}
 
         void setHandle(HWND handle);                            // set window handle
+		HWND getHandle() { return handle; }
 		virtual int render() { return 0; }
         virtual int close();                                    // for WM_CLOSE
         virtual int command(int id, int cmd, LPARAM msg);       // for WM_COMMAND: id, cmd, msg

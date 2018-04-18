@@ -11,7 +11,7 @@
 #ifndef MODEL_GL_H
 #define MODEL_GL_H
 
-
+#include <functional>
 #include <vector>
 #include <string>
 #include <GL\glew.h>
@@ -26,9 +26,13 @@
 #include "Vertices.h"
 #include "XGLModel.h"
 
+#ifndef WM_XGL_MODEL
+#define WM_XGL_MODEL WM_USER+1
+#endif // !WM_XGL_MODEL
+
+
 namespace XGLModel
 {
-
 	 class XGLMODEL_API ModelGL
 	{
 	public:
@@ -43,6 +47,12 @@ namespace XGLModel
 		void setViewMatrix(const Matrix4& viewMatrix) {  cameraMatrix = viewMatrix; }
 		void setMousePath(const std::vector<Vector3>& path) { this->sphere_Path = path; }
 		void setMouseVector(const Vector3& v) { this->sphere_Vector = v; }
+
+		virtual void postViewMsg(int id, std::string& msg) 
+		{
+			PostMessage(handle, WM_XGL_MODEL, WPARAM(id), (LPARAM)msg.c_str());
+		}
+		void bindHandle(HWND handle) { this->handle = handle; }
 	protected:
 		void draw3D();
 		void preFrame();
@@ -57,6 +67,8 @@ namespace XGLModel
 		float sphere_Radius;
 		XGL::Vector3 sphere_Vector;
 		std::vector<XGL::Vector3> sphere_Path;
+	private:
+		HWND handle;
 	};
 }
 

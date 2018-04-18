@@ -22,10 +22,32 @@ namespace XGLApp
         {
             this.threeD = new XGL3D.XGL3D();
             this.threeD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.threeD.EventXGL += ThreeD_EventXGL; ;
             this.splitContainer1.Panel1.Controls.Add(this.threeD);
 
             this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
         }
+
+        private void ThreeD_EventXGL(int id, string msg)
+        {
+            switch(id)
+            {
+                case 1:
+                    this.richTextBox1.Text = msg;
+                    break;
+                case 2:
+                    this.richTextBox2.Text = msg;
+                    break;
+                case 3:
+                    this.richTextBox3.Text = msg;
+                    break;
+                case 4:
+                    this.richTextBox4.Text = msg;
+                    break;
+            }
+            this.toolStripStatusLabel1.Text = string.Format("加载shader!");
+        }
+
         private XGL3D.XGL3D threeD;
 
         private void comboBox1_TextChanged(object sender, EventArgs e)

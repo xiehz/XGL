@@ -3,7 +3,7 @@
 #include <fstream>
 #include "XGLUtil.h"
 
-bool XGLModel::readFile(const char * pFileName, std::string & outFile)
+bool XGLModel::readShaderFile(const char * pFileName, std::string & outFile)
 {
 	std::ifstream f(pFileName);
 	bool ret = false;
