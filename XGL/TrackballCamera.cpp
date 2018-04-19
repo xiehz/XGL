@@ -34,7 +34,7 @@ void XGL::TrackballCamera::home(float radius, int s_width, int s_height)
 
 const Matrix4 & XGL::TrackballCamera::getViewMatrix()
 {
-	viewMatrix = this->quat->getMatrix().translate(0, 0, -camera_Distance);
+	viewMatrix = this->quat->getMatrix().transpose().translate(0, 0, -camera_Distance);
 	return Camera::getViewMatrix();
 }
 

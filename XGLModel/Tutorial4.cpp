@@ -90,10 +90,7 @@ void XGLModel::Tutorial4::initShader()
 
 }
 
-int XGLModel::Tutorial4::onMessage(int id, std::string & msg)
-{
-	return 0;
-}
+
 
 
 

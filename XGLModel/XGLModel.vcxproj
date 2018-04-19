@@ -163,6 +163,7 @@
     <ClInclude Include="Tutorial2.h" />
     <ClInclude Include="Tutorial3.h" />
     <ClInclude Include="Tutorial4.h" />
+    <ClInclude Include="Tutorial5.h" />
     <ClInclude Include="TutorialFactory.h" />
     <ClInclude Include="TutorialInterface.h" />
     <ClInclude Include="Vertices.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="Tutorial2.cpp" />
     <ClCompile Include="Tutorial3.cpp" />
     <ClCompile Include="Tutorial4.cpp" />
+    <ClCompile Include="Tutorial5.cpp" />
     <ClCompile Include="TutorialFactory.cpp" />
     <ClCompile Include="TutorialInterface.cpp" />
     <ClCompile Include="XGLModel.cpp" />
@@ -212,6 +214,8 @@
   <ItemGroup>
     <None Include="tutorial4.fs" />
     <None Include="tutorial4.vs" />
+    <None Include="tutorial5.fs" />
+    <None Include="tutorial5.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

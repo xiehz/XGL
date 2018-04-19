@@ -1,19 +1,21 @@
 #pragma once
 #include "TutorialFactory.h"
+
 namespace XGLModel {
-	class Tutorial4 : public TutorialInterface
+	class Tutorial5 :
+		public TutorialInterface
 	{
 	public:
-		Tutorial4();
-		virtual ~Tutorial4();
+		Tutorial5();
+		virtual ~Tutorial5();
 
 		// 通过 TutorialInterface 继承
 		virtual void init() override;
 		virtual void draw() override;
-
-		// 通过 TutorialInterface 继承
 		virtual void initShader() override;
-
+	private:
+		GLint uniform_scale;
+		GLint uniform_model_matrix;
 	};
 }
 

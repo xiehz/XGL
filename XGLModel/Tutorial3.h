@@ -20,10 +20,6 @@ namespace XGLModel {
 		virtual void initShader() override;
 
 
-		// Í¨¹ý TutorialInterface ¼Ì³Ð
-		virtual int onMessage(int id, std::string & msg) override;
-
-
 	};
 }
 

@@ -12,7 +12,6 @@ namespace XGLModel {
 	public:
 		virtual void init() override = 0;
 		virtual void draw() override = 0;
-		virtual int onMessage(int id, std::string& msg) = 0;
 
 	protected:
 		virtual void initShader() = 0;
@@ -22,7 +21,7 @@ namespace XGLModel {
 		void validateProgram();
 
 		GLuint program;
-		GLuint vs, fs;
+		GLuint vs, gs,ts,fs;
 		GLuint vbo;
 		GLuint ebo;
 		std::string vsSource;
@@ -30,6 +29,8 @@ namespace XGLModel {
 		std::string tsSource;
 		std::string fsSource;
 	};
+
+
 
 
 	inline void TutorialInterface::readShader(const char * filename,std::string& source)
