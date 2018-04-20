@@ -79,7 +79,7 @@
       <Filter>tutorial</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial5.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +129,7 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial5.cpp">
-      <Filter>源文件</Filter>
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,10 @@ void XGLModel::Tutorial3::draw()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(cameraMatrix.get());
 
+
+	float mat[16];
+	glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+	//glGetIntegerv(GL_MODELVIEW, );
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 

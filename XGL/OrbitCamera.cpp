@@ -106,15 +106,15 @@ int XGL::OrbitCamera::mouseMove(WPARAM state, int x, int y)
 
 int XGL::OrbitCamera::mouseWheel(int state, int delta, int x, int y)
 {
-	float d = delta/12000.0f;
+	float d = delta/1200.0f;
 	float distance = this->oribit->getDistance();
 	distance -= (d * ZOOM_SCALE);
 
-	// constrain min and max
-	if (distance < MIN_DIST)
-		distance = MIN_DIST;
-	else if (distance > MAX_DIST)
-		distance = MAX_DIST;
+	//// constrain min and max
+	//if (distance < MIN_DIST)
+	//	distance = MIN_DIST;
+	//else if (distance > MAX_DIST)
+	//	distance = MAX_DIST;
 
 	this->oribit->setDistance(distance);
 	return 0;

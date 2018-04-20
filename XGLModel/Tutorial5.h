@@ -16,6 +16,7 @@ namespace XGLModel {
 	private:
 		GLint uniform_scale;
 		GLint uniform_model_matrix;
+		GLint uniform_view_matrix;
 	};
 }
 
