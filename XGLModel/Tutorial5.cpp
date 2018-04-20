@@ -58,7 +58,7 @@ void XGLModel::Tutorial5::init()
 
 void XGLModel::Tutorial5::draw()
 {
-	static float fscale = 0.3f;
+	static float fscale = 1.0f;
 	
 	static float step = 0.0f;
 	//step+= 0.1f;
@@ -110,6 +110,7 @@ void XGLModel::Tutorial5::draw()
 	glUniformMatrix4fv(uniform_model_matrix, 1,true,model);
 	//Ïà»ú¾ØÕóµÄÄæ
 	glUniformMatrix4fv(uniform_view_matrix, 1, true, cameraMatrix.get());
+	glUniformMatrix4fv(uniform_perspective, 1, true, projectMatrix.get());
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
@@ -177,6 +178,12 @@ void XGLModel::Tutorial5::initShader()
 	if (uniform_view_matrix < 0)
 	{
 		XGLERROR("get view uniform failed");
+	}
+
+	uniform_perspective = glGetUniformLocation(program, "perspective");
+	if (uniform_perspective < 0)
+	{
+		XGLERROR("get perspective failed");
 	}
 	validateProgram();
 
