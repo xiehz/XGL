@@ -101,13 +101,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;XGLMODEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(solutiondir)include\;..\..\glew-2.1.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)include\;..\..\glew-2.1.0\include;E:\2018\opengl\ImageMagick-7.0.7-28\ImageMagick\Magick++\lib;E:\2018\opengl\ImageMagick-7.0.7-28\ImageMagick</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(solutiondir)$(platform)\$(configuration);..\..\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;XGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)$(platform)\$(configuration);..\..\glew-2.1.0\lib\Release\x64;E:\2018\opengl\ImageMagick-7.0.7-28\VisualMagick\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;XGL.lib;CORE_DB_Magick++_.lib;CORE_DB_MagickCore_.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy *h ..\include\xglmodel\ /y</Command>
@@ -164,6 +165,7 @@
     <ClInclude Include="Tutorial3.h" />
     <ClInclude Include="Tutorial4.h" />
     <ClInclude Include="Tutorial5.h" />
+    <ClInclude Include="Tutorial6.h" />
     <ClInclude Include="TutorialFactory.h" />
     <ClInclude Include="TutorialInterface.h" />
     <ClInclude Include="Vertices.h" />
@@ -201,6 +203,7 @@
     <ClCompile Include="Tutorial3.cpp" />
     <ClCompile Include="Tutorial4.cpp" />
     <ClCompile Include="Tutorial5.cpp" />
+    <ClCompile Include="Tutorial6.cpp" />
     <ClCompile Include="TutorialFactory.cpp" />
     <ClCompile Include="TutorialInterface.cpp" />
     <ClCompile Include="XGLModel.cpp" />
@@ -216,6 +219,8 @@
     <None Include="tutorial4.vs" />
     <None Include="tutorial5.fs" />
     <None Include="tutorial5.vs" />
+    <None Include="tutorial6.fs" />
+    <None Include="tutorial6.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

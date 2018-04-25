@@ -37,9 +37,9 @@ void XGLView::XGLViewer::setup(std::string name)
 	model = XGLModel::TutorialFactory::getInstance().getClass(name);
 	model->bindHandle(xgl->getHandle());
 
-	camera->lookat(Vector3(0, 0, 2), Vector3(0, 0, 0), Vector3(0, 1, 0));
+	camera->lookat(Vector3(0, 0.5, 2), Vector3(0, 0.5, 0.5f), Vector3(0, 1, 0));
 	model->setViewMatrix(camera->getViewMatrix());
-	float width = 2.f, height = 2.f;
+	float width = 1.f, height = 1.f;
 	camera->project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1.0f,3.0f);
 	model->setProject(camera->getProjectMatrix());
 

@@ -81,6 +81,9 @@
     <ClInclude Include="Tutorial5.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="Tutorial6.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -131,6 +134,9 @@
     <ClCompile Include="Tutorial5.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="Tutorial6.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tutorial4.vs">
@@ -143,6 +149,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="tutorial5.fs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial6.vs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial6.fs">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
