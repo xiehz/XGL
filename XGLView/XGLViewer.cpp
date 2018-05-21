@@ -4,6 +4,8 @@
 #include "XGLModel\TutorialFactory.h"
 #include "XGL\TrackballCamera.h"
 #include "XGL\OrbitCamera.h"
+#include "xgl\XEventHandler.h"
+#include "xgl\XOrbitCamera.h"
 #include "ControllerGL.h"
 #include "XGLViewer.h"
 
@@ -33,18 +35,22 @@ void XGLView::XGLViewer::setup(std::string name)
 	this->close();
 
 	viewgl = new ViewGL();
-	camera = new OrbitCamera();
+	camera = new XOrbitCamera();
 	model = XGLModel::TutorialFactory::getInstance().getClass(name);
 	model->bindHandle(xgl->getHandle());
 
-	camera->lookat(Vector3(0, 0.5, 2), Vector3(0, 0.5, 0.5f), Vector3(0, 1, 0));
-	model->setViewMatrix(camera->getViewMatrix());
-	float width = 1.f, height = 1.f;
-	camera->project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1.0f,3.0f);
-	model->setProject(camera->getProjectMatrix());
+	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
+	orbit->setTransformation(Vec3f(0, 0.0, 2), Vec3f(0, 0.0, 0.0f), Vec3f(0, 1, 0));
+
+	model->setViewMatrix(orbit->getMatrix().ptr());
+	float width = 1.0f, height = 1.0f;
+
+	model->project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 100.0f);
 
 	dynamic_cast<ControllerGL*>(xgl)->setup(model, viewgl, camera);
 	is_Setup =xgl->create();
+
+	
 }
 
 int XGLView::XGLViewer::close()

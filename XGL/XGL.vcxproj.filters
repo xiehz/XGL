@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="XCamera">
+      <UniqueIdentifier>{f592bf98-274e-458b-a1c3-5300120a3681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XMath">
+      <UniqueIdentifier>{5701a717-77d9-4976-83a7-3f39a3a1eb2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -69,6 +75,36 @@
     <ClInclude Include="Orbit.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="XOrbitCamera.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XTrackballCamera.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XEventHandler.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XEvent.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XEventQueue.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XEventAdapter.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XTimer.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XCamera.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardCamera.h">
+      <Filter>XCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="XPlane.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -107,5 +143,139 @@
     <ClCompile Include="Orbit.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="XTrackballCamera.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XOrbitCamera.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XEventHandler.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XEvent.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XEventQueue.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XEventAdapter.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XTimer.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XCamera.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardCamera.cpp">
+      <Filter>XCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="XPlane.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>XMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix_implementation.cpp">
+      <Filter>XMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrixf.cpp">
+      <Filter>XMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Quat.cpp">
+      <Filter>XMath</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vec3f">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3i">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3s">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3ub">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3ui">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3us">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4b">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4d">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4f">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4i">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4s">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4ub">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4ui">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec4us">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2b">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2d">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2f">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2i">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2s">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2ub">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2ui">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec2us">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3b">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Vec3d">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Math">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Matrix">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Matrixf">
+      <Filter>XMath</Filter>
+    </None>
+    <None Include="Quat">
+      <Filter>XMath</Filter>
+    </None>
   </ItemGroup>
 </Project>

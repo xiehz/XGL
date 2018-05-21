@@ -109,8 +109,14 @@ void XGLModel::Tutorial5::draw()
 	*/
 	glUniformMatrix4fv(uniform_model_matrix, 1,true,model);
 	//Ïà»ú¾ØÕóµÄÄæ
-	glUniformMatrix4fv(uniform_view_matrix, 1, true, cameraMatrix.get());
-	glUniformMatrix4fv(uniform_perspective, 1, true, projectMatrix.get());
+	float m[4][4];
+	m[0][0] = 1.0;	m[0][1] = 0.0;	m[0][2] = 0.0;	m[0][3] = 0.0;
+	m[1][0] = 0.0;	m[1][1] = 1.0;	m[1][2] = 0.0;	m[1][3] = 0.0;
+	m[2][0] = 0.0;	m[2][1] = 0.0;	m[2][2] = 1.0;	m[2][3] = 0.0;
+	m[3][0] = 0.3;	m[3][1] = 1.0;	m[3][2] = -2.0;	m[3][3] = 1.0;
+	
+	glUniformMatrix4fv(uniform_view_matrix, 1, false, cameraMatrix.ptr());
+	glUniformMatrix4fv(uniform_perspective, 1, false, projectMatrix.ptr());
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 

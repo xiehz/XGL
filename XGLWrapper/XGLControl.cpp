@@ -93,6 +93,12 @@ bool XGLWrapper::XGLControl::dispatchMessage(System::Windows::Forms::Message % m
 	case WM_LBUTTONDOWN:
 		xgl->lButtonDown(wParam,GetX(lParam),GetY(lParam));
 		break;
+	case WM_MBUTTONDOWN:
+		xgl->mButtonDown(wParam, GetX(lParam), GetY(lParam));
+		break;
+	case WM_MBUTTONUP:
+		xgl->mButtonUp(wParam, GetX(lParam), GetY(lParam));
+		break;
 	case WM_LBUTTONUP:
 		xgl->lButtonUp(wParam, GetX(lParam), GetY(lParam));
 		break;

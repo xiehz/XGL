@@ -16,9 +16,10 @@
 #include <string>
 #include <GL\glew.h>
 #include "XGL\XGL.h"
-#include "XGL\Matrices.h"
-#include "XGL\Vectors.h"
-#include "XGL\Quaternion.h"
+#include "xgl\Vec3f"
+#include "xgl\Matrix"
+#include "xgl\Quat"
+
 #include "ObjModel.h"
 #include "XGL\BoundingBox.h"
 #include "BitmapFont.h"
@@ -43,8 +44,12 @@ namespace XGLModel
 		inline void quit() {}                            // clean up OpenGL objects
 		virtual void draw();
 		void setViewport(int viewport[4]);
-		void setProject(const Matrix4& projectMatrix);
-		void setViewMatrix(const Matrix4& viewMatrix) {  cameraMatrix = viewMatrix; }
+		int* getViewport() { return viewport; }
+		virtual void project(float left, float right, float bottom, float top, float near, float) ;
+		void setViewMatrix(const float* viewMatrix) 
+		{  
+			cameraMatrix.set(viewMatrix);
+		 }
 		void setMousePath(const std::vector<Vector3>& path) { this->sphere_Path = path; }
 		void setMouseVector(const Vector3& v) { this->sphere_Vector = v; }
 
@@ -61,8 +66,8 @@ namespace XGLModel
 		void initGL();
 		void initLights();
 	protected:
-		Matrix4 cameraMatrix;
-		Matrix4 projectMatrix;
+		Matrixf cameraMatrix;
+		Matrixf projectMatrix;
 		int viewport[4];
 		float sphere_Radius;
 		XGL::Vector3 sphere_Vector;

@@ -21,6 +21,7 @@ using namespace XGLModel;
 
 XGLModel::ModelGL::ModelGL()
 {
+	
 }
 
 ModelGL::~ModelGL()
@@ -41,12 +42,12 @@ void ModelGL::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(projectMatrix.get());
+	glLoadMatrixf(projectMatrix.ptr());
 	//glLoadIdentity();
 
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(cameraMatrix.get());
+	glLoadMatrixf(cameraMatrix.ptr());
 
 	draw3D();   // draw 3D sphere, cursor vector and axis
 
@@ -62,9 +63,20 @@ void XGLModel::ModelGL::setViewport(int viewport[4])
 	memcpy(this->viewport, viewport, sizeof(int) * 4);
 }
 
-void XGLModel::ModelGL::setProject(const Matrix4 & projectMatrix)
+void XGLModel::ModelGL::project(float l, float r, float b, float t, float n, float f)
 {
-	this->projectMatrix = projectMatrix;
+	this->projectMatrix.makeFrustum(l, r, b, t, n, f);
+	//this->projectMatrix.identity();
+	////ÁÐÖ÷Ðò
+	//projectMatrix.frustum(l, r, b, t, n, f);
+	//projectMatrix[0] = 2 * n / (r - l);
+	//projectMatrix[5] = 2 * n / (t - b);
+	//projectMatrix[8] = (r + l) / (r - l);
+	//projectMatrix[9] = (t + b) / (t - b);
+	//projectMatrix[10] = -(f + n) / (f - n);
+	//projectMatrix[11] = -1;
+	//projectMatrix[14] = -(2 * f * n) / (f - n);
+	//projectMatrix[15] = 0;
 }
 
 void ModelGL::drawAxis(float size)

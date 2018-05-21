@@ -5,6 +5,7 @@
 namespace XGL {
 	class ViewGL;
 	class Camera;
+	class XEventHandler;
 }
 
 namespace XGLModel {
@@ -24,7 +25,7 @@ namespace XGLView {
 	protected:
 		XGLModel::ModelGL* model;
 		XGL::ViewGL* viewgl;
-		XGL::Camera* camera;
+		XGL::XEventHandler* camera;
 
 		// Í¨¹ý XGLInterface ¼Ì³Ð
 		virtual int onMessage(int id, std::string &msg);

@@ -41,10 +41,10 @@ void XGLModel::Tutorial3::draw()
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
 	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(projectMatrix.get());
+	glLoadMatrixf(projectMatrix.ptr());
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(cameraMatrix.get());
+	glLoadMatrixf(cameraMatrix.ptr());
 
 
 	float mat[16];

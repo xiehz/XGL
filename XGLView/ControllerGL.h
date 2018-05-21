@@ -18,10 +18,12 @@
 
 #include <thread>
 #include "XGLInterface\Controller.h"
+#include "xgl\XEventQueue.h"
 
 namespace XGL {
 	class ViewGL;
 	class Camera;
+	class XEventHandler;
 }
 
 namespace XGLModel {
@@ -34,9 +36,9 @@ namespace XGLView
     {
     public:
         ControllerGL();
-        ~ControllerGL() {};
+		~ControllerGL() { delete eventQueue; };
 
-		int setup(XGLModel::ModelGL* model, XGL::ViewGL* view, XGL::Camera* camera);
+		int setup(XGLModel::ModelGL* model, XGL::ViewGL* view, XGL::XEventHandler* camera);
 		virtual int render();
        virtual int close();                                // close the RC and OpenGL window
 	   virtual  int command(int id, int cmd, LPARAM msg);   // for WM_COMMAND
@@ -44,6 +46,8 @@ namespace XGLView
        virtual  int paint();
        virtual  int lButtonDown(WPARAM state, int x, int y);
        virtual  int lButtonUp(WPARAM state, int x, int y);
+	   virtual  int mButtonDown(WPARAM state, int x, int y);
+	   virtual  int mButtonUp(WPARAM state, int x, int y);
        virtual  int rButtonDown(WPARAM state, int x, int y);
        virtual  int rButtonUp(WPARAM state, int x, int y);
        virtual  int mouseMove(WPARAM state, int x, int y);
@@ -56,10 +60,10 @@ namespace XGLView
 
         XGLModel::ModelGL* model;                             // pointer to model component
         XGL::ViewGL* view;                               // pointer to view component
-		XGL::Camera* camera;
+		XGL::XEventQueue* eventQueue;
+		XGL::XEventHandler* camera;
         std::thread glThread;                       // opengl rendering thread object
         volatile bool loopFlag;                     // rendering loop flag
-		volatile bool dirty;
     };
 }
 

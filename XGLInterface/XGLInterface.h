@@ -46,6 +46,8 @@ namespace XGLInterface {
 		virtual int close() = 0;
 		virtual int lButtonDown(WPARAM state, int x, int y) { return xgl->lButtonDown((WPARAM)state,x,y); }
 		virtual int lButtonUp(WPARAM state, int x, int y) { return xgl->lButtonUp((WPARAM)state, x, y); }
+		virtual int mButtonDown(WPARAM state, int x, int y) { return xgl->mButtonDown((WPARAM)state, x, y); }
+		virtual int mButtonUp(WPARAM state, int x, int y) { return xgl->mButtonUp((WPARAM)state, x, y); }
 		virtual int rButtonDown(WPARAM state, int x, int y) { return xgl->rButtonDown((WPARAM)state, x, y); }
 		virtual int rButtonUp(WPARAM state, int x, int y) { return xgl->rButtonUp((WPARAM)state, x, y); }
 		virtual int mouseMove(WPARAM state, int x, int y) { return xgl->mouseMove((WPARAM)state, x, y); }

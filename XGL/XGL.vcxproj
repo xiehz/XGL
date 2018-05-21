@@ -110,7 +110,17 @@
       <AdditionalLibraryDirectories>..\..\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy *h ..\include\xgl\  /y</Command>
+      <Command>xcopy *h ..\include\xgl\  /y
+xcopy Vec3f ..\include\xgl\  /y
+xcopy Vec3 ..\include\xgl\  /y
+xcopy Vec3d ..\include\xgl\  /y
+xcopy Vec2f ..\include\xgl\  /y
+xcopy Vec2d ..\include\xgl\  /y
+xcopy Vec4f ..\include\xgl\  /y
+xcopy Vec4d ..\include\xgl\  /y
+xcopy Quat ..\include\xgl\  /y
+xcopy Matrix ..\include\xgl\  /y
+xcopy Matrixf ..\include\xgl\  /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -161,13 +171,23 @@
     <ClInclude Include="OrbitCamera.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="StandardCamera.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Trackball.h" />
     <ClInclude Include="TrackballCamera.h" />
     <ClInclude Include="Vectors.h" />
     <ClInclude Include="ViewGL.h" />
+    <ClInclude Include="XCamera.h" />
+    <ClInclude Include="XEvent.h" />
+    <ClInclude Include="XEventAdapter.h" />
+    <ClInclude Include="XEventHandler.h" />
+    <ClInclude Include="XEventQueue.h" />
     <ClInclude Include="XGL.h" />
+    <ClInclude Include="XOrbitCamera.h" />
+    <ClInclude Include="XPlane.h" />
+    <ClInclude Include="XTimer.h" />
+    <ClInclude Include="XTrackballCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animUtils.cpp" />
@@ -186,10 +206,17 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrices.cpp" />
+    <ClCompile Include="Matrixf.cpp" />
+    <ClCompile Include="Matrix_implementation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Orbit.cpp" />
     <ClCompile Include="OrbitCamera.cpp" />
     <ClCompile Include="Primitives.cpp" />
+    <ClCompile Include="Quat.cpp" />
+    <ClCompile Include="StandardCamera.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -199,7 +226,50 @@
     <ClCompile Include="Trackball.cpp" />
     <ClCompile Include="TrackballCamera.cpp" />
     <ClCompile Include="ViewGL.cpp" />
+    <ClCompile Include="XCamera.cpp" />
+    <ClCompile Include="XEvent.cpp" />
+    <ClCompile Include="XEventAdapter.cpp" />
+    <ClCompile Include="XEventHandler.cpp" />
+    <ClCompile Include="XEventQueue.cpp" />
     <ClCompile Include="XGL.cpp" />
+    <ClCompile Include="XOrbitCamera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="XPlane.cpp" />
+    <ClCompile Include="XTimer.cpp" />
+    <ClCompile Include="XTrackballCamera.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Math" />
+    <None Include="Matrix" />
+    <None Include="Matrixf" />
+    <None Include="Quat" />
+    <None Include="Vec2b" />
+    <None Include="Vec2d" />
+    <None Include="Vec2f" />
+    <None Include="Vec2i" />
+    <None Include="Vec2s" />
+    <None Include="Vec2ub" />
+    <None Include="Vec2ui" />
+    <None Include="Vec2us" />
+    <None Include="Vec3" />
+    <None Include="Vec3b" />
+    <None Include="Vec3d" />
+    <None Include="Vec3f" />
+    <None Include="Vec3i" />
+    <None Include="Vec3s" />
+    <None Include="Vec3ub" />
+    <None Include="Vec3ui" />
+    <None Include="Vec3us" />
+    <None Include="Vec4" />
+    <None Include="Vec4b" />
+    <None Include="Vec4d" />
+    <None Include="Vec4f" />
+    <None Include="Vec4i" />
+    <None Include="Vec4s" />
+    <None Include="Vec4ub" />
+    <None Include="Vec4ui" />
+    <None Include="Vec4us" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
