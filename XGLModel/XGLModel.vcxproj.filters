@@ -84,6 +84,9 @@
     <ClInclude Include="Tutorial6.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="AmbientLight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="Tutorial6.cpp">
       <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="AmbientLight.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

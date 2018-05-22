@@ -41,9 +41,16 @@ void XGLView::XGLViewer::setup(std::string name)
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
 	orbit->setTransformation(Vec3f(0, 0.0, 2), Vec3f(0, 0.0, 0.0f), Vec3f(0, 1, 0));
-
 	model->setViewMatrix(orbit->getMatrix().ptr());
-	float width = 1.0f, height = 1.0f;
+
+	// cofigure projection matrix
+	RECT rect;
+	::GetClientRect(xgl->getHandle(), &rect);
+
+	int width = rect.right - rect.left;
+	int height = rect.bottom - rect.top;
+	float asptio = width / height;
+	float width = height * asptio, height = 1.0f;
 
 	model->project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 100.0f);
 

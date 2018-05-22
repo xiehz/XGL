@@ -20,7 +20,7 @@ void XGLModel::Tutorial6::init()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
-	glFrontFace(GL_CW);
+	glFrontFace(GL_CCW);
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
 
@@ -89,7 +89,7 @@ void XGLModel::Tutorial6::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-	Matrixf mvp = cameraMatrix*  projectMatrix ;
+	Matrixf mvp = cameraMatrix *  projectMatrix ;
 	glUniformMatrix4fv(uniform_mvp, 1, false,mvp.ptr() );
 
 	glUniform1i(uniform_sampler, textureUnitIndex);

@@ -10,7 +10,7 @@ out vec2 texcoord0;
 void main()
 {
 	vec4 clip = mvp *vec4(position ,1.0);
-	gl_Position = mvp * clip;
+	gl_Position = clip;
 
 	texcoord0 = texcoord;
 }

@@ -123,7 +123,7 @@
             "Tutorial4",
             "Tutorial5",
             "Tutorial6",
-            "Tutorial7"});
+            "AmbientLight"});
             this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(244, 20);
@@ -168,7 +168,7 @@
             this.gs_tabPage2.Location = new System.Drawing.Point(4, 22);
             this.gs_tabPage2.Name = "gs_tabPage2";
             this.gs_tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.gs_tabPage2.Size = new System.Drawing.Size(257, 354);
+            this.gs_tabPage2.Size = new System.Drawing.Size(254, 331);
             this.gs_tabPage2.TabIndex = 1;
             this.gs_tabPage2.Text = "geometry";
             this.gs_tabPage2.UseVisualStyleBackColor = true;
@@ -178,7 +178,7 @@
             this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox2.Location = new System.Drawing.Point(3, 3);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(251, 348);
+            this.richTextBox2.Size = new System.Drawing.Size(248, 325);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
@@ -187,7 +187,7 @@
             this.ts_tabPage3.Controls.Add(this.richTextBox3);
             this.ts_tabPage3.Location = new System.Drawing.Point(4, 22);
             this.ts_tabPage3.Name = "ts_tabPage3";
-            this.ts_tabPage3.Size = new System.Drawing.Size(257, 354);
+            this.ts_tabPage3.Size = new System.Drawing.Size(254, 331);
             this.ts_tabPage3.TabIndex = 2;
             this.ts_tabPage3.Text = "tesselation";
             this.ts_tabPage3.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox3.Location = new System.Drawing.Point(0, 0);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(257, 354);
+            this.richTextBox3.Size = new System.Drawing.Size(254, 331);
             this.richTextBox3.TabIndex = 1;
             this.richTextBox3.Text = "";
             // 
@@ -206,7 +206,7 @@
             this.fs_tabPage4.Controls.Add(this.richTextBox4);
             this.fs_tabPage4.Location = new System.Drawing.Point(4, 22);
             this.fs_tabPage4.Name = "fs_tabPage4";
-            this.fs_tabPage4.Size = new System.Drawing.Size(257, 354);
+            this.fs_tabPage4.Size = new System.Drawing.Size(254, 331);
             this.fs_tabPage4.TabIndex = 3;
             this.fs_tabPage4.Text = "fragment";
             this.fs_tabPage4.UseVisualStyleBackColor = true;
@@ -216,7 +216,7 @@
             this.richTextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox4.Location = new System.Drawing.Point(0, 0);
             this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(257, 354);
+            this.richTextBox4.Size = new System.Drawing.Size(254, 331);
             this.richTextBox4.TabIndex = 1;
             this.richTextBox4.Text = "";
             // 
