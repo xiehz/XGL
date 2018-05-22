@@ -50,7 +50,8 @@ void XGLView::XGLViewer::setup(std::string name)
 	int width = rect.right - rect.left;
 	int height = rect.bottom - rect.top;
 	float asptio = width / height;
-	float width = height * asptio, height = 1.0f;
+	height = 1.0f;
+	width = height * asptio;
 
 	model->project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 100.0f);
 
