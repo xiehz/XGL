@@ -21,6 +21,7 @@ namespace XGLModel {
 
 		GLint u_mvp;
 		GLint u_sampler;
-		GLint u_ambient;
+		GLint u_ambient_ambient;
+		GLint u_ambient_density;
 	};
 }

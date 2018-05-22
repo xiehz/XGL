@@ -94,7 +94,12 @@ void XGLModel::AmbientLight::draw()
 
 	ModelGL::draw();
 	glUniform1i(u_sampler, textureIndex);
+
 	glUniformMatrix4fv(u_mvp, 1, false, (cameraMatrix * projectMatrix).ptr());
+	static int s = 0;
+	glUniform1f(u_ambient_density, 1.0f);
+	float c = (cos(s++ / 1000.0f) + 1.0f) /2.0f;
+	glUniform3f(u_ambient_ambient, c,c,c);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -154,8 +159,14 @@ void XGLModel::AmbientLight::initShader()
 		XGLERROR("get unifrom sampler failed!");
 	}
 
-	u_ambient = glGetUniformLocation(program, "ambient");
-	if (u_ambient < 0)
+	u_ambient_ambient = glGetUniformLocation(program, "ambient.Ambient");
+	if (u_ambient_ambient < 0)
+	{
+		XGLERROR("get unifrom ambient failed!");
+	}
+
+	u_ambient_density = glGetUniformLocation(program, "ambient.Density");
+	if (u_ambient_density < 0)
 	{
 		XGLERROR("get unifrom ambient failed!");
 	}
