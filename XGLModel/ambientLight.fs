@@ -1,11 +1,18 @@
 #version 330
 
 in vec2 texcoord0;
-in vec4 color0;
+flat in vec4 color0;
 
 uniform sampler2D sampler;
 
 out vec4  oc;
+
+struct tagAmbient{
+	float density;
+	vec3 ambient;
+};
+
+uniform tagAmbient ambient;
 
 void main(){
 	oc = texture2D(sampler, texcoord0.st);

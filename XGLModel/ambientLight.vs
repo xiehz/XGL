@@ -6,7 +6,7 @@ layout(location = 2) in vec4 color;
 
 uniform mat4 mvp;
 out vec2 texcoord0;
-out vec4 color0;
+flat out vec4 color0;
 
 void main()
 {
