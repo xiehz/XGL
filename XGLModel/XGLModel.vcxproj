@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="AmbientLight.h" />
     <ClInclude Include="BitmapFont.h" />
+    <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="ModelGL.h" />
     <ClInclude Include="objmodel.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Tutorial6.h" />
     <ClInclude Include="TutorialFactory.h" />
     <ClInclude Include="TutorialInterface.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Vertices.h" />
     <ClInclude Include="XGLModel.h" />
     <ClInclude Include="XGLUtil.h" />
@@ -176,6 +178,7 @@
   <ItemGroup>
     <ClCompile Include="AmbientLight.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
+    <ClCompile Include="DiffuseLight.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -208,6 +211,7 @@
     <ClCompile Include="Tutorial6.cpp" />
     <ClCompile Include="TutorialFactory.cpp" />
     <ClCompile Include="TutorialInterface.cpp" />
+    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="XGLModel.cpp" />
     <ClCompile Include="XGLUtil.cpp" />
   </ItemGroup>
@@ -219,6 +223,8 @@
   <ItemGroup>
     <None Include="ambientLight.fs" />
     <None Include="ambientLight.vs" />
+    <None Include="DiffuseLight.fs" />
+    <None Include="DiffuseLight.vs" />
     <None Include="tutorial4.fs" />
     <None Include="tutorial4.vs" />
     <None Include="tutorial5.fs" />

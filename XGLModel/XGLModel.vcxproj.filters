@@ -87,6 +87,12 @@
     <ClInclude Include="AmbientLight.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="DiffuseLight.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -143,6 +149,12 @@
     <ClCompile Include="AmbientLight.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="DiffuseLight.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tutorial4.vs">
@@ -167,6 +179,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="ambientLight.fs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DiffuseLight.vs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DiffuseLight.fs">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
