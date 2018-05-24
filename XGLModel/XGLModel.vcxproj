@@ -159,6 +159,7 @@
     <ClInclude Include="ModelGL.h" />
     <ClInclude Include="objmodel.h" />
     <ClInclude Include="Primitives.h" />
+    <ClInclude Include="SpecularLight.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tga.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="ModelGL.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Primitives.cpp" />
+    <ClCompile Include="SpecularLight.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -225,6 +227,8 @@
     <None Include="ambientLight.vs" />
     <None Include="DiffuseLight.fs" />
     <None Include="DiffuseLight.vs" />
+    <None Include="SpecularLight.fs" />
+    <None Include="SpecularLight.vs" />
     <None Include="tutorial4.fs" />
     <None Include="tutorial4.vs" />
     <None Include="tutorial5.fs" />

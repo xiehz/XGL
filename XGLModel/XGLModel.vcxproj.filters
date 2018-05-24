@@ -93,6 +93,9 @@
     <ClInclude Include="Vertex.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SpecularLight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -155,6 +158,9 @@
     <ClCompile Include="Vertex.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SpecularLight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tutorial4.vs">
@@ -185,6 +191,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="DiffuseLight.fs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SpecularLight.vs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SpecularLight.fs">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
