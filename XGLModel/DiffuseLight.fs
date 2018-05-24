@@ -32,5 +32,5 @@ void main()
 	}
 
 	color = tcolor* (ambientColor + diffuseColor);
-	color = vec4(normalize(normal0),1.0);
+	//color = vec4(normalize(normal0),1.0);
 }
