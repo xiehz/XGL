@@ -92,18 +92,18 @@ void XGLModel::SpecularLight::draw()
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-	ModelGL::draw();
+	//ModelGL::draw();
 
 	glUniform1i(u_sampler2d, texUnitIndex);
 	glUniformMatrix4fv(u_mv, 1, false, cameraMatrix.ptr());
 	glUniformMatrix4fv(u_perspective, 1, false, projectMatrix.ptr());
 
-	glUniform1f(u_dlight_ambient_density, 0.01f);
-	glUniform1f(u_dlight_diffuse_density, 0.99f);
+	glUniform1f(u_dlight_ambient_density, 0.1f);
+	glUniform1f(u_dlight_diffuse_density, 0.6f);
 	glUniform3f(u_dlight_ambient, 1.0f, 1.0f, 1.0f);
-	glUniform3f(u_dlight_diffuse, 1.0f, 0.0f, 0.0f);
-	glUniform3f(u_dlight_diffuse_direction, 0.0f, -1.0f, 0.0f);
-	glUniform1f(u_dlight_specular_density, 0.2f);
+	glUniform3f(u_dlight_diffuse, 1.0f, 1.0f, 1.0f);
+	glUniform3f(u_dlight_diffuse_direction, -1.0f, -1.0f, -1.0f);
+	glUniform1f(u_dlight_specular_density, 0.8f);
 	glUniform3f(u_dlight_specular, 1.0f, 1.0f, 1.0f);
 	glUniform1f(u_dlight_specular_exp, 16.0f);
 
@@ -139,7 +139,7 @@ void XGLModel::SpecularLight::initShader()
 	{
 		XGLERROR("create vertex shader failed!");
 	}
-	readShader("../../XGLModel/SpecularLight.vs", vsSource);
+	readShader("../../XGLModel/SpecularLight.vert", vsSource);
 	addShader(program, vs, vsSource);
 	postViewMsg(1, vsSource);
 
@@ -148,7 +148,7 @@ void XGLModel::SpecularLight::initShader()
 	{
 		XGLERROR("create fragment shader failed!");
 	}
-	readShader("../../XGLModel/SpecularLight.fs", fsSource);
+	readShader("../../XGLModel/SpecularLight.frag", fsSource);
 	addShader(program, fs, fsSource);
 	postViewMsg(4, fsSource);
 

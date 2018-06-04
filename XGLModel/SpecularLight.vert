@@ -1,4 +1,4 @@
-#version 330
+#version 420 core
 
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec2 texcoord;
@@ -17,6 +17,6 @@ void main(){
 	texcoord0 = texcoord;
 	mat4 eye = transpose(mv);
 	enormal = (eye* vec4(normal, 1.0)).xyz;
-	epos = (eye * vec4(pos, 1.0)).xyz;
+	epos = (mv * vec4(pos, 1.0)).xyz;
 
 }

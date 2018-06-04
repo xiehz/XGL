@@ -193,10 +193,10 @@
     <None Include="DiffuseLight.fs">
       <Filter>shader</Filter>
     </None>
-    <None Include="SpecularLight.vs">
+    <None Include="SpecularLight.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="SpecularLight.fs">
+    <None Include="SpecularLight.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

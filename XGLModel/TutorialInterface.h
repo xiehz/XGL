@@ -46,7 +46,7 @@ namespace XGLModel {
 		const GLchar* p[1];
 		p[0] = content.c_str();
 		GLint length[1];
-		length[0] = (GLint)strnlen_s(p[0], 1024);
+		length[0] = (GLint)strnlen_s(p[0], 65355);
 		glShaderSource(shader, 1, p, length);
 		glCompileShader(shader);
 

@@ -1,11 +1,10 @@
-#version 330
+#version 420 core
 in vec2 texcoord0;
 in vec3 enormal;
 in vec3 epos;
 out vec4 color;
 
-struct DLight                                                             
-{                                                                                   
+struct DLight{                                                                                   
     vec3 Ambient;                                                                     
     float AmbientDensity;  
 	vec3 Diffuse;                                                       
@@ -26,7 +25,7 @@ void main()
 	vec4 ambientColor = vec4(dLight.Ambient * dLight.AmbientDensity ,1.0);
 	vec4 diffuseColor;
 	vec3 normal = normalize(enormal);
-	vec3 dir = -dLight.DiffuseDirection ;
+	vec3 dir = normalize(-dLight.DiffuseDirection );
 
 	float diffuseFactor = dot(normal , dir);
 	if(diffuseFactor < 0.0 )
@@ -41,9 +40,8 @@ void main()
 
 	vec4 specularColor ;
 
-	vec3 rv = reflect(dLight.DiffuseDirection, normal);
-	vec3 eye = -epos;
-	float specularFactor = dot(rv, eye); 
+	vec3 rv = reflect(-dir, normal);
+	float specularFactor = dot(rv, -epos); 
 
 	if(specularFactor < 0.0)
 	{
@@ -56,6 +54,4 @@ void main()
 	}
 
 	color = texColor * (ambientColor + diffuseColor  + specularColor);
-
-	color = vec4(1.0,1.0,0.0,1.0);
 }
