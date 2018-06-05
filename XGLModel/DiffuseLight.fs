@@ -22,7 +22,7 @@ void main()
 
 	vec4 ambientColor = vec4(dLight.Ambient * dLight.AmbientDensity, 1.0);
 	vec4 diffuseColor;
-	float diffuseFactor = dot(normalize(normal0), (-dLight.DiffuseDirection));
+	float diffuseFactor = dot(normalize(normal0), normalize(-dLight.DiffuseDirection));
 	if(diffuseFactor < 0.0)
 	{
 		diffuseColor = vec4(0.0,0.0,0.0,1.0);

@@ -99,13 +99,13 @@ void XGLModel::SpecularLight::draw()
 	glUniformMatrix4fv(u_perspective, 1, false, projectMatrix.ptr());
 
 	glUniform1f(u_dlight_ambient_density, 0.1f);
-	glUniform1f(u_dlight_diffuse_density, 0.6f);
+	glUniform1f(u_dlight_diffuse_density, 0.4f);
 	glUniform3f(u_dlight_ambient, 1.0f, 1.0f, 1.0f);
 	glUniform3f(u_dlight_diffuse, 1.0f, 1.0f, 1.0f);
 	glUniform3f(u_dlight_diffuse_direction, -1.0f, -1.0f, -1.0f);
-	glUniform1f(u_dlight_specular_density, 0.8f);
+	glUniform1f(u_dlight_specular_density, 1.0f);
 	glUniform3f(u_dlight_specular, 1.0f, 1.0f, 1.0f);
-	glUniform1f(u_dlight_specular_exp, 16.0f);
+	glUniform1f(u_dlight_specular_exp, 32.0f);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);

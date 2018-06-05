@@ -41,7 +41,8 @@ void main()
 	vec4 specularColor ;
 
 	vec3 rv = reflect(-dir, normal);
-	float specularFactor = dot(rv, -epos); 
+
+	float specularFactor = dot(rv, normalize(-epos)); 
 
 	if(specularFactor < 0.0)
 	{
