@@ -102,6 +102,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -170,6 +173,9 @@
     <ClCompile Include="PointLight.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tutorial4.vs">
@@ -212,6 +218,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="PointLight.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SpotLight.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SpotLight.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

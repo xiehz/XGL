@@ -162,6 +162,7 @@
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SpecularLight.h" />
+    <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tga.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -234,6 +236,8 @@
     <None Include="PointLight.vert" />
     <None Include="SpecularLight.frag" />
     <None Include="SpecularLight.vert" />
+    <None Include="SpotLight.frag" />
+    <None Include="SpotLight.vert" />
     <None Include="tutorial4.fs" />
     <None Include="tutorial4.vs" />
     <None Include="tutorial5.fs" />
