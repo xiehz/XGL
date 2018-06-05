@@ -14,3 +14,5 @@ ipch/
 x64/
 XGLAPP.VC.db
 XGLApp.VC.VC.opendb
+*.aps
+

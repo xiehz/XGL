@@ -41,7 +41,7 @@ void XGLView::XGLViewer::setup(std::string name)
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
 	orbit->setTransformation(Vec3f(0, 0.0, 2), Vec3f(0, 0.0, 0.0f), Vec3f(0, 1, 0));
-	model->setViewMatrix(orbit->getMatrix().ptr());
+	model->setViewMatrix(orbit->getInverseMatrix().ptr());
 
 	// cofigure projection matrix
 	RECT rect;

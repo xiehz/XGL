@@ -94,6 +94,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="SpecularLight.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -159,7 +165,10 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SpecularLight.cpp">
-      <Filter>源文件</Filter>
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,5 +208,16 @@
     <None Include="SpecularLight.vert">
       <Filter>shader</Filter>
     </None>
+    <None Include="PointLight.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PointLight.frag">
+      <Filter>shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="XGLModel.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -158,7 +158,9 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="ModelGL.h" />
     <ClInclude Include="objmodel.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitives.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SpecularLight.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -196,6 +198,7 @@
     </ClCompile>
     <ClCompile Include="ModelGL.cpp" />
     <ClCompile Include="ObjModel.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -227,6 +230,8 @@
     <None Include="ambientLight.vs" />
     <None Include="DiffuseLight.fs" />
     <None Include="DiffuseLight.vs" />
+    <None Include="PointLight.frag" />
+    <None Include="PointLight.vert" />
     <None Include="SpecularLight.frag" />
     <None Include="SpecularLight.vert" />
     <None Include="tutorial4.fs" />
@@ -235,6 +240,9 @@
     <None Include="tutorial5.vs" />
     <None Include="tutorial6.fs" />
     <None Include="tutorial6.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="XGLModel.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
