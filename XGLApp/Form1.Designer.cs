@@ -68,6 +68,10 @@
             this.splitContainer1.Location = new System.Drawing.Point(4, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
@@ -127,7 +131,8 @@
             "DiffuseLight",
             "SpecularLight",
             "PointLight",
-            "SpotLight"});
+            "SpotLight",
+            "AssimpImport"});
             this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(244, 20);

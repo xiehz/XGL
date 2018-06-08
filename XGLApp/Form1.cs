@@ -56,5 +56,10 @@ namespace XGLApp
             this.threeD.Render();
             this.threeD.SendMsg(0,"test");
         }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

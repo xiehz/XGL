@@ -101,14 +101,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;XGLMODEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(solutiondir)include\;..\..\glew-2.1.0\include;E:\2018\opengl\ImageMagick-7.0.7-28\ImageMagick\Magick++\lib;E:\2018\opengl\ImageMagick-7.0.7-28\ImageMagick</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)include\;..\..\glew-2.1.0\include;E:\2018\opengl\ImageMagick-7.0.7-28\ImageMagick\Magick++\lib;E:\2018\opengl\ImageMagick-7.0.7-28\ImageMagick;E:\2018\opengl\Assimp\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(solutiondir)$(platform)\$(configuration);..\..\glew-2.1.0\lib\Release\x64;E:\2018\opengl\ImageMagick-7.0.7-28\VisualMagick\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;XGL.lib;CORE_DB_Magick++_.lib;CORE_DB_MagickCore_.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)$(platform)\$(configuration);..\..\glew-2.1.0\lib\Release\x64;E:\2018\opengl\ImageMagick-7.0.7-28\VisualMagick\lib;E:\2018\opengl\Assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;XGL.lib;CORE_DB_Magick++_.lib;CORE_DB_MagickCore_.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy *h ..\include\xglmodel\ /y</Command>
@@ -153,9 +153,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmbientLight.h" />
+    <ClInclude Include="AssimpImport.h" />
     <ClInclude Include="BitmapFont.h" />
     <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="IXMesh.h" />
     <ClInclude Include="ModelGL.h" />
     <ClInclude Include="objmodel.h" />
     <ClInclude Include="PointLight.h" />
@@ -178,9 +180,12 @@
     <ClInclude Include="Vertices.h" />
     <ClInclude Include="XGLModel.h" />
     <ClInclude Include="XGLUtil.h" />
+    <ClInclude Include="XMesh.h" />
+    <ClInclude Include="XTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AmbientLight.cpp" />
+    <ClCompile Include="AssimpImport.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="DiffuseLight.cpp" />
     <ClCompile Include="dllmain.cpp">
@@ -197,6 +202,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="IXMesh.cpp" />
     <ClCompile Include="ModelGL.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="PointLight.cpp" />
@@ -221,6 +227,8 @@
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="XGLModel.cpp" />
     <ClCompile Include="XGLUtil.cpp" />
+    <ClCompile Include="XMesh.cpp" />
+    <ClCompile Include="XTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XGL\XGL.vcxproj">
@@ -230,6 +238,8 @@
   <ItemGroup>
     <None Include="ambientLight.fs" />
     <None Include="ambientLight.vs" />
+    <None Include="AssimpImport.frag" />
+    <None Include="AssimpImport.vert" />
     <None Include="DiffuseLight.fs" />
     <None Include="DiffuseLight.vs" />
     <None Include="PointLight.frag" />

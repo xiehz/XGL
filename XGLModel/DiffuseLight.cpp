@@ -24,20 +24,20 @@ void XGLModel::DiffuseLight::init()
 
 	XGLModel::Vertex verts[5];
 
-	verts[0].pos = Vec3f(0.0f, 0.0f, 1.0f);
-	verts[0].texcoord = Vec2f(0.0f, 0.0f);
+	verts[0].m_pos = Vec3f(0.0f, 0.0f, 1.0f);
+	verts[0].m_tex = Vec2f(0.0f, 0.0f);
 
-	verts[1].pos = Vec3f(1.0f, 0.0f, 0.0f);
-	verts[1].texcoord = Vec2f(1.0f, 0.0f);
+	verts[1].m_pos = Vec3f(1.0f, 0.0f, 0.0f);
+	verts[1].m_tex = Vec2f(1.0f, 0.0f);
 
-	verts[2].pos = Vec3f(0.0f, 0.0f, -1.0f);
-	verts[2].texcoord = Vec2f(0.0f, 0.0f);
+	verts[2].m_pos = Vec3f(0.0f, 0.0f, -1.0f);
+	verts[2].m_tex = Vec2f(0.0f, 0.0f);
 
-	verts[3].pos = Vec3f(-1.0f, 0.0f, 0.0f);
-	verts[3].texcoord = Vec2f(1.0f, 0.0f);
+	verts[3].m_pos = Vec3f(-1.0f, 0.0f, 0.0f);
+	verts[3].m_tex = Vec2f(1.0f, 0.0f);
 
-	verts[4].pos = Vec3f(0.0f, 1.0f, 0.0f);
-	verts[4].texcoord = Vec2f(0.5f, 1.0f);
+	verts[4].m_pos = Vec3f(0.0f, 1.0f, 0.0f);
+	verts[4].m_tex = Vec2f(0.5f, 1.0f);
 
 	GLuint elements[18] = {
 		0,1,4,

@@ -90,9 +90,6 @@
     <ClInclude Include="DiffuseLight.h">
       <Filter>tutorial</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SpecularLight.h">
       <Filter>tutorial</Filter>
     </ClInclude>
@@ -102,8 +99,23 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="XMesh.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="IXMesh.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="XTexture.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="AssimpImport.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
     <ClInclude Include="SpotLight.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -173,8 +185,20 @@
     <ClCompile Include="PointLight.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="IXMesh.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="XMesh.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="XTexture.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="AssimpImport.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
     <ClCompile Include="SpotLight.cpp">
-      <Filter>源文件</Filter>
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +248,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="SpotLight.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="AssimpImport.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="AssimpImport.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
