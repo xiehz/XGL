@@ -14,7 +14,12 @@ Tutorial4::~Tutorial4()
 {
 }
 
-void XGLModel::Tutorial4::init()
+
+void XGLModel::Tutorial4::initUniform()
+{
+}
+
+void XGLModel::Tutorial4::initGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -32,9 +37,6 @@ void XGLModel::Tutorial4::init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexAttribs), vertexAttribs, GL_STATIC_DRAW);
 
-
-
-	initShader();
 }
 
 void XGLModel::Tutorial4::draw()
@@ -54,41 +56,6 @@ void XGLModel::Tutorial4::draw()
 
 }
 
-void XGLModel::Tutorial4::initShader()
-{
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("error create program");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("error create shader");
-		return;
-	}
-
-	readShader("..\\..\\XGLModel\\tutorial4.vs", vsSource);
-	addShader(program, vs, vsSource);
-	postViewMsg(1, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("error create shader");
-		return;
-	}
-	readShader("..\\..\\XGLModel\\tutorial4.fs",fsSource);
-	addShader(program, fs,fsSource);
-	postViewMsg(4, fsSource);
-
-	linkProgram();
-	validateProgram();
-
-	glUseProgram(program);
-
-}
 
 
 

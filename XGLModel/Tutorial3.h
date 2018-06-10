@@ -3,22 +3,26 @@
 
 namespace XGLModel {
 
-	class Tutorial3: TutorialInterface
+	class Tutorial3:public TutorialInterface
 	{
 	public:
 		Tutorial3();
 		virtual ~Tutorial3();
 
-		// 通过 TutorialInterface 继承
-		virtual void init() override;
-		virtual void draw() override;
 	protected:
 		void drawFixedPipeline();
 
 
-		// 通过 TutorialInterface 继承
-		virtual void initShader() override;
 
+		// 通过 TutorialInterface 继承
+
+		virtual void draw() override;
+
+		virtual void initGL() override;
+
+		virtual void initUniform() override;
+
+		virtual void initShader() override;
 
 	};
 }

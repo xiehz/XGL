@@ -14,7 +14,7 @@ Tutorial3::~Tutorial3()
 {
 }
 
-void XGLModel::Tutorial3::init()
+void XGLModel::Tutorial3::initGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -43,6 +43,8 @@ void XGLModel::Tutorial3::draw()
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(projectMatrix.ptr());
 
+	Matrix cameraMatrix = camera->getInverseMatrix();
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(cameraMatrix.ptr());
 
@@ -62,6 +64,15 @@ void XGLModel::Tutorial3::draw()
 	//drawFixedPipeline();
 }
 
+
+void XGLModel::Tutorial3::initUniform()
+{
+}
+
+void XGLModel::Tutorial3::initShader()
+{
+}
+
 void XGLModel::Tutorial3::drawFixedPipeline()
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -78,9 +89,6 @@ void XGLModel::Tutorial3::drawFixedPipeline()
 
 }
 
-void XGLModel::Tutorial3::initShader()
-{
-}
 
 
 

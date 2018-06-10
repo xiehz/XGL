@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "XGLUtil.h"
 #include "XGLModel.h"
 #include "ModelGL.h"
@@ -9,12 +10,16 @@ namespace XGLModel {
 	public:
 		TutorialInterface();
 		virtual ~TutorialInterface();
+		TutorialInterface* setName(const std::string& name) { 
+			this->name = name;
+			return this;
+		}
 	public:
-		virtual void init() override = 0;
 		virtual void draw() override = 0;
-
+		virtual void initGL() = 0 ;
 	protected:
-		virtual void initShader() = 0;
+		virtual void initShader() override;
+		virtual void initUniform() = 0;
 		void readShader(const char* filename, std::string& source);
 		void addShader(GLuint shaderProgram,GLuint shader, const std::string& source);
 		void linkProgram();
@@ -28,10 +33,50 @@ namespace XGLModel {
 		std::string gsSource;
 		std::string tsSource;
 		std::string fsSource;
+		std::string name;
 	};
 
+	inline void TutorialInterface::initShader()
+	{
+		program = glCreateProgram();
+		if (!program)
+		{
+			XGLERROR("error create program");
+		}
 
+		vs = glCreateShader(GL_VERTEX_SHADER);
+		if (!vs)
+		{
+			XGLERROR("error create shader");
+			return;
+		}
 
+		std::string directory = "..\\..\\XGLModel\\";
+		std::string vsname =directory + this->name + ".vert";
+		readShader(vsname.c_str() , vsSource);
+		addShader(program, vs, vsSource);
+		postViewMsg(1, vsSource);
+
+		fs = glCreateShader(GL_FRAGMENT_SHADER);
+		if (!fs)
+		{
+			XGLERROR("error create shader");
+			return;
+		}
+
+		std::string fsname = directory + this->name + ".frag";
+		readShader(fsname.c_str(), fsSource);
+		addShader(program, fs, fsSource);
+		postViewMsg(4, fsSource);
+
+		linkProgram();
+
+		initUniform();
+
+		validateProgram();
+
+		glUseProgram(program);
+	}
 
 	inline void TutorialInterface::readShader(const char * filename,std::string& source)
 	{

@@ -1,40 +1,41 @@
 #include "stdafx.h"
 #include "IXMesh.h"
-#include "AssimpImport.h"
+#include "ShadowMap.h"
 
 namespace XGLModel {
 
-	REGISTER(AssimpImport)
+	REGISTER(ShadowMap)
+
 }
 
-XGLModel::AssimpImport::AssimpImport()
+XGLModel::ShadowMap::ShadowMap()
 {
 	m_pMesh = new IXMesh();
 }
 
 
-XGLModel::AssimpImport::~AssimpImport()
+XGLModel::ShadowMap::~ShadowMap()
 {
-	if (m_pMesh != nullptr)
-		delete m_pMesh;
+	delete m_pMesh;
 	m_pMesh = nullptr;
 }
 
-void XGLModel::AssimpImport::initGL()
+void XGLModel::ShadowMap::initGL()
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
+
 	m_pMesh->LoadMesh("E:/2018/opengl/Assimp/nanosuit/nanosuit.obj");
 }
 
-void XGLModel::AssimpImport::draw()
+void XGLModel::ShadowMap::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
 	Matrix cameraMatrix = camera->getInverseMatrix();
 
 	glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
@@ -70,10 +71,12 @@ void XGLModel::AssimpImport::draw()
 	glUseProgram(program);
 
 	m_pMesh->Render();
+
 }
 
-void XGLModel::AssimpImport::initUniform()
+void XGLModel::ShadowMap::initUniform()
 {
+
 	g_mv = glGetUniformLocation(program, "mv");
 	g_perspective = glGetUniformLocation(program, "perspective");
 	g_sampler = glGetUniformLocation(program, "sampler2d");

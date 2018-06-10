@@ -12,7 +12,7 @@ Tutorial5::~Tutorial5()
 {
 }
 
-void XGLModel::Tutorial5::init()
+void XGLModel::Tutorial5::initGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
@@ -53,7 +53,6 @@ void XGLModel::Tutorial5::init()
 
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	initShader();
 }
 
 void XGLModel::Tutorial5::draw()
@@ -115,6 +114,8 @@ void XGLModel::Tutorial5::draw()
 	m[2][0] = 0.0;	m[2][1] = 0.0;	m[2][2] = 1.0;	m[2][3] = 0.0;
 	m[3][0] = 0.3;	m[3][1] = 1.0;	m[3][2] = -2.0;	m[3][3] = 1.0;
 	
+	Matrix cameraMatrix = camera->getInverseMatrix();
+
 	glUniformMatrix4fv(uniform_view_matrix, 1, false, cameraMatrix.ptr());
 	glUniformMatrix4fv(uniform_perspective, 1, false, projectMatrix.ptr());
 
@@ -139,35 +140,8 @@ void XGLModel::Tutorial5::draw()
 	glGetFloatv(GL_MODELVIEW_MATRIX, mat);
 }
 
-void XGLModel::Tutorial5::initShader()
+void XGLModel::Tutorial5::initUniform()
 {
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("create program failed!");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("create vertex shader failed!");
-	}
-	readShader("../../XGLModel/tutorial5.vs", vsSource);
-	addShader(program,vs,vsSource);
-	postViewMsg(1, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("create fragment shader failed!");
-	}
-	readShader("../../XGLModel/tutorial5.fs", fsSource);
-	addShader(program, fs, fsSource);
-	postViewMsg(4, fsSource);
-
-
-	linkProgram();
-
 	uniform_scale = glGetUniformLocation(program, "fscale");
 	if (uniform_scale < 0)
 	{
@@ -191,7 +165,6 @@ void XGLModel::Tutorial5::initShader()
 	{
 		XGLERROR("get perspective failed");
 	}
-	validateProgram();
-
-	glUseProgram(program);
 }
+
+

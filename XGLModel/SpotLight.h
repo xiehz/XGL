@@ -11,9 +11,9 @@ namespace XGLModel {
 		virtual ~SpotLight();
 
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
-		virtual void init() override;
+		virtual void initGL() override;
 		virtual void draw() override;
-		virtual void initShader() override;
+		virtual void initUniform() override;
 
 	private:
 		GLuint texObj;

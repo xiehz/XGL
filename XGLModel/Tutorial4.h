@@ -8,11 +8,12 @@ namespace XGLModel {
 		virtual ~Tutorial4();
 
 		// 通过 TutorialInterface 继承
-		virtual void init() override;
+
 		virtual void draw() override;
 
-		// 通过 TutorialInterface 继承
-		virtual void initShader() override;
+		virtual void initGL() override;
+
+		virtual void initUniform() override;
 
 	};
 }

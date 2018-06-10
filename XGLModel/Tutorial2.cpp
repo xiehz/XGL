@@ -4,6 +4,7 @@
 
 using namespace XGLModel;
 REGISTER(Tutorial2)
+
 float vertexAttribs[7]{ 0.0f,0.0f,0.0f,1.0f,0.0f,0.0f ,1.0f };
 float vertices[3]{ 0.0f,0.0f,0.0f };
 float colors[4]{ 1.0f,0.0f,0.0f,1.0f };
@@ -13,20 +14,8 @@ Tutorial2::Tutorial2()
 }
 
 
-Tutorial2::~Tutorial2()
+Tutorial2::~Tutorial2()	
 {
-}
-
-void Tutorial2::init()
-{
-	glClearColor(0.0f, 0.0f, 0.0f, 1);
-
-	listID = glGenLists(1);
-	glNewList(listID,GL_COMPILE);
-	drawByBeginEnd();
-	glEndList();
-
-	createVertexBuffer();
 }
 
 void Tutorial2::draw()
@@ -35,6 +24,7 @@ void Tutorial2::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(projectMatrix.ptr());
 
@@ -159,9 +149,26 @@ void XGLModel::Tutorial2::drawByVBO()
 	glDisableVertexAttribArray(0);
 }
 
+void XGLModel::Tutorial2::initGL()
+{
+	glClearColor(0.0f, 0.0f, 0.0f, 1);
+
+	listID = glGenLists(1);
+	glNewList(listID, GL_COMPILE);
+	drawByBeginEnd();
+	glEndList();
+
+	createVertexBuffer();
+}
+
+void XGLModel::Tutorial2::initUniform()
+{
+}
+
 void XGLModel::Tutorial2::initShader()
 {
 }
+
 
 
 

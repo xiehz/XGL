@@ -16,7 +16,7 @@ XGLModel::DiffuseLight::~DiffuseLight()
 {
 }
 
-void XGLModel::DiffuseLight::init()
+void XGLModel::DiffuseLight::initGL()
 {
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
@@ -82,7 +82,6 @@ void XGLModel::DiffuseLight::init()
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	initShader();
 }
 
 void XGLModel::DiffuseLight::draw()
@@ -92,6 +91,7 @@ void XGLModel::DiffuseLight::draw()
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
 	ModelGL::draw();
+	Matrix cameraMatrix = camera->getInverseMatrix();
 
 	glUniform1i(u_sampler2d, texUnitIndex);
 	glUniformMatrix4fv(u_mv, 1, false, cameraMatrix .ptr());
@@ -123,33 +123,8 @@ void XGLModel::DiffuseLight::draw()
 
 }
 
-void XGLModel::DiffuseLight::initShader()
+void XGLModel::DiffuseLight::initUniform()
 {
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("create program failed!");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("create vertex shader failed!");
-	}
-	readShader("../../XGLModel/DiffuseLight.vs", vsSource);
-	addShader(program, vs, vsSource);
-	postViewMsg(1, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("create fragment shader failed!");
-	}
-	readShader("../../XGLModel/DiffuseLight.fs", fsSource);
-	addShader(program, fs, fsSource);
-	postViewMsg(4, fsSource);
-
-	linkProgram();
 	u_mv = glGetUniformLocation(program, "mv");
 	if (u_mv < 0)
 	{
@@ -199,7 +174,4 @@ void XGLModel::DiffuseLight::initShader()
 		XGLERROR("get unifrom diffuse direction failed!");
 	}
 
-	validateProgram();
-
-	glUseProgram(program);
 }

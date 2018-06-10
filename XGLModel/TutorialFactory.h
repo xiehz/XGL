@@ -12,7 +12,9 @@ namespace XGLModel {
 #define REGISTER(classname) \
 	classname* objectCreator##classname()\
 	{\
-		return new classname;\
+		classname* cls = new classname();\
+		cls->setName(#classname);\
+		return cls;\
 	}\
     RegisterAction global_Register##classname##creator(                        \
         #classname,(CREATEPROC)objectCreator##classname);

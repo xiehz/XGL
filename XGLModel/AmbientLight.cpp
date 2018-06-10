@@ -16,13 +16,11 @@ XGLModel::AmbientLight::~AmbientLight()
 {
 }
 
-void XGLModel::AmbientLight::init()
+void XGLModel::AmbientLight::initGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-
-	initShader();
 
 	GLfloat vertextexs[45] = {
 		0.0f,0.0f,1.0f,
@@ -95,10 +93,11 @@ void XGLModel::AmbientLight::draw()
 	ModelGL::draw();
 	glUniform1i(u_sampler, textureIndex);
 
+	Matrix cameraMatrix = camera->getInverseMatrix();
 	glUniformMatrix4fv(u_mvp, 1, false, (cameraMatrix * projectMatrix).ptr());
 	static int s = 0;
 	glUniform1f(u_ambient_density, 1.0f);
-	float c = (cos(s++ / 1000.0f) + 1.0f) /2.0f;
+	float c = (cos(s++ / 100.0f) + 1.0f) /2.0f;
 	glUniform3f(u_ambient_ambient, c,c,c);
 
 	glEnableVertexAttribArray(0);
@@ -120,33 +119,8 @@ void XGLModel::AmbientLight::draw()
 	glDisableVertexAttribArray(2);
 }
 
-void XGLModel::AmbientLight::initShader()
+void XGLModel::AmbientLight::initUniform()
 {
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("create program failed!");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("create vertex shader failed!");
-	}
-	readShader("../../XGLModel/ambientLight.vs", vsSource);
-	addShader(program, vs, vsSource);
-	postViewMsg(1, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("create fragment shader failed!");
-	}
-	readShader("../../XGLModel/ambientLight.fs", fsSource);
-	addShader(program, fs, fsSource);
-	postViewMsg(4, fsSource);
-
-	linkProgram();
 	u_mvp = glGetUniformLocation(program, "mvp");
 	if (u_mvp < 0)
 	{
@@ -170,7 +144,4 @@ void XGLModel::AmbientLight::initShader()
 	{
 		XGLERROR("get unifrom ambient failed!");
 	}
-	validateProgram();
-
-	glUseProgram(program);
 }

@@ -117,6 +117,9 @@
     <ClInclude Include="SpotLight.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="ShadowMap.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -200,38 +203,11 @@
     <ClCompile Include="SpotLight.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowMap.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="tutorial4.vs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="tutorial4.fs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="tutorial5.vs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="tutorial5.fs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="tutorial6.vs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="tutorial6.fs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="ambientLight.vs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="ambientLight.fs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="DiffuseLight.vs">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="DiffuseLight.fs">
-      <Filter>shader</Filter>
-    </None>
     <None Include="SpecularLight.frag">
       <Filter>shader</Filter>
     </None>
@@ -254,6 +230,42 @@
       <Filter>shader</Filter>
     </None>
     <None Include="AssimpImport.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ShadowMap.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ShadowMap.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DiffuseLight.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial6.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial5.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial4.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ambientLight.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial4.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial6.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="tutorial5.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ambientLight.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DiffuseLight.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

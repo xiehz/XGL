@@ -14,7 +14,7 @@ Tutorial6::~Tutorial6()
 {
 }
 
-void XGLModel::Tutorial6::init()
+void XGLModel::Tutorial6::initGL()
 {
 	glClearColor(0.0F, 0.0F, 0.0F, 1.0F);
 	glEnable(GL_DEPTH_TEST);
@@ -81,13 +81,14 @@ void XGLModel::Tutorial6::init()
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
-	initShader();
 }
 
 void XGLModel::Tutorial6::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
+	Matrix cameraMatrix = camera->getInverseMatrix();
 
 	Matrixf mvp = cameraMatrix *  projectMatrix ;
 	glUniformMatrix4fv(uniform_mvp, 1, false,mvp.ptr() );
@@ -108,34 +109,9 @@ void XGLModel::Tutorial6::draw()
 	glDisableVertexAttribArray(1);
 }
 
-void XGLModel::Tutorial6::initShader()
+
+void XGLModel::Tutorial6::initUniform()
 {
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("create program failed");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("create vertex shader failed");
-	}
-	readShader("../../XGLModel/tutorial6.vs", vsSource);
-	addShader(program, vs, vsSource);
-	postViewMsg(0, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("create fragment shader failed");
-	}
-	readShader("../../XGLModel/tutorial6.fs", fsSource);
-	addShader(program, fs, fsSource);
-	postViewMsg(0, fsSource);
-
-
-	linkProgram();
 	uniform_mvp = glGetUniformLocation(program, "mvp");
 	if (uniform_mvp < 0)
 	{
@@ -147,7 +123,4 @@ void XGLModel::Tutorial6::initShader()
 	{
 		XGLERROR("get sampler uniform failed");
 	}
-
-	validateProgram();
-	glUseProgram(program);
 }

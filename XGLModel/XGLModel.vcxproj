@@ -163,6 +163,7 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="SpecularLight.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
+    <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -236,24 +238,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ambientLight.fs" />
-    <None Include="ambientLight.vs" />
+    <None Include="ambientLight.frag" />
+    <None Include="ambientLight.vert" />
     <None Include="AssimpImport.frag" />
     <None Include="AssimpImport.vert" />
-    <None Include="DiffuseLight.fs" />
-    <None Include="DiffuseLight.vs" />
+    <None Include="DiffuseLight.frag" />
+    <None Include="DiffuseLight.vert" />
     <None Include="PointLight.frag" />
     <None Include="PointLight.vert" />
+    <None Include="ShadowMap.frag" />
+    <None Include="ShadowMap.vert" />
     <None Include="SpecularLight.frag" />
     <None Include="SpecularLight.vert" />
     <None Include="SpotLight.frag" />
     <None Include="SpotLight.vert" />
-    <None Include="tutorial4.fs" />
-    <None Include="tutorial4.vs" />
-    <None Include="tutorial5.fs" />
-    <None Include="tutorial5.vs" />
-    <None Include="tutorial6.fs" />
-    <None Include="tutorial6.vs" />
+    <None Include="tutorial4.frag" />
+    <None Include="tutorial4.vert" />
+    <None Include="tutorial5.frag" />
+    <None Include="tutorial5.vert" />
+    <None Include="tutorial6.frag" />
+    <None Include="tutorial6.vert" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="XGLModel.rc" />

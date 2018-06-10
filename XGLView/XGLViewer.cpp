@@ -4,8 +4,6 @@
 #include "XGLModel\TutorialFactory.h"
 #include "XGL\TrackballCamera.h"
 #include "XGL\OrbitCamera.h"
-#include "xgl\XEventHandler.h"
-#include "xgl\XOrbitCamera.h"
 #include "ControllerGL.h"
 #include "XGLViewer.h"
 
@@ -18,7 +16,6 @@ XGLViewer::XGLViewer()
 	xgl = new ControllerGL();
 	viewgl = nullptr;
 	model = nullptr;
-	camera = nullptr;
 }
 
 
@@ -35,30 +32,11 @@ void XGLView::XGLViewer::setup(std::string name)
 	this->close();
 
 	viewgl = new ViewGL();
-	camera = new XOrbitCamera();
 	model = XGLModel::TutorialFactory::getInstance().getClass(name);
 	model->bindHandle(xgl->getHandle());
 
-	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0, 0.0, 2), Vec3f(0, 0.0, 0.0f), Vec3f(0, 1, 0));
-	model->setViewMatrix(orbit->getInverseMatrix().ptr());
-
-	// cofigure projection matrix
-	RECT rect;
-	::GetClientRect(xgl->getHandle(), &rect);
-
-	int width = rect.right - rect.left;
-	int height = rect.bottom - rect.top;
-	float asptio = width / height;
-	height = 1.0f;
-	width = height * asptio;
-
-	model->project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 100.0f);
-
-	dynamic_cast<ControllerGL*>(xgl)->setup(model, viewgl, camera);
+	dynamic_cast<ControllerGL*>(xgl)->setup(model, viewgl);
 	is_Setup =xgl->create();
-
-	
 }
 
 int XGLView::XGLViewer::close()
@@ -73,10 +51,6 @@ int XGLView::XGLViewer::close()
 	if (model != nullptr)
 		delete model;
 	model = nullptr;
-
-	if(camera !=nullptr)
-	delete camera;
-	camera = nullptr;
 
 	return 1;
 }

@@ -13,6 +13,7 @@
 #include <cmath>
 #include <sstream>
 #include <GL\glew.h>
+#include "xgl\XOrbitCamera.h"
 #include "TutorialInterface.h"
 #include "TutorialFactory.h"
 #include "ModelGL.h"
@@ -21,16 +22,28 @@ using namespace XGLModel;
 
 XGLModel::ModelGL::ModelGL()
 {
-	
+	camera = nullptr;
 }
 
 ModelGL::~ModelGL()
 {
+	if (camera != nullptr)
+		delete camera;
+	camera = nullptr;
 }
 
 void ModelGL::init()
 {
+	RECT rect;
+	::GetClientRect(handle, &rect);
+
+	windowWith = rect.right - rect.left;
+	windowHeight = rect.bottom - rect.top;
+
+	initCamera();
+	initProject();
 	initGL();
+	initShader();
 }
 
 
@@ -45,15 +58,40 @@ void ModelGL::draw()
 	glLoadMatrixf(projectMatrix.ptr());
 	//glLoadIdentity();
 
-
+	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
+	Matrixf&	z = orbit->getInverseMatrix();
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(cameraMatrix.ptr());
+	glLoadMatrixf(camera->getInverseMatrix().ptr());
 
 	draw3D();   // draw 3D sphere, cursor vector and axis
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
 	postFrame();
+}
+
+void XGLModel::ModelGL::initCamera()
+{
+	camera = new XGL::XOrbitCamera();
+
+	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
+	orbit->setTransformation(Vec3f(0.0f, 0.0f, 2.0f),
+		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.0f, 0.0f));
+
+}
+
+void XGLModel::ModelGL::initProject()
+{
+	// cofigure projection matrix
+	float asptio = windowWith / windowHeight;
+	float height = 1.0f;
+	float width = height * asptio;
+
+	project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 100.0f);
+}
+
+void XGLModel::ModelGL::initShader()
+{
 }
 
 
@@ -153,27 +191,17 @@ void ModelGL::initGL()
 	//glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 	//glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
-
-	// track material ambient and diffuse from surface color, call it before glEnable(GL_COLOR_MATERIAL)
-	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-	//glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
-	glEnable(GL_COLOR_MATERIAL);
 
 	glClearColor(0, 0, 0, 0);                   // background color
 	glClearStencil(0);                          // clear stencil buffer
 	glClearDepth(1.0f);                         // 0 is near, 1 is far
 	glDepthFunc(GL_LEQUAL);
 
-	initLights();
-
-	float white[] = { 1,1,1,1 };
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 128);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, white);
 }
+
 
 void ModelGL::initLights()
 {

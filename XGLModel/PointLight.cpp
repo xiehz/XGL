@@ -17,7 +17,7 @@ XGLModel::PointLight::~PointLight()
 {
 }
 
-void XGLModel::PointLight::init()
+void XGLModel::PointLight::initGL()
 {
 	glClearColor(0.0f,0.0f,0.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
@@ -84,7 +84,6 @@ void XGLModel::PointLight::init()
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	initShader();
 }
 
 void XGLModel::PointLight::draw()
@@ -92,6 +91,9 @@ void XGLModel::PointLight::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 	//ModelGL::draw();
+	Matrix cameraMatrix = camera->getInverseMatrix();
+
+
 	glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
 	glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 	glUniform1i(g_sampler, texUnitIndex);
@@ -153,34 +155,8 @@ void XGLModel::PointLight::draw()
 
 }
 
-void XGLModel::PointLight::initShader()
+void XGLModel::PointLight::initUniform()
 {
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("create program failed!");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("create vertex shader failed!");
-	}
-	readShader("../../XGLModel/PointLight.vert", vsSource);
-	addShader(program, vs, vsSource);
-	postViewMsg(1, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("create fragment shader failed!");
-	}
-	readShader("../../XGLModel/PointLight.frag", fsSource);
-	addShader(program, fs, fsSource);
-	postViewMsg(4, fsSource);
-
-	linkProgram();
-
 	g_mv = glGetUniformLocation(program, "mv");
 	g_perspective = glGetUniformLocation(program, "perspective");
 	g_sampler = glGetUniformLocation(program, "sampler2d");
@@ -209,5 +185,4 @@ void XGLModel::PointLight::initShader()
 		XGLERROR("get uniform failed");
 	}
 
-	validateProgram();
 }

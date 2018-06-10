@@ -9,11 +9,6 @@ namespace XGLModel {
 		virtual ~Tutorial2();
 	public:
 
-
-		// 通过 TutorialInterface 继承
-		virtual void init() override;
-
-		virtual void draw() override;
 	protected:
 		void createVertexBuffer();
 		void drawByEnableClientState();
@@ -21,14 +16,17 @@ namespace XGLModel {
 		void drawByBeginEnd();
 		void drawByCalllise();
 		void drawByVBO();
-	private:
 
 
 		// 通过 TutorialInterface 继承
+
+		virtual void draw() override;
+
+		virtual void initGL() override;
+
+		virtual void initUniform() override;
+
 		virtual void initShader() override;
-
-
-
 
 	};
 }

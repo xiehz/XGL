@@ -10,14 +10,16 @@ namespace XGLModel {
 		virtual ~Tutorial5();
 
 		// 通过 TutorialInterface 继承
-		virtual void init() override;
+		virtual void initGL() override;
 		virtual void draw() override;
-		virtual void initShader() override;
 	private:
 		GLint uniform_scale;
 		GLint uniform_model_matrix;
 		GLint uniform_view_matrix;
 		GLint uniform_perspective;
+
+		// 通过 TutorialInterface 继承
+		virtual void initUniform() override;
 	};
 }
 

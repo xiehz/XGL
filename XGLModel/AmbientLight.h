@@ -11,9 +11,9 @@ namespace XGLModel {
 		virtual ~AmbientLight();
 
 		// 通过 TutorialInterface 继承
-		virtual void init() override;
+		virtual void initGL() override;
 		virtual void draw() override;
-		virtual void initShader() override;
+
 	private:
 		GLuint textureObj;
 		GLuint textureUnit;
@@ -23,5 +23,8 @@ namespace XGLModel {
 		GLint u_sampler;
 		GLint u_ambient_ambient;
 		GLint u_ambient_density;
+
+		// 通过 TutorialInterface 继承
+		virtual void initUniform() override;
 	};
 }

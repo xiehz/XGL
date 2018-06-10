@@ -19,11 +19,11 @@
 #include "xgl\Vec3f"
 #include "xgl\Matrix"
 #include "xgl\Quat"
+#include "xgl\XCamera.h"
 
 #include "ObjModel.h"
 #include "XGL\BoundingBox.h"
 #include "BitmapFont.h"
-#include "XGL\OrbitCamera.h"
 #include "Vertices.h"
 #include "XGLModel.h"
 
@@ -40,16 +40,14 @@ namespace XGLModel
 		ModelGL();
 		~ModelGL();
 
-		virtual void init();                            // initialize OpenGL states
+		void init();                            // initialize OpenGL states
 		inline void quit() {}                            // clean up OpenGL objects
 		virtual void draw();
+
 		void setViewport(int viewport[4]);
 		int* getViewport() { return viewport; }
+		XCamera* getCamera() { return camera; }
 		virtual void project(float left, float right, float bottom, float top, float near, float) ;
-		void setViewMatrix(const float* viewMatrix) 
-		{  
-			cameraMatrix.set(viewMatrix);
-		 }
 		void setMousePath(const std::vector<Vector3>& path) { this->sphere_Path = path; }
 		void setMouseVector(const Vector3& v) { this->sphere_Vector = v; }
 
@@ -63,15 +61,21 @@ namespace XGLModel
 		void preFrame();
 		void postFrame();
 		void drawAxis(float size);
-		void initGL();
+		virtual void initGL();
+		virtual void initCamera();
+		virtual void initProject();
+		virtual void initShader();
 		void initLights();
 	protected:
-		Matrixf cameraMatrix;
+
 		Matrixf projectMatrix;
+		int windowWith;
+		int windowHeight;
 		int viewport[4];
 		float sphere_Radius;
 		XGL::Vector3 sphere_Vector;
 		std::vector<XGL::Vector3> sphere_Path;
+		XGL::XCamera* camera;
 	private:
 		HWND handle;
 	};

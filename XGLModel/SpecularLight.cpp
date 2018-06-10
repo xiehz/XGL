@@ -17,7 +17,7 @@ XGLModel::SpecularLight::~SpecularLight()
 {
 }
 
-void XGLModel::SpecularLight::init()
+void XGLModel::SpecularLight::initGL()
 {
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
@@ -83,7 +83,6 @@ void XGLModel::SpecularLight::init()
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	initShader();
 }
 
 void XGLModel::SpecularLight::draw()
@@ -92,7 +91,8 @@ void XGLModel::SpecularLight::draw()
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-	//ModelGL::draw();
+	Matrix cameraMatrix = camera->getInverseMatrix();
+
 
 	glUniform1i(u_sampler2d, texUnitIndex);
 	glUniformMatrix4fv(u_mv, 1, false, cameraMatrix.ptr());
@@ -126,33 +126,8 @@ void XGLModel::SpecularLight::draw()
 	glDisableVertexAttribArray(2);
 }
 
-void XGLModel::SpecularLight::initShader()
+void XGLModel::SpecularLight::initUniform()
 {
-	program = glCreateProgram();
-	if (!program)
-	{
-		XGLERROR("create program failed!");
-	}
-
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	if (!vs)
-	{
-		XGLERROR("create vertex shader failed!");
-	}
-	readShader("../../XGLModel/SpecularLight.vert", vsSource);
-	addShader(program, vs, vsSource);
-	postViewMsg(1, vsSource);
-
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	if (!fs)
-	{
-		XGLERROR("create fragment shader failed!");
-	}
-	readShader("../../XGLModel/SpecularLight.frag", fsSource);
-	addShader(program, fs, fsSource);
-	postViewMsg(4, fsSource);
-
-	linkProgram();
 	u_mv = glGetUniformLocation(program, "mv");
 	if (u_mv < 0)
 	{
@@ -219,9 +194,5 @@ void XGLModel::SpecularLight::initShader()
 	{
 		XGLERROR("get unifrom SpecularExp  failed!");
 	}
-
-	validateProgram();
-
-	glUseProgram(program);
 
 }

@@ -1,28 +1,29 @@
 #pragma once
-
-#include "XGLModel.h"
 #include "TutorialFactory.h"
+#include "XGLModel.h"
 
 namespace XGLModel {
+
 	class IXMesh;
-	class AssimpImport : public TutorialInterface
+	class ShadowMap : public TutorialInterface
 	{
 	public:
-		AssimpImport();
-		virtual ~AssimpImport();
-
+		ShadowMap();
+		~ShadowMap();
+	public:
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initGL() override;
-		virtual void draw() override;
-		virtual void initUniform() override;
-	private:
-		IXMesh * m_pMesh;
 
+		virtual void draw() override;
+
+		virtual void initUniform() override;
+	protected:
+		IXMesh * m_pMesh;
 		GLint g_mv;
 		GLint g_perspective;
 		GLint g_sampler;
-
 	};
 
-}
 
+
+}

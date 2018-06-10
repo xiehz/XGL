@@ -46,11 +46,10 @@ loopFlag(false)
 
 
 
-int XGLView::ControllerGL::setup(XGLModel::ModelGL * model, XGL::ViewGL * view, XGL::XEventHandler * camera)
+int XGLView::ControllerGL::setup(XGLModel::ModelGL * model, XGL::ViewGL * view)
 {
 	this->model = model;
 	this->view = view;
-	this->camera = camera;
 
 	RECT rect;
 	GetClientRect(handle,&rect );
@@ -188,12 +187,9 @@ void ControllerGL::runThread()
 
 			e.setPointerDataList(pdlist);
 
-			camera->handle(e);
+			model->getCamera()->handle(e);
 			events.pop();
 		}
-
-		XCamera* m = dynamic_cast<XCamera*>(camera);
-		model->setViewMatrix(m->getInverseMatrix().ptr());
 
 		model->draw();
 		view->swapBuffers();
