@@ -83,7 +83,7 @@ void XGLModel::ModelGL::initCamera()
 void XGLModel::ModelGL::initProject()
 {
 	// cofigure projection matrix
-	float asptio = windowWith / windowHeight;
+	float asptio =(float) windowWith / (float) windowHeight;
 	float height = 1.0f;
 	float width = height * asptio;
 

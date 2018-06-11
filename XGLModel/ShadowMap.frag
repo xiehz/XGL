@@ -9,6 +9,7 @@ out vec4 color;
 
 void main()
 {
-	vec4 tex = texture2D(sampler2d, texcoord0);
-	color = vec4(normalize(normal0),1.0) * tex ;
+	float depth = texture(sampler2d, texcoord0).x;
+	depth = 1.0 - (1.0 - depth)  * 25.0;
+	color = vec4(depth);
 }

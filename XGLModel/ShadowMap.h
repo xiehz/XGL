@@ -17,11 +17,16 @@ namespace XGLModel {
 		virtual void draw() override;
 
 		virtual void initUniform() override;
+
+		virtual void initCamera()override;
 	protected:
 		IXMesh * m_pMesh;
+		IXMesh* m_pQuad;
 		GLint g_mv;
 		GLint g_perspective;
 		GLint g_sampler;
+		GLuint m_fbo;
+		GLuint m_texShadow;
 	};
 
 
