@@ -38,7 +38,7 @@ XGLModel::ShadowMap::~ShadowMap()
 
 void XGLModel::ShadowMap::initGL()
 {
-	glClearColor(1.f,0.5f,0.5f, 1.0f);
+	glClearColor(0.341176f,0.98f,1.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
 	//glCullFace(GL_BACK);
@@ -81,6 +81,7 @@ void XGLModel::ShadowMap::draw()
 	glUseProgram(program);
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER,m_fbo);
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -105,7 +106,6 @@ void XGLModel::ShadowMap::draw()
 		glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 		glUniform1i(g_sampler, 0);
 		m_pQuad->Render();
-		m_pMesh->Render();
 	}
 }
 
@@ -131,7 +131,7 @@ void XGLModel::ShadowMap::initCamera()
 	camera = new XGL::XOrbitCamera();
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0.0f, 0.0f, 30.0f),
+	orbit->setTransformation(Vec3f(0.0f, 0.0f, 10.0f),
 		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.0f, 0.0f));
 	
 }
