@@ -9,9 +9,11 @@ uniform mat4 g_pers;
 
 out vec3 tnormal;
 out vec2 otex;
+out vec3 eyep;
 
 void main(){
 	gl_Position = g_pers * g_mv * vec4(pos, 1.0);
-	tnormal = (transpose(g_mv) * vec4(normal, 1.0)).xyz;
+	tnormal = ( transpose(g_mv)* vec4(normal, 1.0)).xyz;
 	otex = texcoord;
+	eyep =( g_mv* vec4(pos, 1.0)).xyz;
 }

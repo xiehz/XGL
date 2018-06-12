@@ -13,6 +13,16 @@ XGLModel::ShadowMap2::ShadowMap2()
 	m_pQuad = new IXMesh();
 	m_fbo = 0;
 	m_texShadow = 0;
+
+	spotlight.Eposition = XGL::Vec3f(0.0f, 10.0f, 2.f);
+	spotlight.Direction = XGL::Vec3f(0.0f, 0.0f, -1.0f);
+	spotlight.Direction.normalize();
+
+	spotlight.Cutoff = cosf(60.0f * 3.1415926f /180.0f);
+	spotlight.Attenuation.Constant = 1.0f;
+	spotlight.Attenuation.Linear = 0.1f;
+	spotlight.Attenuation.Exp = 0.01f;
+	
 }
 
 
@@ -38,12 +48,19 @@ void XGLModel::ShadowMap2::draw()
 {
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
-	
+
+	Matrix cameraMatrix = camera->getInverseMatrix();
+
+	glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
+	glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
+
+	spotlight.Eposition = XGL::Vec3f(0.0f, 10.0f, 2.f);
+	spotlight.Eposition = spotlight.Eposition* cameraMatrix;
+
+	lightShader.updateUniform(spotlight,1.0f,16.0f);
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_fbo);
 		glClear(GL_DEPTH_BUFFER_BIT);
-		glUniformMatrix4fv(g_mv, 1, GL_FALSE, camera->getInverseMatrix().ptr());
-		glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 		m_pMesh->Render();
 		glBindFramebuffer(GL_FRAMEBUFFER,0);
 	}
@@ -53,10 +70,8 @@ void XGLModel::ShadowMap2::draw()
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_texShadow);
-		//glUniformMatrix4fv(g_mv, 1, GL_FALSE, camera->getInverseMatrix().ptr());
-		//glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 		glUniform1i(g_sampler, 0);
-		m_pQuad->Render();
+		//m_pQuad->Render();
 		m_pMesh->Render();
 	}
 
@@ -114,9 +129,7 @@ void XGLModel::ShadowMap2::initUniform()
 	{
 		XGLERROR("get uniform failed");
 	}
-
-	glUseProgram(program);
-
+	lightShader.initUniform(program);
 }
 
 void XGLModel::ShadowMap2::initCamera()
@@ -124,6 +137,7 @@ void XGLModel::ShadowMap2::initCamera()
 	camera = new XGL::XOrbitCamera();
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0.0f, 0.0f, 10.0f),
-		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.0f, 0.0f));
+	orbit->setTransformation(Vec3f(0.0f, 10.0f, 2.0f),
+		Vec3f(0.0f, 10.0f, 0.0f), Vec3f(0.0f, 1.0f, 0.0f));
 }
+

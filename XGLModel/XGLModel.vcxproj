@@ -182,6 +182,8 @@
     <ClInclude Include="Vertices.h" />
     <ClInclude Include="XGLModel.h" />
     <ClInclude Include="XGLUtil.h" />
+    <ClInclude Include="XLight.h" />
+    <ClInclude Include="XLightShader.h" />
     <ClInclude Include="XMesh.h" />
     <ClInclude Include="XTexture.h" />
   </ItemGroup>
@@ -231,6 +233,7 @@
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="XGLModel.cpp" />
     <ClCompile Include="XGLUtil.cpp" />
+    <ClCompile Include="XLightShader.cpp" />
     <ClCompile Include="XMesh.cpp" />
     <ClCompile Include="XTexture.cpp" />
   </ItemGroup>

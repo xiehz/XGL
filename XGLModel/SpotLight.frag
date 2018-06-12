@@ -4,6 +4,17 @@ in vec3 tn;
 in vec2 tc0;
 in vec3 eyep;
 
+vec4 calcSpotLight(in vec3 tn, in vec3 eyep);
+
+uniform sampler2D g_sampler2d;
+
+out vec4 color ;
+
+void main()
+{
+	vec4 light = calcSpotLight(tn,eyep ) ;
+	color =light *  texture2D(g_sampler2d,tc0);
+}
 
 struct tagBaseLight{
 	vec3 Color;
@@ -25,16 +36,16 @@ struct tagSpotLight{
 	tagBaseLight Light;
 };
 
-uniform sampler2D sampler2d;
-uniform float specularIntensity;
-uniform float shineness;
+
+uniform float g_specularIntensity;
+uniform float g_shineness;
 uniform tagSpotLight spotlight;
 
-out vec4 clr;
 
-void main(){
-	vec4 tex = texture2D(sampler2d, tc0);
+vec4 calcSpotLight(in vec3 tn, in vec3 eyep)
+{
 
+	vec4 clr = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 N = normalize(tn);
 	vec3 E = -normalize(eyep);
 	vec3 L = eyep - spotlight.Eposition;
@@ -56,8 +67,8 @@ void main(){
 		float specularf = dot(R,E);
 		if(specularf > 0.0)
 		{
-		specularf = pow(specularf, shineness);
-		lightColor = lightColor + vec4(spotlight.Light.Color * specularf,1.0);
+		specularf = pow(specularf, g_shineness);
+		lightColor = lightColor + vec4(spotlight.Light.Color * specularf * g_specularIntensity,1.0);
 		}
 	
 		float attenuation = spotlight.Attenuation.Constant + 
@@ -67,10 +78,11 @@ void main(){
 		lightColor = lightColor /attenuation;
 
 		float decrease = (spotf - spotlight.Cutoff) / (1.0 - spotlight.Cutoff);
-		clr =tex * lightColor * decrease;
+		clr = lightColor * decrease;
 	}
 	else{
 		clr = vec4(0.0,0.0,0.0,1.0);
 	}
 
+	return clr;
 }

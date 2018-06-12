@@ -123,6 +123,12 @@
     <ClInclude Include="ShadowMap2.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="XLight.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="XLightShader.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -211,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="ShadowMap2.cpp">
       <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XLightShader.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

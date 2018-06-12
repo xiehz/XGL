@@ -10,6 +10,9 @@ namespace XGLModel {
 
 XGLModel::SpotLight::SpotLight()
 {
+	spotlight.Cutoff = cosf(60.0f * 3.1415926f / 180.f);
+	spotlight.Direction = XGL::Vec3f(-1.0f, -1.0f, -1.0f);
+	spotlight.Direction.normalize();
 }
 
 
@@ -99,8 +102,7 @@ void XGLModel::SpotLight::draw()
 	glUniform1i(g_sampler, texUnitIndex);
 
 
-	glUniform1f(specular_Intensity, 1.0f);
-	glUniform1f(shineness, 16.0f);
+	
 	static float d = 0.5f;
 	Vec3f epos(d, d, d);
 	d += 0.0005f;
@@ -108,6 +110,8 @@ void XGLModel::SpotLight::draw()
 	glUseProgram(0);
 	glPointSize(16.0f);
 	epos = epos * cameraMatrix;
+	spotlight.Eposition = epos;
+
 	glDisable(GL_LIGHTING);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -128,18 +132,8 @@ void XGLModel::SpotLight::draw()
 	glLoadMatrixf(projectMatrix.ptr());
 
 	glUseProgram(program);
-	glUniform3f(spotlight_eposition, epos.x(), epos.y(), epos.z());
-	Vec3f edir(-1.0f, -1.0f, -1.0f);
-	edir = edir * cameraMatrix;
-	edir.normalize();
-	glUniform3f(spotlight_direction, edir.x(),edir.y(), edir.z());
-	glUniform1f(spotlight_cutoff,cosf(15.0F* 3.141592f /180.0f ));
-	glUniform1f(spotlight_attenuation_constant, 0.1f);
-	glUniform1f(spotlight_attenuation_linear, 0.1f);
-	glUniform1f(spotlight_attenuation_exp, 0.05f);
-	glUniform3f(spotlight_light_color, 1.0f, 1.0f, 1.0f);
-	glUniform1f(spotlight_light_ambient_intensity, 0.1f);
-	glUniform1f(spotlight_light_diffuse_intensity, 0.8f);
+
+	lightShader.updateUniform(spotlight, 1.0f, 16.0f);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -163,35 +157,16 @@ void XGLModel::SpotLight::draw()
 void XGLModel::SpotLight::initUniform()
 {
 
-	g_mv = glGetUniformLocation(program, "mv");
-	g_perspective = glGetUniformLocation(program, "perspective");
-	g_sampler = glGetUniformLocation(program, "sampler2d");
+	g_mv = glGetUniformLocation(program, "g_mv");
+	g_perspective = glGetUniformLocation(program, "g_pers");
+	g_sampler = glGetUniformLocation(program, "g_sampler2d");
 
-	shineness = glGetUniformLocation(program, "shineness");
+	lightShader.initUniform(program);
 
-	spotlight_direction = glGetUniformLocation(program, "spotlight.Direction");
-	spotlight_cutoff = glGetUniformLocation(program, "spotlight.Cutoff");
-	spotlight_eposition = glGetUniformLocation(program, "spotlight.Eposition");
-	spotlight_attenuation_constant = glGetUniformLocation(program, "spotlight.Attenuation.Constant");
-	spotlight_attenuation_linear = glGetUniformLocation(program, "spotlight.Attenuation.Linear");
-	spotlight_attenuation_exp = glGetUniformLocation(program, "spotlight.Attenuation.Exp");
-	spotlight_light_color = glGetUniformLocation(program, "spotlight.Light.Color");
-	spotlight_light_ambient_intensity = glGetUniformLocation(program, "spotlight.Light.AmbientIntensity");
-	spotlight_light_diffuse_intensity = glGetUniformLocation(program, "spotlight.Light.DiffuseIntensity");
 
 	if (g_mv < 0
 		|| g_perspective< 0
-		|| g_sampler< 0
-		|| spotlight_direction< 0
-		|| spotlight_cutoff< 0
-		|| shineness< 0
-		|| spotlight_eposition< 0
-		|| spotlight_attenuation_constant< 0
-		|| spotlight_attenuation_linear< 0
-		|| spotlight_attenuation_exp< 0
-		|| spotlight_light_color< 0
-		|| spotlight_light_ambient_intensity< 0
-		|| spotlight_light_diffuse_intensity < 0)
+		|| g_sampler< 0)
 	{
 		XGLERROR("get uniform failed");
 	}

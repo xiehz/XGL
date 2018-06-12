@@ -2,7 +2,8 @@
 
 #include "XGLModel.h"
 #include "TutorialFactory.h"
-
+#include "XLight.h"
+#include "XLightShader.h"
 namespace XGLModel {
 	class SpotLight : public TutorialInterface
 	{
@@ -24,17 +25,8 @@ namespace XGLModel {
 		GLint g_perspective;
 		GLint g_sampler;
 
-		GLint specular_Intensity;
-		GLint shineness;
-		GLint spotlight_direction;
-		GLint spotlight_cutoff;
-		GLint spotlight_eposition;
-		GLint spotlight_attenuation_constant;
-		GLint spotlight_attenuation_linear;
-		GLint spotlight_attenuation_exp;
-		GLint spotlight_light_color;
-		GLint spotlight_light_ambient_intensity;
-		GLint spotlight_light_diffuse_intensity;
+		SpotLighter spotlight;
+		XLightShader lightShader;
 	};
 }
 

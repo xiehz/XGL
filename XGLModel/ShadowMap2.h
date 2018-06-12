@@ -2,7 +2,8 @@
 
 #include "TutorialFactory.h"
 #include "XGLModel.h"
-
+#include "XLight.h"
+#include "XLightShader.h"
 namespace XGLModel {
 	class IXMesh;
 	class ShadowMap2 : public TutorialInterface
@@ -24,6 +25,9 @@ namespace XGLModel {
 		GLint g_sampler;
 		GLuint m_fbo;
 		GLuint m_texShadow;
+		SpotLighter spotlight;
+		XLightShader lightShader;
+		
 	};
 
 
