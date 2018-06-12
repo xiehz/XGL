@@ -36,7 +36,7 @@ vec4 calcLight(in vec3 tn, in vec3 eyep);
 void main()
 {
 	vec4 light = calcLight(tnormal,eyep ) ;
-	color =light * texture2D(g_sampler2d, otex);	
+	color = texture2D(g_sampler2d, otex);	
 }
 
 

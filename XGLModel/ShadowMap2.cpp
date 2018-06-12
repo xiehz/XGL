@@ -49,7 +49,7 @@ void XGLModel::ShadowMap2::draw()
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-	Matrix cameraMatrix = camera->getInverseMatrix();
+	Matrixf cameraMatrix = camera->getInverseMatrix();
 
 	glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
 	glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
@@ -68,11 +68,16 @@ void XGLModel::ShadowMap2::draw()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, m_texShadow);
 		glUniform1i(g_sampler, 0);
-		//m_pQuad->Render();
 		m_pMesh->Render();
+
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, m_texShadow);
+		Matrixf scale = Matrixf::scale(3.f, 3.f, 3.f);
+		 cameraMatrix.preMult(scale);
+		glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
+		glUniform1i(g_sampler, 1);
+		m_pQuad->Render();
 	}
 
 }
