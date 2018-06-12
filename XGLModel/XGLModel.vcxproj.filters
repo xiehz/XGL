@@ -120,6 +120,9 @@
     <ClInclude Include="ShadowMap.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="ShadowMap2.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -206,6 +209,9 @@
     <ClCompile Include="ShadowMap.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowMap2.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SpecularLight.frag">
@@ -266,6 +272,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="DiffuseLight.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ShadowMap2.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ShadowMap2.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

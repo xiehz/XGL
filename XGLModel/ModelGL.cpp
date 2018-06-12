@@ -99,6 +99,9 @@ void XGLModel::ModelGL::initShader()
 void XGLModel::ModelGL::setViewport(int viewport[4])
 {
 	memcpy(this->viewport, viewport, sizeof(int) * 4);
+	windowWith = viewport[2];
+	windowHeight = viewport[3];
+
 }
 
 void XGLModel::ModelGL::project(float l, float r, float b, float t, float n, float f)

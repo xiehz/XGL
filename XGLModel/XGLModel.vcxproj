@@ -164,6 +164,7 @@
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShadowMap.h" />
+    <ClInclude Include="ShadowMap2.h" />
     <ClInclude Include="SpecularLight.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
+    <ClCompile Include="ShadowMap2.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -248,6 +250,8 @@
     <None Include="PointLight.vert" />
     <None Include="ShadowMap.frag" />
     <None Include="ShadowMap.vert" />
+    <None Include="ShadowMap2.frag" />
+    <None Include="ShadowMap2.vert" />
     <None Include="SpecularLight.frag" />
     <None Include="SpecularLight.vert" />
     <None Include="SpotLight.frag" />
