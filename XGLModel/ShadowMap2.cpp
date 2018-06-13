@@ -14,14 +14,14 @@ XGLModel::ShadowMap2::ShadowMap2()
 	m_fbo = 0;
 	m_texShadow = 0;
 
-	spotlight.Eposition = XGL::Vec3f(0.0f, 10.0f, 2.f);
+	spotlight.Eposition = XGL::Vec3f(0.0f, 10.0f, 10.f);
 	spotlight.Direction = XGL::Vec3f(0.0f, 0.0f, -1.0f);
 	spotlight.Direction.normalize();
 
-	spotlight.Cutoff = cosf(60.0f * 3.1415926f /180.0f);
-	spotlight.Attenuation.Constant = 1.0f;
-	spotlight.Attenuation.Linear = 0.1f;
-	spotlight.Attenuation.Exp = 0.01f;
+	spotlight.Cutoff = cosf(88.0f * 3.1415926f /180.0f);
+	spotlight.Attenuation.Constant = 1.f;
+	spotlight.Attenuation.Linear = 0.f;
+	spotlight.Attenuation.Exp = 0.0f;
 	
 }
 
@@ -49,17 +49,38 @@ void XGLModel::ShadowMap2::draw()
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-	Matrixf cameraMatrix = camera->getInverseMatrix();
-
-	glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
+	Matrixf& cameraMatrix = camera->getInverseMatrix();
 	glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 
-	spotlight.Eposition = XGL::Vec3f(0.0f, 10.0f, 2.f);
-	spotlight.Eposition = spotlight.Eposition* cameraMatrix;
+	static double t = 0;
+	spotlight.Eposition = XGL::Vec3f(5*cosf(t), 10.0f, 5* sinf(t));
+	t+= 0.01;
 
-	lightShader.updateUniform(spotlight,1.0f,16.0f);
+	spotlight.Direction = XGL::Vec3f(-cosf(t), 0.0f, -sinf(t));
+	spotlight.Direction.normalize();
+
+	XGL::Vec3f left, up, forward;
+	forward = -spotlight.Direction;
+	up = Vec3f(0.0f, 1.0f, 0.0f);
+
+	left = up ^ forward;
+	left.normalize();
+
+	up = forward ^ left;
+
+	float lightView[4][4] = {
+		left.x(), left.y(), left.z(),0,
+		up.x(), up.y(), up.z(),0,
+		forward.x(), forward.y(), forward.z(),0,
+		-spotlight.Eposition.x(), -spotlight.Eposition.y(), -spotlight.Eposition.z(),1,
+	};
+
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_fbo);
+		glUniformMatrix4fv(g_mv, 1, GL_FALSE, *lightView);
+		//glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
+
+
 		glClear(GL_DEPTH_BUFFER_BIT);
 		m_pMesh->Render();
 		glBindFramebuffer(GL_FRAMEBUFFER,0);
@@ -69,13 +90,18 @@ void XGLModel::ShadowMap2::draw()
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 		glUniform1i(g_sampler, 0);
+		glUniformMatrix4fv(g_mv, 1, GL_FALSE,cameraMatrix.ptr());
+
+		spotlight.Eposition = Vec3f(0.0f,0.0f,0.0f);
+		lightShader.updateUniform(spotlight, 1.0f, 16.0f);
+
 		m_pMesh->Render();
 
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, m_texShadow);
-		Matrixf scale = Matrixf::scale(3.f, 3.f, 3.f);
+		Matrixf scale = Matrixf::scale(5.0F, 5.f, 5.f);
 		 cameraMatrix.preMult(scale);
-		glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
+		 glUniformMatrix4fv(g_mv, 1, GL_FALSE, cameraMatrix.ptr());
 		glUniform1i(g_sampler, 1);
 		m_pQuad->Render();
 	}
@@ -126,11 +152,12 @@ void XGLModel::ShadowMap2::initUniform()
 	g_mv = glGetUniformLocation(program, "g_mv");
 	g_perspective = glGetUniformLocation(program, "g_pers");
 	g_sampler = glGetUniformLocation(program, "g_sampler2d");
-
+	g_lv = glGetUniformLocation(program, "g_lv");
 
 	if (g_mv < 0
 		|| g_perspective< 0
-		|| g_sampler< 0)
+		|| g_sampler< 0
+		|| g_lv < 0)
 	{
 		XGLERROR("get uniform failed");
 	}
@@ -142,7 +169,7 @@ void XGLModel::ShadowMap2::initCamera()
 	camera = new XGL::XOrbitCamera();
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0.0f, 10.0f, 2.0f),
-		Vec3f(0.0f, 10.0f, 0.0f), Vec3f(0.0f, 1.0f, 0.0f));
+	orbit->setTransformation(Vec3f(0.0f, 30.0f, 0.0f),
+		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 0.f, -1.0f));
 }
 

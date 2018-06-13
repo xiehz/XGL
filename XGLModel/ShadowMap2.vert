@@ -6,6 +6,7 @@ layout (location = 2) in vec3 normal;
 
 uniform mat4 g_mv;
 uniform mat4 g_pers;
+uniform mat4 g_lv;
 
 out vec3 tnormal;
 out vec2 otex;

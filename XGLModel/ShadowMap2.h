@@ -20,6 +20,7 @@ namespace XGLModel {
 	private:
 		IXMesh * m_pMesh;
 		IXMesh* m_pQuad;
+		GLint g_lv;
 		GLint g_mv;
 		GLint g_perspective;
 		GLint g_sampler;
