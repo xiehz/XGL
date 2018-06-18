@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="AmbientLight.h" />
     <ClInclude Include="AssimpImport.h" />
+    <ClInclude Include="AxesShape.h" />
     <ClInclude Include="BitmapFont.h" />
     <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="Headers.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="ShadowMap2.h" />
     <ClInclude Include="SpecularLight.h" />
+    <ClInclude Include="SphereShape.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -190,6 +192,7 @@
   <ItemGroup>
     <ClCompile Include="AmbientLight.cpp" />
     <ClCompile Include="AssimpImport.cpp" />
+    <ClCompile Include="AxesShape.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="DiffuseLight.cpp" />
     <ClCompile Include="dllmain.cpp">
@@ -214,6 +217,7 @@
     <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="ShadowMap2.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
+    <ClCompile Include="SphereShape.cpp" />
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -247,6 +251,8 @@
     <None Include="ambientLight.vert" />
     <None Include="AssimpImport.frag" />
     <None Include="AssimpImport.vert" />
+    <None Include="AxesShape.frag" />
+    <None Include="AxesShape.vert" />
     <None Include="DiffuseLight.frag" />
     <None Include="DiffuseLight.vert" />
     <None Include="PointLight.frag" />
@@ -257,6 +263,8 @@
     <None Include="ShadowMap2.vert" />
     <None Include="SpecularLight.frag" />
     <None Include="SpecularLight.vert" />
+    <None Include="SphereShape.frag" />
+    <None Include="SphereShape.vert" />
     <None Include="SpotLight.frag" />
     <None Include="SpotLight.vert" />
     <None Include="tutorial4.frag" />

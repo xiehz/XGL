@@ -129,6 +129,12 @@
     <ClInclude Include="XLightShader.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="SphereShape.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="AxesShape.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -221,6 +227,12 @@
     <ClCompile Include="XLightShader.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="SphereShape.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="AxesShape.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SpecularLight.frag">
@@ -287,6 +299,18 @@
       <Filter>shader</Filter>
     </None>
     <None Include="ShadowMap2.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SphereShape.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SphereShape.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="AxesShape.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="AxesShape.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

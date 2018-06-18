@@ -87,7 +87,7 @@ void XGLModel::ModelGL::initProject()
 	float height = 1.0f;
 	float width = height * asptio;
 
-	project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 100.0f);
+	project(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 1, 10000.0f);
 }
 
 void XGLModel::ModelGL::initShader()

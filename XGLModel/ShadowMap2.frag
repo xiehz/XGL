@@ -25,18 +25,37 @@ uniform float g_specularIntensity;
 uniform float g_shineness;
 uniform tagSpotLight spotlight;
 uniform sampler2D g_sampler2d;
+uniform sampler2D g_samplerShadow;
 
 in vec3 tnormal;
 in vec2 otex;
 in vec3 eyep;
+in vec4 lpos;
 
 out vec4 color ;
 
 vec4 calcLight(in vec3 tn, in vec3 eyep);
 void main()
 {
+	vec3 lndc = lpos.xyz / lpos.w;
+
+	vec2 luv;
+	luv.x = 0.5 * ( lndc.x + 1.0);
+	luv.y = 0.5 * (lndc.y + 1.0);
+
+	float z = 0.5 *(lndc.z + 1.0);
+
+	float ldepth = texture(g_samplerShadow,luv ).x;
 	vec4 light = calcLight(tnormal,eyep ) ;
-	color = light * texture2D(g_sampler2d, otex);	
+
+	if( z <= ldepth + 0.000001)
+	{
+		color = texture2D(g_sampler2d, otex);		
+	}
+	else{
+		color =0.1*  texture2D(g_sampler2d, otex);	
+	}
+
 }
 
 

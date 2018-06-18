@@ -56,6 +56,7 @@ namespace XGLModel
 			PostMessage(handle, WM_XGL_MODEL, WPARAM(id), (LPARAM)msg.c_str());
 		}
 		void bindHandle(HWND handle) { this->handle = handle; }
+		HWND getHandle() { return this->handle; }
 	protected:
 		void draw3D();
 		void preFrame();

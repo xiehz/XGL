@@ -15,8 +15,8 @@ namespace XGLModel {
 			return this;
 		}
 	public:
+		virtual void initGL() = 0;
 		virtual void draw() override = 0;
-		virtual void initGL() = 0 ;
 	protected:
 		virtual void initShader() override;
 		virtual void initUniform() = 0;
@@ -24,7 +24,7 @@ namespace XGLModel {
 		void addShader(GLuint shaderProgram,GLuint shader, const std::string& source);
 		void linkProgram();
 		void validateProgram();
-
+	public:
 		GLuint program;
 		GLuint vs, gs,ts,fs;
 		GLuint vbo;
