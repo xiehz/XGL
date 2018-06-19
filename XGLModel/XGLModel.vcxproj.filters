@@ -135,6 +135,9 @@
     <ClInclude Include="AxesShape.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="DepthImage.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -233,6 +236,9 @@
     <ClCompile Include="AxesShape.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="DepthImage.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SpecularLight.frag">
@@ -311,6 +317,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="AxesShape.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DepthImage.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DepthImage.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

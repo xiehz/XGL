@@ -185,6 +185,9 @@
     <ClCompile Include="Quat.cpp">
       <Filter>XMath</Filter>
     </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vec3f">

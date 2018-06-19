@@ -10,6 +10,7 @@ namespace XGLModel {
 	class IXMesh;
 	class AxesShape;
 	class SphereShape;
+	class DepthImage;
 	class ShadowMap2 : public TutorialInterface
 	{
 	public:
@@ -39,6 +40,7 @@ namespace XGLModel {
 		XTexture* bkg;
 		AxesShape* m_Axes;
 		SphereShape* m_Sphere;
+		DepthImage* m_DepthImage;
 	};
 
 
