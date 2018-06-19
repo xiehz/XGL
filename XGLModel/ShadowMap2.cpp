@@ -190,6 +190,8 @@ void XGLModel::ShadowMap2::renderShadow()
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_fbo);
 		glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
+
+		//模型变换g_mv->>>模型缩小100分之一
 		Matrixf lvMat(*lightView);
 		lvMat.preMult(Matrixf::scale(0.01f, 0.01f, 0.01f));
 		glUniformMatrix4fv(g_mv, 1, GL_FALSE,lvMat.ptr());
@@ -208,6 +210,7 @@ void XGLModel::ShadowMap2::renderShadow()
 
 2. 计算光源视野下变换至裁剪空间过程：lpos = g_pers * g_lv * vec4(pos, 1.0)，该计算过程没有使用到g_mv;
 
+g_mv has nothing to do with the g_mv
 */
 void XGLModel::ShadowMap2::render()
 {
@@ -271,6 +274,7 @@ void XGLModel::ShadowMap2::render()
 		glUniform1i(g_sampler, 0);
 		spotlight.Eposition = spotlight.Eposition * cameraMatrix;
 		lightShader.updateUniform(spotlight, 1.0f, 16.0f);
+		//直接使用未缩小的光源视野变换，因为quad很小，大概是模型的百分之一，取纹理时正常
 		glUniformMatrix4fv(g_lv, 1, GL_FALSE,*lightView);
 		Matrixf quadMat = cameraMatrix;
 		//Matrixf translate = Matrixf::translate(0.0f, -1.0f, -1.f);
@@ -285,6 +289,7 @@ void XGLModel::ShadowMap2::render()
 		bkg->Bind(GL_TEXTURE0);
 		m_pQuad->Render();
 
+		//需要保持与光源视野相同的处理，第一次和第二次的像素位置相同，取纹理是绝对精确的
 		glUniformMatrix4fv(g_lv, 1, GL_FALSE, lvMat.ptr());
 		Matrixf meshMat = cameraMatrix;
 		meshMat.preMult(Matrixf::scale(0.01f, 0.01f, 0.01f));
