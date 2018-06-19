@@ -18,13 +18,9 @@ XGLModel::ShadowMap2::ShadowMap2()
 	m_fbo = 0;
 	m_texShadow = 0;
 
-	spotlight.Eposition = XGL::Vec3f(0.0f, 10.0f, 10.f);
-	spotlight.Direction = XGL::Vec3f(0.0f, 0.0f, -1.0f);
-	spotlight.Direction.normalize();
-
-	spotlight.Cutoff = cosf(88.0f * 3.1415926f /180.0f);
+	spotlight.Cutoff = cosf(30.f * 3.1415926f /180.0f);
 	spotlight.Attenuation.Constant = 1.f;
-	spotlight.Attenuation.Linear = 0.f;
+	spotlight.Attenuation.Linear = 0.1f;
 	spotlight.Attenuation.Exp = 0.0f;
 	bkg = 0;
 
@@ -165,7 +161,7 @@ void XGLModel::ShadowMap2::initCamera()
 	camera = new XGL::XOrbitCamera();
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0.0f, 10.0f, 10.0f),
+	orbit->setTransformation(Vec3f(0.0f, 0.0f, -10.0f),
 		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.f, 0.0f));
 }
 

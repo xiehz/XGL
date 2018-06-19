@@ -50,10 +50,10 @@ void main()
 
 	if( z <= ldepth + 0.000001)
 	{
-		color = texture2D(g_sampler2d, otex);		
+		color =light * texture2D(g_sampler2d, otex);		
 	}
 	else{
-		color =0.1*  texture2D(g_sampler2d, otex);	
+		color =0.1* light * texture2D(g_sampler2d, otex);	
 	}
 
 }
