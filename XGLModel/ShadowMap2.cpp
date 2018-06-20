@@ -152,8 +152,8 @@ void XGLModel::ShadowMap2::initUniform()
 	}
 	lightShader.initUniform(program);
 
-	m_Axes->initUniform();
-	m_Sphere->initUniform();
+	//m_Axes->initUniform();
+	//m_Sphere->initUniform();
 }
 
 void XGLModel::ShadowMap2::initCamera()

@@ -167,6 +167,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="ShadowMap2.h" />
+    <ClInclude Include="SkyCube.h" />
     <ClInclude Include="SpecularLight.h" />
     <ClInclude Include="SphereShape.h" />
     <ClInclude Include="SpotLight.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="TutorialInterface.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Vertices.h" />
+    <ClInclude Include="XCubemapTexture.h" />
     <ClInclude Include="XGLModel.h" />
     <ClInclude Include="XGLUtil.h" />
     <ClInclude Include="XLight.h" />
@@ -218,6 +220,7 @@
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="ShadowMap2.cpp" />
+    <ClCompile Include="SkyCube.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
     <ClCompile Include="SphereShape.cpp" />
     <ClCompile Include="SpotLight.cpp" />
@@ -237,6 +240,7 @@
     <ClCompile Include="TutorialFactory.cpp" />
     <ClCompile Include="TutorialInterface.cpp" />
     <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="XCubemapTexture.cpp" />
     <ClCompile Include="XGLModel.cpp" />
     <ClCompile Include="XGLUtil.cpp" />
     <ClCompile Include="XLightShader.cpp" />
@@ -265,6 +269,8 @@
     <None Include="ShadowMap.vert" />
     <None Include="ShadowMap2.frag" />
     <None Include="ShadowMap2.vert" />
+    <None Include="SkyCube.frag" />
+    <None Include="SkyCube.vert" />
     <None Include="SpecularLight.frag" />
     <None Include="SpecularLight.vert" />
     <None Include="SphereShape.frag" />

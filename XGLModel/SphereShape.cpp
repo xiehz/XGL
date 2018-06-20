@@ -1,6 +1,7 @@
 #include "stdafx.h"
-#include "SphereShape.h"
+#include "xgl\Error.h"
 
+#include "SphereShape.h"
 namespace XGLModel {
 
 	REGISTER(SphereShape)
@@ -40,7 +41,7 @@ void XGLModel::SphereShape::initUniform()
 	g_mv = glGetUniformLocation(program, "g_mv");
 	g_pers = glGetUniformLocation(program, "g_pers");
 	g_sampler2d = glGetUniformLocation(program, "g_sampler2d");
-
+	getErrorInformation(GetLastError());
 	if (g_mv < 0
 		|| g_pers< 0
 		|| g_sampler2d< 0)
@@ -56,7 +57,6 @@ void XGLModel::SphereShape::loadModel()
 
 void XGLModel::SphereShape::setCamera(const Matrixf& m)
 {
-
 	camera->setByInverseMatrix(m);
 }
 

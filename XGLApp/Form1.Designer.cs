@@ -76,8 +76,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(994, 428);
-            this.splitContainer1.SplitterDistance = 728;
+            this.splitContainer1.Size = new System.Drawing.Size(1104, 569);
+            this.splitContainer1.SplitterDistance = 879;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -95,8 +95,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(262, 428);
-            this.splitContainer2.SplitterDistance = 63;
+            this.splitContainer2.Size = new System.Drawing.Size(221, 569);
+            this.splitContainer2.SplitterDistance = 83;
             this.splitContainer2.SplitterWidth = 8;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -108,7 +108,7 @@
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(3, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 51);
+            this.groupBox1.Size = new System.Drawing.Size(215, 71);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "XGL";
@@ -137,10 +137,11 @@
             "ShadowMap",
             "ShadowMap2",
             "SphereShape",
-            "DepthImage"});
+            "DepthImage",
+            "SkyCube"});
             this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(244, 20);
+            this.comboBox1.Size = new System.Drawing.Size(203, 20);
             this.comboBox1.TabIndex = 0;
             // 
             // tabControl1
@@ -153,7 +154,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(262, 357);
+            this.tabControl1.Size = new System.Drawing.Size(221, 478);
             this.tabControl1.TabIndex = 1;
             // 
             // vs_tabPage1
@@ -162,7 +163,7 @@
             this.vs_tabPage1.Location = new System.Drawing.Point(4, 22);
             this.vs_tabPage1.Name = "vs_tabPage1";
             this.vs_tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.vs_tabPage1.Size = new System.Drawing.Size(254, 331);
+            this.vs_tabPage1.Size = new System.Drawing.Size(213, 452);
             this.vs_tabPage1.TabIndex = 0;
             this.vs_tabPage1.Text = "vertex";
             this.vs_tabPage1.UseVisualStyleBackColor = true;
@@ -172,7 +173,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(248, 325);
+            this.richTextBox1.Size = new System.Drawing.Size(207, 446);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -240,9 +241,9 @@
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 433);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1006, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1116, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -262,7 +263,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 455);
+            this.ClientSize = new System.Drawing.Size(1116, 596);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";

@@ -138,6 +138,12 @@
     <ClInclude Include="DepthImage.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="SkyCube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XCubemapTexture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -239,6 +245,12 @@
     <ClCompile Include="DepthImage.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="SkyCube.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XCubemapTexture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SpecularLight.frag">
@@ -323,6 +335,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="DepthImage.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SkyCube.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SkyCube.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
