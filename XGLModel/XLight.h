@@ -5,7 +5,7 @@
 namespace XGLModel {
 	typedef struct TagLight
 	{
-		TagLight() :Color(1.0f, 1.0f, 1.0f), AmbientIntensity(0.2), DiffuseIntensity(0.8)
+		TagLight() :Color(1.0f, 1.0f, 1.0f), AmbientIntensity(0.2), DiffuseIntensity(0.3)
 		{
 
 		}

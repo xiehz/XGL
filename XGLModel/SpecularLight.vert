@@ -15,7 +15,7 @@ void main(){
 
 	gl_Position = perspective * mv * vec4(pos, 1.0);
 	texcoord0 = texcoord;
-	mat4 eye = transpose(mv);
+	mat4 eye = transpose(inverse(mv));
 	enormal = (eye* vec4(normal, 1.0)).xyz;
 	epos = (mv * vec4(pos, 1.0)).xyz;
 

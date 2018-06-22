@@ -15,7 +15,7 @@ void main(){
 
 	gl_Position =perspective *  mv  * vec4(pos,1.0);
 	texcoord0 = texcoord;
-	normal0 = (transpose(mv)* vec4(normal,1.0)).xyz;
+	normal0 = (transpose(inverse(mv))* vec4(normal,1.0)).xyz;
 }
 
 

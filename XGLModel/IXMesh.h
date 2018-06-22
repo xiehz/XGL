@@ -35,7 +35,7 @@ namespace XGLModel {
 		virtual void Render();
 	protected:
 		bool InitFromScene(const aiScene* pScene, const std::string& filename);
-		void InitMesh(unsigned int index, const aiMesh* pMesh);
+		virtual void InitMesh(unsigned int index, const aiMesh* pMesh);
 		bool InitMaterials(const aiScene* pScene, const std::string& filename);
 		void Clear();
 

@@ -15,7 +15,7 @@ out vec3 eyep;
 void main(){
 	
 	gl_Position = perspective * mv * vec4(pos,1.0);
-	tn = (transpose(mv) * vec4(n,0.0)).xyz;
+	tn = (transpose(inverse(mv)) * vec4(n,0.0)).xyz;
 	tc0 = tc;
 	eyep = (mv * vec4(pos,1.0)).xyz;
 }

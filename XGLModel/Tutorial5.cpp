@@ -117,28 +117,28 @@ void XGLModel::Tutorial5::draw()
 	Matrix& cameraMatrix = camera->getInverseMatrix();
 
 
-	////-------------------------
-	//XGL::Vec3f Target(0.0f, 0.0f, 0.0f);
-	//XGL::Vec3f Eposition(2.0f, 1.0f, 0.0f);
-	//XGL::Vec3f Direction = Eposition - Target;
+	//-------------------------
+	XGL::Vec3f Target(0.0f, 0.0f, 0.0f);
+	XGL::Vec3f Eposition(2.0f, 1.0f, 0.0f);
+	XGL::Vec3f Direction = Eposition - Target;
 
-	//XGL::Vec3f right, up, forward;
-	//forward = Direction;
-	//up = Vec3f(0.0f, 1.0f, 0.0f);
+	XGL::Vec3f right, up, forward;
+	forward = Direction;
+	up = Vec3f(0.0f, 1.0f, 0.0f);
 
-	//right = up ^ forward;
-	//right.normalize();
+	right = up ^ forward;
+	right.normalize();
 
-	//up = forward ^ right;
+	up = forward ^ right;
 
-	//float lightView[4][4] = {
-	//	right.x(), up.x(), forward.x(),0,
-	//	right.y(), up.y(), forward.y(),0,
-	//	right.z(), up.z(), forward.z(),0,
-	//	-Eposition * right , -Eposition * up, -Eposition * forward,1,
-	//};
+	float lightView[4][4] = {
+		right.x(), up.x(), forward.x(),0,
+		right.y(), up.y(), forward.y(),0,
+		right.z(), up.z(), forward.z(),0,
+		-Eposition * right , -Eposition * up, -Eposition * forward,1,
+	};
 
-	glUniformMatrix4fv(uniform_view_matrix, 1, false, cameraMatrix.ptr());
+	glUniformMatrix4fv(uniform_view_matrix, 1, false,*lightView);
 	glUniformMatrix4fv(uniform_perspective, 1, false, projectMatrix.ptr());
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);

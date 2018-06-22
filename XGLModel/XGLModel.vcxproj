@@ -161,6 +161,7 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="IXMesh.h" />
     <ClInclude Include="ModelGL.h" />
+    <ClInclude Include="NormalMap.h" />
     <ClInclude Include="objmodel.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitives.h" />
@@ -215,6 +216,7 @@
     </ClCompile>
     <ClCompile Include="IXMesh.cpp" />
     <ClCompile Include="ModelGL.cpp" />
+    <ClCompile Include="NormalMap.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
@@ -263,6 +265,8 @@
     <None Include="DepthImage.vert" />
     <None Include="DiffuseLight.frag" />
     <None Include="DiffuseLight.vert" />
+    <None Include="NormalMap.frag" />
+    <None Include="NormalMap.vert" />
     <None Include="PointLight.frag" />
     <None Include="PointLight.vert" />
     <None Include="ShadowMap.frag" />

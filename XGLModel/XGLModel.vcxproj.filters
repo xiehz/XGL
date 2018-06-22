@@ -138,11 +138,14 @@
     <ClInclude Include="DepthImage.h">
       <Filter>tutorial</Filter>
     </ClInclude>
-    <ClInclude Include="SkyCube.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="XCubemapTexture.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyCube.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMap.h">
+      <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -245,11 +248,14 @@
     <ClCompile Include="DepthImage.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
-    <ClCompile Include="SkyCube.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="XCubemapTexture.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyCube.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMap.cpp">
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +347,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="SkyCube.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="NormalMap.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="NormalMap.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

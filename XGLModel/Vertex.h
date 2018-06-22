@@ -22,6 +22,17 @@ namespace XGLModel {
 			this->m_tex = texcoord;
 			this->m_normal = normal;
 		}
+
+		Vertex(const XGL::Vec3f& pos, const XGL::Vec2f& texcoord, const XGL::Vec3f& normal,
+			const XGL::Vec3f& tangent, const XGL::Vec3f& bintangent)
+		{
+			this->m_pos = pos;
+			this->m_tex = texcoord;
+			this->m_normal = normal;
+			this->m_tangent = tangent;
+			this->m_bintangent = bintangent;
+		}
+
 		static void CalcNormals(const unsigned int* pIndices, unsigned int IndexCount, Vertex* pVertices, unsigned int VertexCount)
 		{
 			for (unsigned int i = 0; i < IndexCount; i += 3) {
@@ -76,6 +87,8 @@ namespace XGLModel {
 		XGL::Vec3f m_pos;
 		XGL::Vec2f m_tex;
 		XGL::Vec3f m_normal;
+		XGL::Vec3f m_tangent;
+		XGL::Vec3f m_bintangent;
 	};
 
 }

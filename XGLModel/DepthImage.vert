@@ -15,6 +15,6 @@ void main(){
 
 	gl_Position = g_pers * g_mv * vec4(pos, 1.0);
 	texcoord = tex;
-	tnormal = transpose(g_mv) * vec4(normal, 0.0);
+	tnormal = transpose(inverse(g_mv)) * vec4(normal, 0.0);
 
 }

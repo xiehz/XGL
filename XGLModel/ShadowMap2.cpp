@@ -79,7 +79,7 @@ void XGLModel::ShadowMap2::draw()
 	spotlight.Eposition = XGL::Vec3f( 1 *cosf(t), 0, 1 * sinf(t));
 	t += 0.001;
 
-	spotlight.Direction = spotlight.Eposition;
+	spotlight.Direction = -spotlight.Eposition;
 	spotlight.Direction.normalize();
 	renderShadow();
 	render();
@@ -161,14 +161,14 @@ void XGLModel::ShadowMap2::initCamera()
 	camera = new XGL::XOrbitCamera();
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0.0f, 0.0f, -10.0f),
+	orbit->setTransformation(Vec3f(0.0f, 0.0f, 10.0f),
 		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.f, 0.0f));
 }
 
 void XGLModel::ShadowMap2::renderShadow()
 {
 	XGL::Vec3f right, up, forward;
-	forward = spotlight.Direction;
+	forward = -spotlight.Direction;
 	up = Vec3f(0.0f, 1.0f, 0.0f);
 
 	right = up ^ forward;
@@ -213,7 +213,7 @@ void XGLModel::ShadowMap2::render()
 	Matrixf cameraMatrix = camera->getInverseMatrix();
 
 	XGL::Vec3f right, up, forward;
-	forward = spotlight.Direction;
+	forward = -spotlight.Direction;
 	up = Vec3f(0.0f, 1.0f, 0.0f);
 
 	right = up ^ forward;
