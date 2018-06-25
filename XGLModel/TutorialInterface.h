@@ -69,6 +69,23 @@ namespace XGLModel {
 		addShader(program, fs, fsSource);
 		postViewMsg(4, fsSource);
 
+		//gs
+		std::string& gsname = directory + this->name + ".gs";
+		
+		if (readShaderFile(gsname.c_str(), gsSource)) {
+
+			gs = glCreateShader(GL_GEOMETRY_SHADER);
+			if (!gs)
+			{
+				XGLERROR("error create gs shader");
+				return;
+			}
+			addShader(program, gs, gsSource);
+			postViewMsg(2, gsSource);
+		}
+
+
+
 		linkProgram();
 
 		initUniform();

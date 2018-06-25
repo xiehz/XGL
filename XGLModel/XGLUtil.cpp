@@ -19,7 +19,7 @@ bool XGLModel::readShaderFile(const char * pFileName, std::string & outFile)
 		ret = true;
 	}
 	else {
-		XGLERROR(pFileName);
+		//XGLERROR(pFileName);
 	}
 
 	return ret;

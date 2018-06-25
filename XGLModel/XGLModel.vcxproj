@@ -155,6 +155,7 @@
     <ClInclude Include="AmbientLight.h" />
     <ClInclude Include="AssimpImport.h" />
     <ClInclude Include="AxesShape.h" />
+    <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
     <ClInclude Include="DepthImage.h" />
     <ClInclude Include="DiffuseLight.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="AmbientLight.cpp" />
     <ClCompile Include="AssimpImport.cpp" />
     <ClCompile Include="AxesShape.cpp" />
+    <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="DepthImage.cpp" />
     <ClCompile Include="DiffuseLight.cpp" />
@@ -261,6 +263,9 @@
     <None Include="AssimpImport.vert" />
     <None Include="AxesShape.frag" />
     <None Include="AxesShape.vert" />
+    <None Include="Billboarding.frag" />
+    <None Include="Billboarding.gs" />
+    <None Include="Billboarding.vert" />
     <None Include="DepthImage.frag" />
     <None Include="DepthImage.vert" />
     <None Include="DiffuseLight.frag" />

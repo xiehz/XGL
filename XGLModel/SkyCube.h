@@ -16,7 +16,7 @@ namespace XGLModel {
 		virtual void initGL() override;
 		virtual void draw() override;
 		virtual void initUniform() override;
-	protected:
+	public:
 		void loadModel();
 		void render();
 		void setCamera(const XGL::Matrixf& c);

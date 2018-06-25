@@ -41,7 +41,7 @@ void XGLModel::SphereShape::initUniform()
 	g_mv = glGetUniformLocation(program, "g_mv");
 	g_pers = glGetUniformLocation(program, "g_pers");
 	g_sampler2d = glGetUniformLocation(program, "g_sampler2d");
-	getErrorInformation(GetLastError());
+	//getErrorInformation(GetLastError());
 	if (g_mv < 0
 		|| g_pers< 0
 		|| g_sampler2d< 0)

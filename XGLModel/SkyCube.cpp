@@ -120,7 +120,8 @@ void XGLModel::SkyCube::render()
 	glUseProgram(m_pSphere->program);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
-	Matrixf& scale = Matrixf::scale(1.f, 1.f, 1.f);
+	Matrixf& scale = Matrixf::scale(0.1f, .1f, .1f);
+	scale.preMult(model);
 	m_pSphere->setCamera(camera->getInverseMatrix());
 	m_pSphere->setModel(scale);
 	m_pSphere->render();

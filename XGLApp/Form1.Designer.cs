@@ -139,7 +139,8 @@
             "SphereShape",
             "DepthImage",
             "SkyCube",
-            "NormalMap"});
+            "NormalMap",
+            "Billboarding"});
             this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(203, 20);
