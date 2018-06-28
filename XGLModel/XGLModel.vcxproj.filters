@@ -138,9 +138,6 @@
     <ClInclude Include="DepthImage.h">
       <Filter>tutorial</Filter>
     </ClInclude>
-    <ClInclude Include="XCubemapTexture.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SkyCube.h">
       <Filter>tutorial</Filter>
     </ClInclude>
@@ -149,6 +146,15 @@
     </ClInclude>
     <ClInclude Include="Billboarding.h">
       <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="XRandomTexture.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="XCubemapTexture.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -251,9 +257,6 @@
     <ClCompile Include="DepthImage.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
-    <ClCompile Include="XCubemapTexture.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="SkyCube.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
@@ -262,6 +265,15 @@
     </ClCompile>
     <ClCompile Include="Billboarding.cpp">
       <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XRandomTexture.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="XCubemapTexture.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +380,15 @@
       <Filter>shader</Filter>
     </None>
     <None Include="Billboarding.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ParticleSystem.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ParticleSystem.gs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ParticleSystem.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

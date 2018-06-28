@@ -17,9 +17,9 @@ namespace XGLModel {
 	public:
 		virtual void initGL() = 0;
 		virtual void draw() override = 0;
-	protected:
 		virtual void initShader() override;
 		virtual void initUniform() = 0;
+	protected:
 		void readShader(const char* filename, std::string& source);
 		void addShader(GLuint shaderProgram,GLuint shader, const std::string& source);
 		void linkProgram();
@@ -101,6 +101,7 @@ namespace XGLModel {
 		{
 			XGLERROR(filename);
 		}
+
 	}
 
 	inline void TutorialInterface::addShader(GLuint program, GLuint shader, const std::string& content)

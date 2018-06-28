@@ -46,6 +46,10 @@ void XGLModel::Billboarding::initGL()
 	m_pTex->Load();
 
 }
+void XGLModel::Billboarding::setBillboardSize(float BillboardSize)
+{
+	glUniform1f(g_billboardsize, BillboardSize);
+}
 
 void XGLModel::Billboarding::draw()
 {
@@ -57,6 +61,7 @@ void XGLModel::Billboarding::draw()
 
 	glUseProgram(program);
 
+	glUniform1f(g_billboardsize, 1.0f);
 	glUniform3f(g_eye, trans.x(), trans.y(), trans.z());
 
 	Matrixf transMat = Matrixf::identity();
@@ -85,10 +90,12 @@ void XGLModel::Billboarding::initUniform()
 	g_eye = glGetUniformLocation(program, "g_eye");
 	g_pers = glGetUniformLocation(program, "g_vp");
 	g_sampler2d = glGetUniformLocation(program, "g_sampler2d");
+	g_billboardsize = glGetUniformLocation(program, "g_billboardsize");
 	//getErrorInformation(GetLastError());
 	if (g_eye < 0
 		|| g_pers< 0
-		|| g_sampler2d< 0)
+		|| g_sampler2d< 0
+		|| g_billboardsize < 0)
 	{
 		XGLERROR("get uniform failed");
 	}

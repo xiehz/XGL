@@ -13,12 +13,15 @@ namespace XGLModel {
 
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initGL() override;
+		void setBillboardSize(float BillboardSize);
 		virtual void draw() override;
 		virtual void initUniform() override;
-	private:
+	public:
 		GLuint g_eye;
 		GLuint g_pers;
 		GLuint g_sampler2d;
+		GLuint g_billboardsize;
+
 		SkyCube* m_pSky;
 		XTexture* m_pTex;
 	};

@@ -164,6 +164,7 @@
     <ClInclude Include="ModelGL.h" />
     <ClInclude Include="NormalMap.h" />
     <ClInclude Include="objmodel.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="resource.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="XLight.h" />
     <ClInclude Include="XLightShader.h" />
     <ClInclude Include="XMesh.h" />
+    <ClInclude Include="XRandomTexture.h" />
     <ClInclude Include="XTexture.h" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +222,7 @@
     <ClCompile Include="ModelGL.cpp" />
     <ClCompile Include="NormalMap.cpp" />
     <ClCompile Include="ObjModel.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
@@ -249,6 +252,7 @@
     <ClCompile Include="XGLUtil.cpp" />
     <ClCompile Include="XLightShader.cpp" />
     <ClCompile Include="XMesh.cpp" />
+    <ClCompile Include="XRandomTexture.cpp" />
     <ClCompile Include="XTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +276,9 @@
     <None Include="DiffuseLight.vert" />
     <None Include="NormalMap.frag" />
     <None Include="NormalMap.vert" />
+    <None Include="ParticleSystem.frag" />
+    <None Include="ParticleSystem.gs" />
+    <None Include="ParticleSystem.vert" />
     <None Include="PointLight.frag" />
     <None Include="PointLight.vert" />
     <None Include="ShadowMap.frag" />
