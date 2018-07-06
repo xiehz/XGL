@@ -156,6 +156,12 @@
     <ClInclude Include="XCubemapTexture.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Picking.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="PickingDemo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -275,6 +281,12 @@
     <ClCompile Include="XCubemapTexture.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="Picking.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="PickingDemo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SpecularLight.frag">
@@ -389,6 +401,18 @@
       <Filter>shader</Filter>
     </None>
     <None Include="ParticleSystem.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Picking.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Picking.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PickingDemo.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PickingDemo.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

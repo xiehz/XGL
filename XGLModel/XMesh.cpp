@@ -98,6 +98,7 @@ void XGLModel::XMesh::Render()
 			m_pTextures[MaterialIndex]->Bind(GL_TEXTURE0);
 		}
 
+		ApplyPicking(i);
 		glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
 	}
 

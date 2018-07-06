@@ -25,14 +25,19 @@ namespace XGLModel {
 		unsigned int MaterialIndex;
 	};
 
+	class Picking;
 	class IXMesh
 	{
 	public:
 		IXMesh();
 		~IXMesh();
 	public:
+		void AcceptPicking(Picking* pick);
+		void ApplyPicking(unsigned int drawcall);
 		virtual bool LoadMesh(const std::string& filename);
 		virtual void Render();
+		void Render(unsigned int DrawIndex, unsigned int PrimID);
+
 	protected:
 		bool InitFromScene(const aiScene* pScene, const std::string& filename);
 		virtual void InitMesh(unsigned int index, const aiMesh* pMesh);
@@ -40,8 +45,11 @@ namespace XGLModel {
 		void Clear();
 
 
+
 	protected:
 		std::vector<MeshEntry> m_Entries;
 		std::vector<XTexture*> m_pTextures;
+	private:
+		Picking * m_picking;
 	};
 }

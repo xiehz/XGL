@@ -1,19 +1,33 @@
 #include "stdafx.h"
+#include <assert.h>
 #include <iostream>
 #include "xgl/Vec2f"
 #include "xgl/Vec3f"
 #include "assimp/postprocess.h"
+#include "Picking.h"
 #include "IXMesh.h"
 #include "XGLUtil.h"
 
 XGLModel::IXMesh::IXMesh()
 {
+	m_picking = 0;
 }
 
 
 XGLModel::IXMesh::~IXMesh()
 {
 	Clear();
+}
+
+void XGLModel::IXMesh::AcceptPicking(Picking * pick)
+{
+	m_picking = pick;
+}
+
+void XGLModel::IXMesh::ApplyPicking(unsigned int drawcall)
+{
+	if(m_picking)
+		glUniform1ui(m_picking->g_drawcallindex, drawcall);
 }
 
 bool XGLModel::IXMesh::LoadMesh(const std::string & filename)
@@ -56,6 +70,8 @@ void XGLModel::IXMesh::Render()
 		if (MaterialIndex < m_pTextures.size() && m_pTextures[MaterialIndex]) {
 			m_pTextures[MaterialIndex]->Bind(GL_TEXTURE0);
 		}
+
+		ApplyPicking(i);
 
 		glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
 	}
@@ -202,4 +218,27 @@ void XGLModel::MeshEntry::Init(const std::vector<Vertex>& vertices, const std::v
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->IB);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)* this->NumIndices, &indices[0], GL_STATIC_DRAW);
 
+}
+
+void XGLModel::IXMesh::Render(unsigned int DrawIndex, unsigned int PrimID)
+{
+	assert(DrawIndex < m_Entries.size());
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_Entries[DrawIndex].VB);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)12);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)20);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Entries[DrawIndex].IB);
+
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (const GLvoid*)(PrimID * 3 * sizeof(GLuint)));
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 }
