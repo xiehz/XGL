@@ -26,7 +26,7 @@ void XGLModel::SimpleTesselation::initGL()
 
 	int max_patch_vertices;
 	glGetIntegerv(GL_MAX_PATCH_VERTICES, &max_patch_vertices);
-	glPatchParameteri(GL_PATCH_VERTICES, 3);
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
 
 }
 
