@@ -1,6 +1,6 @@
 #version 410 core
 
-layout( quads, equal_spacing, ccw) in;
+layout( isolines, equal_spacing, ccw) in;
 
 uniform mat4 g_view;
 uniform mat4 g_pers;
