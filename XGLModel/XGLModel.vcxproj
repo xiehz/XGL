@@ -155,6 +155,7 @@
     <ClInclude Include="AmbientLight.h" />
     <ClInclude Include="AssimpImport.h" />
     <ClInclude Include="AxesShape.h" />
+    <ClInclude Include="BasicTesselation.h" />
     <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
     <ClInclude Include="DepthImage.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="ShadowMap2.h" />
+    <ClInclude Include="SimpleTesselation.h" />
     <ClInclude Include="SkyCube.h" />
     <ClInclude Include="SpecularLight.h" />
     <ClInclude Include="SphereShape.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="XLight.h" />
     <ClInclude Include="XLightShader.h" />
     <ClInclude Include="XMesh.h" />
+    <ClInclude Include="XPatchMesh.h" />
     <ClInclude Include="XRandomTexture.h" />
     <ClInclude Include="XTexture.h" />
   </ItemGroup>
@@ -202,6 +205,7 @@
     <ClCompile Include="AmbientLight.cpp" />
     <ClCompile Include="AssimpImport.cpp" />
     <ClCompile Include="AxesShape.cpp" />
+    <ClCompile Include="BasicTesselation.cpp" />
     <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="DepthImage.cpp" />
@@ -231,6 +235,7 @@
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="ShadowMap2.cpp" />
+    <ClCompile Include="SimpleTesselation.cpp" />
     <ClCompile Include="SkyCube.cpp" />
     <ClCompile Include="SpecularLight.cpp" />
     <ClCompile Include="SphereShape.cpp" />
@@ -256,6 +261,7 @@
     <ClCompile Include="XGLUtil.cpp" />
     <ClCompile Include="XLightShader.cpp" />
     <ClCompile Include="XMesh.cpp" />
+    <ClCompile Include="XPatchMesh.cpp" />
     <ClCompile Include="XRandomTexture.cpp" />
     <ClCompile Include="XTexture.cpp" />
   </ItemGroup>
@@ -271,6 +277,10 @@
     <None Include="AssimpImport.vert" />
     <None Include="AxesShape.frag" />
     <None Include="AxesShape.vert" />
+    <None Include="BasicTesselation.frag" />
+    <None Include="BasicTesselation.tcs" />
+    <None Include="BasicTesselation.tes" />
+    <None Include="BasicTesselation.vert" />
     <None Include="Billboarding.frag" />
     <None Include="Billboarding.gs" />
     <None Include="Billboarding.vert" />
@@ -293,6 +303,10 @@
     <None Include="ShadowMap.vert" />
     <None Include="ShadowMap2.frag" />
     <None Include="ShadowMap2.vert" />
+    <None Include="SimpleTesselation.frag" />
+    <None Include="SimpleTesselation.tcs" />
+    <None Include="SimpleTesselation.tes" />
+    <None Include="SimpleTesselation.vert" />
     <None Include="SkyCube.frag" />
     <None Include="SkyCube.vert" />
     <None Include="SpecularLight.frag" />

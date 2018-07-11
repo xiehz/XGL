@@ -24,6 +24,9 @@ void XGLModel::SphereShape::initGL()
 	glEnable(GL_DEPTH_TEST);
 
 	loadModel();
+	//glPolygonMode(GL_FRONT, GL_LINE);
+	//glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE);
 
 }
 

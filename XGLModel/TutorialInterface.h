@@ -26,12 +26,13 @@ namespace XGLModel {
 		void validateProgram();
 	public:
 		GLuint program;
-		GLuint vs, gs,ts,fs;
+		GLuint vs, tcs, tes, gs,fs;
 		GLuint vbo;
 		GLuint ebo;
 		std::string vsSource;
 		std::string gsSource;
-		std::string tsSource;
+		std::string tcsSource;
+		std::string tesSource;
 		std::string fsSource;
 		std::string name;
 	};
@@ -55,7 +56,7 @@ namespace XGLModel {
 		std::string vsname =directory + this->name + ".vert";
 		readShader(vsname.c_str() , vsSource);
 		addShader(program, vs, vsSource);
-		postViewMsg(1, vsSource);
+		postViewMsg(0, vsSource);
 
 		fs = glCreateShader(GL_FRAGMENT_SHADER);
 		if (!fs)
@@ -81,10 +82,36 @@ namespace XGLModel {
 				return;
 			}
 			addShader(program, gs, gsSource);
-			postViewMsg(2, gsSource);
+			postViewMsg(3, gsSource);
+		}
+		//tcs
+		std::string& tcsname = directory + this->name + ".tcs";
+		if (readShaderFile(tcsname.c_str(), tcsSource)) {
+
+			tcs = glCreateShader(GL_TESS_CONTROL_SHADER);
+			if (!tcs)
+			{
+				XGLERROR("error create gs shader");
+				return;
+			}
+			addShader(program, tcs, tcsSource);
+			postViewMsg(1, tcsSource);
 		}
 
 
+		//tes
+		std::string& tesname = directory + this->name + ".tes";
+		if (readShaderFile(tesname.c_str(), tesSource)) {
+
+			tes = glCreateShader(GL_TESS_EVALUATION_SHADER);
+			if (!tes)
+			{
+				XGLERROR("error create gs shader");
+				return;
+			}
+			addShader(program, tes, tesSource);
+			postViewMsg(2, tesSource);
+		}
 
 		linkProgram();
 

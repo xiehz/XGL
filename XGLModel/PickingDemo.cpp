@@ -86,6 +86,7 @@ void XGLModel::PickingDemo::drawScene(const XGLModel::PixelInfo& pixel) {
 	//
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glPolygonMode(GL_FRONT, GL_LINE);
 
 	const Matrixf& mv = camera->getInverseMatrix();
 	Matrixf world = camera->getInverseMatrix();
@@ -105,6 +106,8 @@ void XGLModel::PickingDemo::drawScene(const XGLModel::PixelInfo& pixel) {
 
 	if (pixel.PrimitiveID >= 1)
 	{
+		glPolygonMode(GL_FRONT, GL_FILL);
+
 		glUseProgram(m_hightlight->program);
 		glUniformMatrix4fv(m_hightlight->g_pers, 1, GL_FALSE, projectMatrix.ptr());
 		glUniform1i(m_hightlight->g_sampler2d, 0);

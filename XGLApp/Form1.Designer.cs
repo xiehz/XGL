@@ -37,10 +37,12 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.gs_tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.ts_tabPage3 = new System.Windows.Forms.TabPage();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.fs_tabPage4 = new System.Windows.Forms.TabPage();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.tcs_tabPage = new System.Windows.Forms.TabPage();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.tes_tabPage = new System.Windows.Forms.TabPage();
+            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -55,8 +57,9 @@
             this.tabControl1.SuspendLayout();
             this.vs_tabPage1.SuspendLayout();
             this.gs_tabPage2.SuspendLayout();
-            this.ts_tabPage3.SuspendLayout();
             this.fs_tabPage4.SuspendLayout();
+            this.tcs_tabPage.SuspendLayout();
+            this.tes_tabPage.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,7 +145,9 @@
             "NormalMap",
             "Billboarding",
             "ParticleSystem",
-            "PickingDemo"});
+            "PickingDemo",
+            "BasicTesselation",
+            "SimpleTesselation"});
             this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(203, 20);
@@ -152,8 +157,9 @@
             // 
             this.tabControl1.Controls.Add(this.vs_tabPage1);
             this.tabControl1.Controls.Add(this.gs_tabPage2);
-            this.tabControl1.Controls.Add(this.ts_tabPage3);
             this.tabControl1.Controls.Add(this.fs_tabPage4);
+            this.tabControl1.Controls.Add(this.tcs_tabPage);
+            this.tabControl1.Controls.Add(this.tes_tabPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -201,25 +207,6 @@
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
-            // ts_tabPage3
-            // 
-            this.ts_tabPage3.Controls.Add(this.richTextBox3);
-            this.ts_tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.ts_tabPage3.Name = "ts_tabPage3";
-            this.ts_tabPage3.Size = new System.Drawing.Size(213, 452);
-            this.ts_tabPage3.TabIndex = 2;
-            this.ts_tabPage3.Text = "tesselation";
-            this.ts_tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox3.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(213, 452);
-            this.richTextBox3.TabIndex = 1;
-            this.richTextBox3.Text = "";
-            // 
             // fs_tabPage4
             // 
             this.fs_tabPage4.Controls.Add(this.richTextBox4);
@@ -238,6 +225,45 @@
             this.richTextBox4.Size = new System.Drawing.Size(213, 452);
             this.richTextBox4.TabIndex = 1;
             this.richTextBox4.Text = "";
+            // 
+            // tcs_tabPage
+            // 
+            this.tcs_tabPage.Controls.Add(this.richTextBox3);
+            this.tcs_tabPage.Location = new System.Drawing.Point(4, 22);
+            this.tcs_tabPage.Name = "tcs_tabPage";
+            this.tcs_tabPage.Size = new System.Drawing.Size(213, 452);
+            this.tcs_tabPage.TabIndex = 4;
+            this.tcs_tabPage.Text = "tcs";
+            this.tcs_tabPage.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox3.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(213, 452);
+            this.richTextBox3.TabIndex = 0;
+            this.richTextBox3.Text = "";
+            // 
+            // tes_tabPage
+            // 
+            this.tes_tabPage.Controls.Add(this.richTextBox5);
+            this.tes_tabPage.Location = new System.Drawing.Point(4, 22);
+            this.tes_tabPage.Name = "tes_tabPage";
+            this.tes_tabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tes_tabPage.Size = new System.Drawing.Size(213, 452);
+            this.tes_tabPage.TabIndex = 5;
+            this.tes_tabPage.Text = "tes";
+            this.tes_tabPage.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox5
+            // 
+            this.richTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox5.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.Size = new System.Drawing.Size(207, 446);
+            this.richTextBox5.TabIndex = 0;
+            this.richTextBox5.Text = "";
             // 
             // statusStrip1
             // 
@@ -283,8 +309,9 @@
             this.tabControl1.ResumeLayout(false);
             this.vs_tabPage1.ResumeLayout(false);
             this.gs_tabPage2.ResumeLayout(false);
-            this.ts_tabPage3.ResumeLayout(false);
             this.fs_tabPage4.ResumeLayout(false);
+            this.tcs_tabPage.ResumeLayout(false);
+            this.tes_tabPage.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -303,13 +330,15 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.TabPage ts_tabPage3;
-        private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.TabPage fs_tabPage4;
         private System.Windows.Forms.RichTextBox richTextBox4;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.TabPage tcs_tabPage;
+        private System.Windows.Forms.TabPage tes_tabPage;
+        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.RichTextBox richTextBox5;
     }
 }
 

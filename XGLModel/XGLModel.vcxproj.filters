@@ -159,8 +159,17 @@
     <ClInclude Include="Picking.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="BasicTesselation.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="XPatchMesh.h">
+      <Filter>Util</Filter>
+    </ClInclude>
     <ClInclude Include="PickingDemo.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleTesselation.h">
+      <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,8 +293,17 @@
     <ClCompile Include="Picking.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="BasicTesselation.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XPatchMesh.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
     <ClCompile Include="PickingDemo.cpp">
-      <Filter>源文件</Filter>
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleTesselation.cpp">
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +431,30 @@
       <Filter>shader</Filter>
     </None>
     <None Include="PickingDemo.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BasicTesselation.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BasicTesselation.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BasicTesselation.tcs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BasicTesselation.tes">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SimpleTesselation.tcs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SimpleTesselation.tes">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SimpleTesselation.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SimpleTesselation.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

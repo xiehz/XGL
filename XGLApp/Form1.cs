@@ -32,17 +32,20 @@ namespace XGLApp
         {
             switch(id)
             {
-                case 1:
+                case 0:
                     this.richTextBox1.Text = msg;
                     break;
-                case 2:
+                case 3:
                     this.richTextBox2.Text = msg;
                     break;
-                case 3:
+                case 1:
                     this.richTextBox3.Text = msg;
                     break;
                 case 4:
                     this.richTextBox4.Text = msg;
+                    break;
+                case 2:
+                    this.richTextBox5.Text = msg;
                     break;
             }
             this.toolStripStatusLabel1.Text = string.Format("加载shader!");
