@@ -171,6 +171,9 @@
     <ClInclude Include="SimpleTesselation.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="PNTessellation.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -303,6 +306,9 @@
       <Filter>tutorial</Filter>
     </ClCompile>
     <ClCompile Include="SimpleTesselation.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="PNTessellation.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -455,6 +461,18 @@
       <Filter>shader</Filter>
     </None>
     <None Include="SimpleTesselation.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PNTessellation.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PNTessellation.tcs">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PNTessellation.tes">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PNTessellation.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

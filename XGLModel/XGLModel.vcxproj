@@ -168,6 +168,7 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Picking.h" />
     <ClInclude Include="PickingDemo.h" />
+    <ClInclude Include="PNTessellation.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="resource.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Picking.cpp" />
     <ClCompile Include="PickingDemo.cpp" />
+    <ClCompile Include="PNTessellation.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
@@ -297,6 +299,10 @@
     <None Include="Picking.vert" />
     <None Include="PickingDemo.frag" />
     <None Include="PickingDemo.vert" />
+    <None Include="PNTessellation.frag" />
+    <None Include="PNTessellation.tcs" />
+    <None Include="PNTessellation.tes" />
+    <None Include="PNTessellation.vert" />
     <None Include="PointLight.frag" />
     <None Include="PointLight.vert" />
     <None Include="ShadowMap.frag" />
