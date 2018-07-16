@@ -35,7 +35,7 @@ void XGLModel::PNTessellation::initGL()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	m_patchMesh = new XPatchMesh();
-	m_patchMesh->LoadMesh("E:/2018/opengl/Assimp/data/monkey.obj");
+	m_patchMesh->LoadMesh("E:/2018/opengl/Assimp/data/quad.obj");
 
 	m_heightMap = new XTexture(GL_TEXTURE_2D, "E:/2018/opengl/Assimp/data/heightmap.jpg");
 	m_heightMap->Load();
@@ -44,6 +44,7 @@ void XGLModel::PNTessellation::initGL()
 	glGetIntegerv(GL_MAX_PATCH_VERTICES, &max_patch_vertices);
 	glPatchParameteri(GL_PATCH_VERTICES, 3);
 
+	glPointSize(16.0F);
 }
 
 void XGLModel::PNTessellation::draw()
@@ -57,12 +58,11 @@ void XGLModel::PNTessellation::draw()
 	glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
 
 	glUniformMatrix4fv(g_view, 1, GL_FALSE, camera->getInverseMatrix().ptr());
-	XGL::Vec3f eye = camera->getMatrix().getTrans();
-	glUniform3f(g_eye, eye.x(), eye.y(), eye.z());
+
 	glUniformMatrix4fv(g_pers, 1, GL_FALSE, projectMatrix.ptr());
 	glUniform1i(g_heightmap, 1);
-	static float s_tesslevel = 1.0f;
-	s_tesslevel += 0.001f;
+	static float s_tesslevel = 2.0f;
+	//s_tesslevel += 0.01f;
 	glUniform1f(g_tesslevel, s_tesslevel);
 
 	m_heightMap->Bind(GL_TEXTURE1);
@@ -72,15 +72,13 @@ void XGLModel::PNTessellation::draw()
 void XGLModel::PNTessellation::initUniform()
 {
 	g_world = glGetUniformLocation(program, "g_world");
-	g_eye = glGetUniformLocation(program, "g_eye");
 	g_view = glGetUniformLocation(program, "g_view");
 	g_pers = glGetUniformLocation(program, "g_pers");
 	g_heightmap = glGetUniformLocation(program, "g_heightmap");
 	g_tesslevel = glGetUniformLocation(program, "g_tesslevel");
 
 	//getErrorInformation(GetLastError());
-	if (g_world < 0||
-		g_eye < 0
+	if (g_world < 0
 		|| g_view < 0
 		|| g_pers< 0
 		|| g_heightmap< 0

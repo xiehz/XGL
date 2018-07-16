@@ -32,6 +32,7 @@ void XGLModel::XPatchMesh::Render()
 
 		ApplyPicking(i);
 
+		//glDrawArrays(GL_PATCHES, 0, 3);
 		glDrawElements(GL_PATCHES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
 	}
 

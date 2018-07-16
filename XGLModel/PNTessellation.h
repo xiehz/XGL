@@ -22,7 +22,6 @@ namespace XGLModel {
 		GLint g_world;
 		GLint g_view;
 		GLint g_pers;
-		GLint g_eye;
 		GLint g_tesslevel;
 
 	};

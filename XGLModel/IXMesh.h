@@ -10,9 +10,7 @@
 
 namespace XGLModel {
 
-#define INVALID_MATERIAL 0xFFFFFFFF
-#define INVALID_UNIFORM_LOCATION 0xffffffff
-#define INVALID_OGL_VALUE 0xffffffff
+
 	struct MeshEntry {
 		MeshEntry();
 		~MeshEntry();

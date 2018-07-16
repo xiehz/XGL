@@ -1,9 +1,9 @@
 #include "stdafx.h"
+#include "XGLModel.h"
 #include "xgl/Vec3f"
 #include "XRandomTexture.h"
 
 using namespace XGL;
-#define GLCheckError() (glGetError() == GL_NO_ERROR)
 float RandomFloat()
 {
 	float Max = RAND_MAX;

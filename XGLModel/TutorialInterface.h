@@ -71,7 +71,7 @@ namespace XGLModel {
 		postViewMsg(4, fsSource);
 
 		//gs
-		std::string& gsname = directory + this->name + ".gs";
+		std::string& gsname = directory + this->name + ".geom";
 		
 		if (readShaderFile(gsname.c_str(), gsSource)) {
 
@@ -85,13 +85,13 @@ namespace XGLModel {
 			postViewMsg(3, gsSource);
 		}
 		//tcs
-		std::string& tcsname = directory + this->name + ".tcs";
+		std::string& tcsname = directory + this->name + ".tesc";
 		if (readShaderFile(tcsname.c_str(), tcsSource)) {
 
 			tcs = glCreateShader(GL_TESS_CONTROL_SHADER);
 			if (!tcs)
 			{
-				XGLERROR("error create gs shader");
+				XGLERROR("error create tesc shader");
 				return;
 			}
 			addShader(program, tcs, tcsSource);
@@ -100,13 +100,13 @@ namespace XGLModel {
 
 
 		//tes
-		std::string& tesname = directory + this->name + ".tes";
+		std::string& tesname = directory + this->name + ".tese";
 		if (readShaderFile(tesname.c_str(), tesSource)) {
 
 			tes = glCreateShader(GL_TESS_EVALUATION_SHADER);
 			if (!tes)
 			{
-				XGLERROR("error create gs shader");
+				XGLERROR("error create tese shader");
 				return;
 			}
 			addShader(program, tes, tesSource);
