@@ -1,6 +1,6 @@
 #pragma once
 #include "XGLModel.h"
-#include "xgl/Vec3f";
+#include "xgl\Vec3f";
 
 namespace XGLModel {
 	typedef struct TagLight
@@ -32,7 +32,6 @@ namespace XGLModel {
 		float AmbientIntensity;
 		float DiffuseIntensity;
 	}Lighter;
-
 
 	typedef struct TagAttenuation
 	{
@@ -66,13 +65,76 @@ namespace XGLModel {
 		float Exp;
 	}Attenuationer;
 
-	typedef struct TagSpotLight : public TagLight {
+	typedef struct TagDirectionLight : TagLight
+	{
+		TagDirectionLight() :Direction(0.0f, 0.0f, -1.0f)
+		{
+
+		}
+		TagDirectionLight(const TagDirectionLight& tagLight) 
+		{
+			Color = tagLight.Color;
+			AmbientIntensity = tagLight.AmbientIntensity;
+			DiffuseIntensity = tagLight.DiffuseIntensity;
+			Direction = tagLight.Direction;
+		}
+
+		TagDirectionLight& operator = (const TagDirectionLight& ta)
+		{
+			if (&ta == this)
+			{
+				return *this;
+			}
+			else {
+				Color = ta.Color;
+				AmbientIntensity = ta.AmbientIntensity;
+				DiffuseIntensity = ta.DiffuseIntensity;
+				Direction = ta.Direction;
+				return *this;
+			}
+		}
+
+		XGL::Vec3f Direction;
+	}DirectionLighter;
+
+	typedef struct TagPointLight: TagLight
+	{
 		XGL::Vec3f Eposition;
+		TagAttenuation Attenuation;
+		TagPointLight():TagLight(), Eposition(0.0f, 0.0f, 0.0f), Attenuation(){
+
+		}
+		TagPointLight(const TagPointLight& tagLight)
+		{
+			Color = tagLight.Color;
+			AmbientIntensity = tagLight.AmbientIntensity;
+			DiffuseIntensity = tagLight.DiffuseIntensity;
+			Eposition = tagLight.Eposition;
+			Attenuation = tagLight.Attenuation;
+		}
+
+		TagPointLight& operator = (const TagPointLight& tagLight)
+		{
+			if (&tagLight == this)
+			{
+				return *this;
+			}
+			else {
+				Color = tagLight.Color;
+				AmbientIntensity = tagLight.AmbientIntensity;
+				DiffuseIntensity = tagLight.DiffuseIntensity;
+				Eposition = tagLight.Eposition;
+				Attenuation = tagLight.Attenuation;
+				return *this;
+			}
+		}
+	}PointLighter;
+
+	typedef struct TagSpotLight : public TagPointLight {
 		XGL::Vec3f Direction;
 		float Cutoff;
-		TagAttenuation Attenuation;
 
-		TagSpotLight() : TagLight(), Eposition(0.0f, 0.0f, 0.0f), Direction(0.0f, 0.0f, -1.0f), Cutoff(30.0f), Attenuation() {
+		TagSpotLight() : TagPointLight(), Direction(0.0f, 0.0f, -1.0f), Cutoff(30.0f){
 
 		}
 		TagSpotLight(const TagSpotLight& tsl) {

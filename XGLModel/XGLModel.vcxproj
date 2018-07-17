@@ -158,7 +158,9 @@
     <ClInclude Include="BasicTesselation.h" />
     <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
+    <ClInclude Include="DirLightShader.h" />
     <ClInclude Include="DeferredShading0.h" />
+    <ClInclude Include="DeferredShading1.h" />
     <ClInclude Include="DepthImage.h" />
     <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="Headers.h" />
@@ -171,6 +173,7 @@
     <ClInclude Include="PickingDemo.h" />
     <ClInclude Include="PNTessellation.h" />
     <ClInclude Include="PointLight.h" />
+    <ClInclude Include="PointLightShader.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShadowMap.h" />
@@ -214,7 +217,9 @@
     <ClCompile Include="BasicTesselation.cpp" />
     <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
+    <ClCompile Include="DirLightShader.cpp" />
     <ClCompile Include="DeferredShading0.cpp" />
+    <ClCompile Include="DeferredShading1.cpp" />
     <ClCompile Include="DepthImage.cpp" />
     <ClCompile Include="DiffuseLight.cpp" />
     <ClCompile Include="dllmain.cpp">
@@ -240,6 +245,7 @@
     <ClCompile Include="PickingDemo.cpp" />
     <ClCompile Include="PNTessellation.cpp" />
     <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="PointLightShader.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="ShadowMap2.cpp" />
@@ -296,8 +302,14 @@
     <None Include="Billboarding.frag" />
     <None Include="Billboarding.geom" />
     <None Include="Billboarding.vert" />
+    <None Include="DirLightShader.frag" />
+    <None Include="DirLightShader.vert" />
+    <None Include="PointLightShader.frag" />
+    <None Include="PointLightShader.vert" />
     <None Include="DeferredShading0.frag" />
     <None Include="DeferredShading0.vert" />
+    <None Include="DeferredShading1.frag" />
+    <None Include="DeferredShading1.vert" />
     <None Include="DepthImage.frag" />
     <None Include="DepthImage.vert" />
     <None Include="DiffuseLight.frag" />

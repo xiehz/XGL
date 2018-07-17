@@ -19,6 +19,7 @@ namespace XGLModel {
 		bool init(unsigned int width, unsigned int height);
 		void bindForWriting();
 		void bindForReading();
+		void bindForSampleTexture();
 		void setReadBuffer(GBUFFER_TEXTURE_TYPE gbuffer_texture);
 	private:
 		GLuint m_fbo;

@@ -189,6 +189,15 @@
     <ClInclude Include="DeferredShading0.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="DeferredShading1.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="DirLightShader.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLightShader.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -339,6 +348,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DeferredShading0.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredShading1.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="DirLightShader.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLightShader.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -521,6 +539,24 @@
       <Filter>shader</Filter>
     </None>
     <None Include="DeferredShading0.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DeferredShading1.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DeferredShading1.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DirLightShader.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DirLightShader.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PointLightShader.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PointLightShader.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
