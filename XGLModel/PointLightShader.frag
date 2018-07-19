@@ -27,9 +27,12 @@ out vec4 fcolor;
 
 vec3 calcPointLight(in vec3 N, in vec3 E, in vec3 L, in float LD, in vec3 R, in TagPointLight light)
 {
+
+
 		float attenuation = light.Attenuation.Constant + 
 												light.Attenuation.Linear * LD +
 													light.Attenuation.Exp * LD* LD;
+
 	if(attenuation > 3)
 		return vec3(0.0);
 
@@ -66,16 +69,15 @@ void main(){
 
 	vec3 lightColor = vec3(0);
 
-	for( unsigned int i = 0u; i < g_N; i++)
-	{
-		vec3 L = EPOS - g_pointlight[i].Eposition ;
-		float LD = length(L);
 
-		L = normalize(L);
+	vec3 L = EPOS - g_pointlight[g_N].Eposition ;
+	float LD = length(L);
 
-		vec3 R = reflect(L, N);
-		lightColor += calcPointLight(N,E,L,LD,R, g_pointlight[i]);
-	}
+	L = normalize(L);
+
+	vec3 R = reflect(L, N);
+	lightColor += calcPointLight(N,E,L,LD,R, g_pointlight[g_N]);
+	
 
 	vec3 diffuse = texture(g_sampler_diffuse, texcoord).xyz;
 	fcolor = vec4(diffuse * lightColor,1.0);

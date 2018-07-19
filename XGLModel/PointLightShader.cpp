@@ -68,11 +68,6 @@ void XGLModel::PointLightShader::updateSampler(int pos, int diffuse, int normal)
 	glUniform1i(g_tex_normal, normal);
 }
 
-void XGLModel::PointLightShader::activeLights()
-{
-	glUniform1ui(g_N, N);
-}
-
 void XGLModel::PointLightShader::updateScreen(unsigned int width, unsigned int height)
 {
 	glUniform2f(g_screensize, width, height);
@@ -93,6 +88,7 @@ void XGLModel::PointLightShader::updateLight(const TagPointLight& pl, const unsi
 	glUniform1f(g_shineness, shineness);
 	glUniform1f(g_materialIntensity, materialIntensity);
 
+	glUniform1ui(g_N, index);
 }
 void XGLModel::PointLightShader::updateMT(const XGL::Matrixf & mv, const XGL::Matrixf & pers)
 {

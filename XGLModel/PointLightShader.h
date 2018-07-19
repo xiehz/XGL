@@ -16,7 +16,6 @@ namespace XGLModel {
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initUniform() override;
 		void updateSampler(int pos, int diffuse, int normal);
-		void activeLights();
 		void updateScreen(unsigned int width, unsigned int height);
 		unsigned int num() { return N; }
 		void updateLight(const TagPointLight& pl, const unsigned int index, float materialIntensity, float shineness);

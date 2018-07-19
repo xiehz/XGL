@@ -63,10 +63,19 @@ void XGLModel::DeferredShading1::initGL()
 	initLight();
 }
 
+
+/*
+第一个问题： 几何阶段glclearcolor 会写入fbo绑定的散射纹理，光照阶段可以影响光照计算；
+第二个问题： 相机交互可以查看点光源、平行光源和模型的空间位置关系：
+a. 当进入到点光源内时，光照丢失；
+b. 模型不在点光源范围内， 但光源和模型的投影在屏幕上有交集时，会产生光照效果
+第三个问题： 一个球对应一个点光源shader, 注意g_N 为index， shader一次只计算一个光源
+*/
 void XGLModel::DeferredShading1::draw()
 {
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
@@ -128,7 +137,7 @@ void XGLModel::DeferredShading1::draw()
 
 	//shading point light
 	glUseProgram(m_ShaderPointLight->program);
-	m_ShaderPointLight->activeLights();
+
 	for (int i = 0; i < m_ShaderPointLight->num(); ++i)
 	{
 		m_ShaderPointLight->updateLight(m_PointLight[i], i, 1.0, 32);
