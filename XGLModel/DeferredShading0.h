@@ -18,8 +18,8 @@ namespace XGLModel {
 		virtual void initUniform() override;
 		virtual void initCamera()override;
 
-		GLuint g_world;
-		GLuint g_vp;
+		GLuint g_mv;
+		GLuint g_mvp;
 		IXMesh* m_Mesh1;
 		XGBuffer* m_Gbuffer;
 	};

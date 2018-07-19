@@ -58,9 +58,10 @@ void XGLModel::PointLightShader::initUniform()
 	g_tex_pos = glGetUniformLocation(program, "g_sampler_pos");
 	g_tex_diffuse = glGetUniformLocation(program, "g_sampler_diffuse");
 	g_tex_normal = glGetUniformLocation(program, "g_sampler_normal");
+	g_screensize = glGetUniformLocation(program, "g_screensize");
 }
 
-void XGLModel::DirLightShader::updateSampler(int pos, int diffuse, int normal)
+void XGLModel::PointLightShader::updateSampler(int pos, int diffuse, int normal)
 {
 	glUniform1i(g_tex_pos, pos);
 	glUniform1i(g_tex_diffuse, diffuse);
@@ -72,19 +73,10 @@ void XGLModel::PointLightShader::activeLights()
 	glUniform1ui(g_N, N);
 }
 
-//struct TagPointLightLocation
-//{
-//	GLint Color;
-//	GLint AmbientIntensity;
-//	GLint DiffuseIntensity;
-//	GLint Eposition;
-//	struct TagAttenuationLocation
-//	{
-//		GLint Constant;
-//		GLint Linear;
-//		GLint Exp;
-//	}Attenuation;
-//};
+void XGLModel::PointLightShader::updateScreen(unsigned int width, unsigned int height)
+{
+	glUniform2f(g_screensize, width, height);
+}
 
 
 void XGLModel::PointLightShader::updateLight(const TagPointLight& pl, const unsigned int index, float materialIntensity, float shineness)

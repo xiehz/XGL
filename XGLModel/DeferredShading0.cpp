@@ -30,12 +30,12 @@ XGLModel::DeferredShading0::~DeferredShading0()
 
 void XGLModel::DeferredShading0::initGL()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
 
 	m_Mesh1 = new IXMesh();
 	m_Mesh1->LoadMesh("E:/2018/opengl/Assimp/nanosuit/nanosuit.obj");
+	//m_Mesh1->LoadMesh("E:/2018/opengl/Assimp/data/phoenix_ugv.md2");
 
 	m_Gbuffer = new XGBuffer();
 	m_Gbuffer->init(windowWith, windowHeight);
@@ -44,22 +44,26 @@ void XGLModel::DeferredShading0::initGL()
 void XGLModel::DeferredShading0::draw()
 {
 	//mrt
+	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 	m_Gbuffer->bindForWriting();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_DEPTH_TEST);
 	glDepthMask(GL_TRUE);
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
 	Matrixf mvp = projectMatrix;
 	mvp.preMult(camera->getInverseMatrix());
-	glUniformMatrix4fv(g_world, 1, GL_FALSE, Matrixf::identity().ptr());
-	glUniformMatrix4fv(g_vp, 1, GL_FALSE, mvp.ptr());
+	glUniformMatrix4fv(g_mv, 1, GL_FALSE, camera->getInverseMatrix().ptr());
+	glUniformMatrix4fv(g_mvp, 1, GL_FALSE, mvp.ptr());
 	m_Mesh1->Render();
 
 	//
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_Gbuffer->bindForReading();
-	glDepthMask(GL_FALSE);
+	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//不能禁止深度写入
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 	GLsizei halfwidth = windowWith / 2.0, halfheight = windowHeight /2.0;
 
@@ -78,10 +82,10 @@ void XGLModel::DeferredShading0::draw()
 
 void XGLModel::DeferredShading0::initUniform()
 {
-	g_world = glGetUniformLocation(program, "g_world");
-	g_vp = glGetUniformLocation(program, "g_vp");
+	g_mv = glGetUniformLocation(program, "g_mv");
+	g_mvp = glGetUniformLocation(program, "g_mvp");
 	//getErrorInformation(GetLastError());
-	if (g_vp < 0||g_world < 0)
+	if (g_mv < 0|| g_mvp < 0)
 	{
 		XGLERROR("get uniform failed");
 	}

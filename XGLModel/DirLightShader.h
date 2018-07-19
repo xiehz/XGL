@@ -17,6 +17,7 @@ namespace XGLModel {
 		virtual void initUniform() override;
 		void updateLight(const TagDirectionLight& pl,float materialIntensity, float shineness);
 		void updateMT(const XGL::Matrixf& mv, const XGL::Matrixf& pers );
+		void updateScreen(unsigned int width, unsigned int height);
 		void updateSampler(int pos, int diffuse, int normal);
 	private:
 		struct TagDirectionLocation
@@ -38,6 +39,8 @@ namespace XGLModel {
 		GLint  g_tex_pos;
 		GLint  g_tex_normal;
 		GLint  g_tex_diffuse;
+
+		GLint g_screensize;
 
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initGL() override;

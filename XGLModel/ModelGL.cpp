@@ -191,18 +191,6 @@ void ModelGL::initGL()
 
 												// enable /disable features
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	//glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-	//glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_BLEND);
-
-	glClearColor(0, 0, 0, 0);                   // background color
-	glClearStencil(0);                          // clear stencil buffer
-	glClearDepth(1.0f);                         // 0 is near, 1 is far
-	glDepthFunc(GL_LEQUAL);
-
 }
 
 

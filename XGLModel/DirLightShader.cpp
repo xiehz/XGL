@@ -29,6 +29,7 @@ void XGLModel::DirLightShader::initUniform()
 	 g_tex_pos = glGetUniformLocation(program, "g_sampler_pos");
 	 g_tex_diffuse = glGetUniformLocation(program, "g_sampler_diffuse");
 	 g_tex_normal = glGetUniformLocation(program, "g_sampler_normal");
+	 g_screensize = glGetUniformLocation(program, "g_screensize");
 }
 
 void XGLModel::DirLightShader::updateMT(const XGL::Matrixf & mv, const XGL::Matrixf & pers)
@@ -44,6 +45,11 @@ void XGLModel::DirLightShader::updateMT(const XGL::Matrixf & mv, const XGL::Matr
 
 	glUniformMatrix4fv(g_mvp, 1, GL_FALSE , mvp.ptr());
 
+}
+
+void XGLModel::DirLightShader::updateScreen(unsigned int width, unsigned int height)
+{
+	glUniform2f(g_screensize, width, height);
 }
 
 void XGLModel::DirLightShader::updateSampler(int pos, int diffuse, int normal)

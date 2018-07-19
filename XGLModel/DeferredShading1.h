@@ -20,8 +20,8 @@ namespace XGLModel {
 		virtual void initUniform() override;
 		virtual void initCamera()override;
 
-		GLint g_world;
-		GLint g_vp;
+		GLint g_mv;
+		GLint g_mvp;
 
 		IXMesh* m_Mesh1;
 		XGBuffer* m_Gbuffer;
@@ -36,6 +36,7 @@ namespace XGLModel {
 		PointLightShader* m_ShaderPointLight;
 	private:
 		void initLight();
+		float CalcPointLightBSphere(const XGLModel::TagPointLight & Light);
 	};
 
 

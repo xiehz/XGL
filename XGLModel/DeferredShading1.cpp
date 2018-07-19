@@ -11,7 +11,6 @@ namespace XGLModel {
 	REGISTER(DeferredShading1)
 
 }
-float CalcPointLightBSphere(const XGLModel::TagSpotLight& Light);
 
 XGLModel::DeferredShading1::DeferredShading1()
 {
@@ -55,8 +54,6 @@ XGLModel::DeferredShading1::~DeferredShading1()
 
 void XGLModel::DeferredShading1::initGL()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
 	m_Mesh1 = new IXMesh();
 	m_Mesh1->LoadMesh("E:/2018/opengl/Assimp/nanosuit/nanosuit.obj");
 
@@ -69,7 +66,10 @@ void XGLModel::DeferredShading1::initGL()
 void XGLModel::DeferredShading1::draw()
 {
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
 	//mrt
 	glDepthMask(GL_TRUE);
 	glDepthFunc(GL_LEQUAL);
@@ -79,45 +79,108 @@ void XGLModel::DeferredShading1::draw()
 	m_Gbuffer->bindForWriting();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(program);
-	glUniformMatrix4fv(g_world, 1, GL_FALSE, Matrixf::identity().ptr());
-	Matrixf& mv = camera->getInverseMatrix();
+	Matrixf mv = Matrixf::translate(XGL::Vec3f(0.0F, -10.F, 0.0F));
+	mv.postMult(camera->getInverseMatrix());
+	glUniformMatrix4fv(g_mv, 1, GL_FALSE, mv.ptr());
+
 	Matrixf mvp = projectMatrix;
-	projectMatrix.preMult(mv);
-	glUniformMatrix4fv(g_vp, 1, GL_FALSE, mvp.ptr());
+	mvp.preMult(mv);
+	glUniformMatrix4fv(g_mvp, 1, GL_FALSE, mvp.ptr());
 	m_Mesh1->Render();
 
-	//shading
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//m_Gbuffer->bindForReading();
+	//glDepthMask(GL_FALSE);
+	//GLsizei halfwidth = windowWith / 2.0, halfheight = windowHeight / 2.0;
+
+	//m_Gbuffer->setReadBuffer(XGBuffer::GBUFFER_TEXTURE_POSITION);
+	//glBlitFramebuffer(0, 0, windowWith, windowHeight, 0, 0, halfwidth, halfheight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+	//m_Gbuffer->setReadBuffer(XGBuffer::GBUFFER_TEXTURE_DIFFUSE);
+	//glBlitFramebuffer(0, 0, windowWith, windowHeight, halfwidth, 0, windowWith, halfheight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+	//m_Gbuffer->setReadBuffer(XGBuffer::GBUFFER_TEXTURE_NORMAL);
+	//glBlitFramebuffer(0, 0, windowWith, windowHeight, 0, halfheight, halfwidth, windowHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+	//m_Gbuffer->setReadBuffer(XGBuffer::GBUFFER_TEXTURE_TEXCOORD);
+	//glBlitFramebuffer(0, 0, windowWith, windowHeight, halfwidth, halfheight, windowWith, windowHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+
+	////shading
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glDepthMask(GL_FALSE);
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendEquation(GL_FUNC_ADD);
 	glBlendFunc(GL_ONE, GL_ONE);
-	
+
+	//
 	m_Gbuffer->bindForSampleTexture();
+
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glUseProgram(m_ShaderDirectionLight->program);
-	//shading direction light
-	m_ShaderDirectionLight->updateLight(m_DirectionLight,1.0, 1.0);
-	m_ShaderDirectionLight->updateMT(Matrixf::identity(), Matrixf::identity());
-	m_LightQuad->Render();
+	//输出到屏幕测试光照范围和空间位置
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glDepthFunc(GL_LEQUAL);
+	//glEnable(GL_DEPTH_TEST);
 
 	//shading point light
 	glUseProgram(m_ShaderPointLight->program);
 	m_ShaderPointLight->activeLights();
 	for (int i = 0; i < m_ShaderPointLight->num(); ++i)
 	{
-		m_ShaderPointLight->updateLight(m_PointLight[i], i, 1.0, 16);
-		m_ShaderPointLight->updateMT(mv, projectMatrix);
+		m_ShaderPointLight->updateLight(m_PointLight[i], i, 1.0, 32);
+		float b = CalcPointLightBSphere(m_PointLight[i]);
+		b = 3;
+		Matrixf scale = Matrixf::scale(b, b, b);
+		XGL::Vec3f world;
+		if (i == 0)
+		{
+			world = XGL::Vec3f(2.f, 2.0f, 5.0F);
+		}
+		else {
+			world = XGL::Vec3f(-1.0f, -4.0f, 0.0f);
+		}
+		XGL::Matrixf trans = Matrixf::translate(world);
+		trans.preMult(Matrixf::translate(0, 0, -15));
+		trans.preMult(scale);
+		//trans.postMult(camera->getInverseMatrix());
+
+		m_ShaderPointLight->updateMT(trans, projectMatrix);
+		m_ShaderPointLight->updateSampler(0, 1, 2);
+		m_ShaderPointLight->updateScreen(windowWith, windowHeight);
 		m_LightSphere->Render();
+
+		//确定空间位置
+		//trans = Matrixf::translate(XGL::Vec3f(0.0F, -10.F ,0.0F));
+		//trans.postMult(camera->getInverseMatrix());
+		//m_ShaderPointLight->updateMT(trans, projectMatrix);
+		//m_Mesh1->Render();
 	}
 
+	glUseProgram(m_ShaderDirectionLight->program);
+	//shading direction light
+	m_ShaderDirectionLight->updateLight(m_DirectionLight, 1.0, 32);
+	const float degree = 90.0f;
+	const float pi = 3.1415926f / 180.0f;
+	const float radius = degree * pi;
+	const float sin = sinf(radius), cos = cosf(radius);
+
+	Matrixf rotate = Matrixf::rotate(XGL::Quat(sin, 0, 0, cos));
+	//rotate.preMult(camera->getInverseMatrix());
+	//rotate.postMult(Matrixf::rotate(camera->getInverseMatrix().getRotate()));
+	m_ShaderDirectionLight->updateMT(rotate, Matrixf::identity());
+	m_ShaderDirectionLight->updateScreen(windowWith, windowHeight);
+	m_ShaderDirectionLight->updateSampler(0, 1, 2);
+	m_LightQuad->Render();
 }
 
 void XGLModel::DeferredShading1::initUniform()
 {
-	g_world = glGetUniformLocation(program, "g_world");
-	g_vp = glGetUniformLocation(program, "g_vp");
+	g_mv = glGetUniformLocation(program, "g_mv");
+	g_mvp = glGetUniformLocation(program, "g_mvp");
 }
 
 void XGLModel::DeferredShading1::initCamera()
@@ -125,7 +188,7 @@ void XGLModel::DeferredShading1::initCamera()
 	camera = new XGL::XOrbitCamera();
 
 	XOrbitCamera* orbit = dynamic_cast<XOrbitCamera*>(camera);
-	orbit->setTransformation(Vec3f(0.0f, 0.0f, 5.0f),
+	orbit->setTransformation(Vec3f(0.0f, 0.0f, 15.0f),
 		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.0f, 0.0f));
 }
 
@@ -136,10 +199,10 @@ void XGLModel::DeferredShading1::initLight()
 	m_ShaderDirectionLight->setName("DirLightShader");
 	m_ShaderDirectionLight->initShader();
 
-	m_DirectionLight.AmbientIntensity = 0.1f;
+	m_DirectionLight.AmbientIntensity = 0.0f;
 	m_DirectionLight.Color = XGL::Vec3f(1.0f, 1.0f, 1.0f);
-	m_DirectionLight.DiffuseIntensity = 0.3f;
-	m_DirectionLight.Direction = XGL::Vec3f(0.0f, -1.0f, 0.0f);
+	m_DirectionLight.DiffuseIntensity = 0.1f;
+	m_DirectionLight.Direction = XGL::Vec3f(0.0f, 0.0f, -1.0f);
 
 	m_LightQuad = new IXMesh();
 	m_LightQuad->LoadMesh("E:/2018/opengl/Assimp/data/quad.obj");
@@ -152,26 +215,32 @@ void XGLModel::DeferredShading1::initLight()
 
 	TagAttenuation attenuation;
 	attenuation.Constant = 1.0f;
-	attenuation.Linear = 0.1f;
-	attenuation.Exp = 0.01f;
+	attenuation.Linear = .0f;
+	attenuation.Exp = 0.f;
 
-	m_PointLight[0].AmbientIntensity = 0.0f;
+	Matrixf& view = camera->getInverseMatrix();
+
+	m_PointLight[0].AmbientIntensity = 0.1f;
 	m_PointLight[0].Color = XGL::Vec3f(1.0f, 0.0f, 0.0f);
-	m_PointLight[0].DiffuseIntensity = 0.6f;
+	m_PointLight[0].DiffuseIntensity = 0.9f;
 	m_PointLight[0].Attenuation = attenuation;
-	m_PointLight[0].Eposition = XGL::Vec3f(2.0f, 2.0f, 0.0f);
+	m_PointLight[0].Eposition = view * XGL::Vec3f(2.0f, 2.0f, 5.0f);
 	
-	m_PointLight[1].AmbientIntensity = 0.0f;
+
+	attenuation.Constant = 1.0f;
+	attenuation.Linear = 0.f;
+	attenuation.Exp = .0f;
+	m_PointLight[1].AmbientIntensity = 0.1f;
 	m_PointLight[1].Color = XGL::Vec3f(0.0f, 0.0f, 1.0f);
-	m_PointLight[1].DiffuseIntensity = 0.6f;
+	m_PointLight[1].DiffuseIntensity = 0.9f;
 	m_PointLight[1].Attenuation = attenuation;
-	m_PointLight[1].Eposition = XGL::Vec3f(-2.0f, 0.0f, 0.0f);
+	m_PointLight[1].Eposition = view * XGL::Vec3f(-1.f, -4.f, 0.0f);
 
 	m_LightSphere = new IXMesh();
 	m_LightSphere->LoadMesh("E:/2018/opengl/Assimp/data/sphere.obj");
 }
 
-float CalcPointLightBSphere(const XGLModel::TagSpotLight& Light)
+float XGLModel::DeferredShading1::CalcPointLightBSphere(const XGLModel::TagPointLight& Light)
 {
 	float MaxChannel = std::fmax(std::fmax(Light.Color.x(), Light.Color.y()), Light.Color.z());
 
@@ -179,5 +248,5 @@ float CalcPointLightBSphere(const XGLModel::TagSpotLight& Light)
 		/
 		(2 * Light.Attenuation.Exp);
 
-	return ret;
+	return ret/10;
 }

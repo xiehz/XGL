@@ -17,6 +17,7 @@ namespace XGLModel {
 		virtual void initUniform() override;
 		void updateSampler(int pos, int diffuse, int normal);
 		void activeLights();
+		void updateScreen(unsigned int width, unsigned int height);
 		unsigned int num() { return N; }
 		void updateLight(const TagPointLight& pl, const unsigned int index, float materialIntensity, float shineness);
 		void updateMT(const XGL::Matrixf& mv, const XGL::Matrixf& pers);
@@ -46,6 +47,7 @@ namespace XGLModel {
 		GLint  g_normal;
 		GLint  g_mvp;
 		GLint  g_N;
+		GLint g_screensize;
 
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initGL() override;
