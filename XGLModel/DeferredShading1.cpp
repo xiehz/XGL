@@ -74,7 +74,7 @@ b. 模型不在点光源范围内， 但光源和模型的投影在屏幕上有交集时，会产生光照效果
 void XGLModel::DeferredShading1::draw()
 {
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
-	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	glCullFace(GL_BACK);
@@ -147,15 +147,15 @@ void XGLModel::DeferredShading1::draw()
 		XGL::Vec3f world;
 		if (i == 0)
 		{
-			world = XGL::Vec3f(2.f, 2.0f, 5.0F);
+			world = XGL::Vec3f(3.f, .0f, 0.0F);
 		}
 		else {
-			world = XGL::Vec3f(-1.0f, -4.0f, 0.0f);
+			world = XGL::Vec3f(-3.0f, -.0f, 0.0f);
 		}
 		XGL::Matrixf trans = Matrixf::translate(world);
-		//trans.preMult(Matrixf::translate(0, 0, -15));
+		trans.preMult(Matrixf::translate(0, 0, -15));
 		trans.preMult(scale);
-		trans.postMult(camera->getInverseMatrix());
+		//trans.postMult(camera->getInverseMatrix());
 
 		m_ShaderPointLight->updateMT(trans, projectMatrix);
 		m_ShaderPointLight->updateSampler(0, 1, 2);
@@ -179,7 +179,7 @@ void XGLModel::DeferredShading1::draw()
 
 	Matrixf rotate = Matrixf::rotate(XGL::Quat(sin, 0, 0, cos));
 	//rotate.preMult(camera->getInverseMatrix());
-	rotate.postMult(Matrixf::rotate(camera->getInverseMatrix().getRotate()));
+	//rotate.postMult(Matrixf::rotate(camera->getInverseMatrix().getRotate()));
 	m_ShaderDirectionLight->updateMT(rotate, Matrixf::identity());
 	m_ShaderDirectionLight->updateScreen(windowWith, windowHeight);
 	m_ShaderDirectionLight->updateSampler(0, 1, 2);
@@ -210,7 +210,7 @@ void XGLModel::DeferredShading1::initLight()
 
 	m_DirectionLight.AmbientIntensity = 0.0f;
 	m_DirectionLight.Color = XGL::Vec3f(1.0f, 1.0f, 1.0f);
-	m_DirectionLight.DiffuseIntensity = 0.1f;
+	m_DirectionLight.DiffuseIntensity = 0.2f;
 	m_DirectionLight.Direction = XGL::Vec3f(0.0f, 0.0f, -1.0f);
 
 	m_LightQuad = new IXMesh();
@@ -224,16 +224,16 @@ void XGLModel::DeferredShading1::initLight()
 
 	TagAttenuation attenuation;
 	attenuation.Constant = 1.0f;
-	attenuation.Linear = .0f;
-	attenuation.Exp = 0.f;
+	attenuation.Linear = 0.0f;
+	attenuation.Exp = 0;
 
 	Matrixf& view = camera->getInverseMatrix();
 
 	m_PointLight[0].AmbientIntensity = 0.1f;
-	m_PointLight[0].Color = XGL::Vec3f(1.0f, 0.0f, 0.0f);
-	m_PointLight[0].DiffuseIntensity = 0.9f;
+	m_PointLight[0].Color = XGL::Vec3f(1.0f, 1.0f, 1.0f);
+	m_PointLight[0].DiffuseIntensity = 1.f;
 	m_PointLight[0].Attenuation = attenuation;
-	m_PointLight[0].Eposition = view * XGL::Vec3f(2.0f, 2.0f, 5.0f);
+	m_PointLight[0].Eposition = view * XGL::Vec3f(3.0f, -0.0f, 0.0f);
 	
 
 	attenuation.Constant = 1.0f;
@@ -241,9 +241,9 @@ void XGLModel::DeferredShading1::initLight()
 	attenuation.Exp = .0f;
 	m_PointLight[1].AmbientIntensity = 0.1f;
 	m_PointLight[1].Color = XGL::Vec3f(0.0f, 0.0f, 1.0f);
-	m_PointLight[1].DiffuseIntensity = 0.9f;
+	m_PointLight[1].DiffuseIntensity = 1.f;
 	m_PointLight[1].Attenuation = attenuation;
-	m_PointLight[1].Eposition = view * XGL::Vec3f(-1.f, -4.f, 0.0f);
+	m_PointLight[1].Eposition = view * XGL::Vec3f(-3.f, -0.f, 0.0f);
 
 	m_LightSphere = new IXMesh();
 	m_LightSphere->LoadMesh("E:/2018/opengl/Assimp/data/sphere.obj");
@@ -257,5 +257,5 @@ float XGLModel::DeferredShading1::CalcPointLightBSphere(const XGLModel::TagPoint
 		/
 		(2 * Light.Attenuation.Exp);
 
-	return ret/10;
+	return ret;
 }

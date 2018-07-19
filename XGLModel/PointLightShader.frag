@@ -33,9 +33,6 @@ vec3 calcPointLight(in vec3 N, in vec3 E, in vec3 L, in float LD, in vec3 R, in 
 												light.Attenuation.Linear * LD +
 													light.Attenuation.Exp * LD* LD;
 
-	if(attenuation > 3)
-		return vec3(0.0);
-
 	vec3 lightColor = light.Color  * light.AmbientIntensity;
 
 
