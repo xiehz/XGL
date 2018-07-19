@@ -144,9 +144,9 @@ void XGLModel::DeferredShading1::draw()
 			world = XGL::Vec3f(-1.0f, -4.0f, 0.0f);
 		}
 		XGL::Matrixf trans = Matrixf::translate(world);
-		trans.preMult(Matrixf::translate(0, 0, -15));
+		//trans.preMult(Matrixf::translate(0, 0, -15));
 		trans.preMult(scale);
-		//trans.postMult(camera->getInverseMatrix());
+		trans.postMult(camera->getInverseMatrix());
 
 		m_ShaderPointLight->updateMT(trans, projectMatrix);
 		m_ShaderPointLight->updateSampler(0, 1, 2);
@@ -170,7 +170,7 @@ void XGLModel::DeferredShading1::draw()
 
 	Matrixf rotate = Matrixf::rotate(XGL::Quat(sin, 0, 0, cos));
 	//rotate.preMult(camera->getInverseMatrix());
-	//rotate.postMult(Matrixf::rotate(camera->getInverseMatrix().getRotate()));
+	rotate.postMult(Matrixf::rotate(camera->getInverseMatrix().getRotate()));
 	m_ShaderDirectionLight->updateMT(rotate, Matrixf::identity());
 	m_ShaderDirectionLight->updateScreen(windowWith, windowHeight);
 	m_ShaderDirectionLight->updateSampler(0, 1, 2);
