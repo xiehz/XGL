@@ -183,9 +183,6 @@
     <ClInclude Include="VAOInstance.h">
       <Filter>tutorial</Filter>
     </ClInclude>
-    <ClInclude Include="XGBuffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="DeferredShading0.h">
       <Filter>tutorial</Filter>
     </ClInclude>
@@ -196,6 +193,15 @@
       <Filter>tutorial</Filter>
     </ClInclude>
     <ClInclude Include="PointLightShader.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredShading2.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="XGBuffer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="DSSphere.h">
       <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
@@ -344,9 +350,6 @@
     <ClCompile Include="VAOInstance.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
-    <ClCompile Include="XGBuffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="DeferredShading0.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
@@ -357,6 +360,15 @@
       <Filter>tutorial</Filter>
     </ClCompile>
     <ClCompile Include="PointLightShader.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredShading2.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XGBuffer.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="DSSphere.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -557,6 +569,18 @@
       <Filter>shader</Filter>
     </None>
     <None Include="PointLightShader.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DeferredShading2.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DeferredShading2.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DSSphere.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="DSSphere.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

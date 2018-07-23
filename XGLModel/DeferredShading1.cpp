@@ -138,13 +138,13 @@ void XGLModel::DeferredShading1::draw()
 	//shading point light
 	glUseProgram(m_ShaderPointLight->program);
 
-	for (int i = 0; i < m_ShaderPointLight->num(); ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		m_ShaderPointLight->updateLight(m_PointLight[i], i, 1.0, 32);
 		float b = CalcPointLightBSphere(m_PointLight[i]);
 		b = 3;
 		Matrixf scale = Matrixf::scale(b, b, b);
-		XGL::Vec3f world;
+		XGL::Vec3f world ;
 		if (i == 0)
 		{
 			world = XGL::Vec3f(2.f, .0f, 5.0F);
@@ -233,7 +233,7 @@ void XGLModel::DeferredShading1::initLight()
 	m_PointLight[0].Color = XGL::Vec3f(1.0f, .0f, .0f);
 	m_PointLight[0].DiffuseIntensity = 1.f;
 	m_PointLight[0].Attenuation = attenuation;
-	m_PointLight[0].Eposition = view * XGL::Vec3f(2.0f, -0.0f, 5.0f);
+	m_PointLight[0].Eposition =  XGL::Vec3f(2.0f, -0.0f, 5.0f) * view ;
 	
 
 	attenuation.Constant = 1.0f;
@@ -243,7 +243,7 @@ void XGLModel::DeferredShading1::initLight()
 	m_PointLight[1].Color = XGL::Vec3f(0.0f, 0.0f, 1.0f);
 	m_PointLight[1].DiffuseIntensity = 1.f;
 	m_PointLight[1].Attenuation = attenuation;
-	m_PointLight[1].Eposition = view * XGL::Vec3f(-3.f, -0.f, 0.0f);
+	m_PointLight[1].Eposition =  XGL::Vec3f(-3.f, -0.f, 0.0f) * view ;
 
 	m_LightSphere = new IXMesh();
 	m_LightSphere->LoadMesh("E:/2018/opengl/Assimp/data/sphere.obj");

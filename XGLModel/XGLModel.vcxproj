@@ -158,11 +158,13 @@
     <ClInclude Include="BasicTesselation.h" />
     <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
+    <ClInclude Include="DeferredShading2.h" />
     <ClInclude Include="DirLightShader.h" />
     <ClInclude Include="DeferredShading0.h" />
     <ClInclude Include="DeferredShading1.h" />
     <ClInclude Include="DepthImage.h" />
     <ClInclude Include="DiffuseLight.h" />
+    <ClInclude Include="DSSphere.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="IXMesh.h" />
     <ClInclude Include="ModelGL.h" />
@@ -217,6 +219,7 @@
     <ClCompile Include="BasicTesselation.cpp" />
     <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
+    <ClCompile Include="DeferredShading2.cpp" />
     <ClCompile Include="DirLightShader.cpp" />
     <ClCompile Include="DeferredShading0.cpp" />
     <ClCompile Include="DeferredShading1.cpp" />
@@ -236,6 +239,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="DSSphere.cpp" />
     <ClCompile Include="IXMesh.cpp" />
     <ClCompile Include="ModelGL.cpp" />
     <ClCompile Include="NormalMap.cpp" />
@@ -302,8 +306,12 @@
     <None Include="Billboarding.frag" />
     <None Include="Billboarding.geom" />
     <None Include="Billboarding.vert" />
+    <None Include="DeferredShading2.frag" />
+    <None Include="DeferredShading2.vert" />
     <None Include="DirLightShader.frag" />
     <None Include="DirLightShader.vert" />
+    <None Include="DSSphere.frag" />
+    <None Include="DSSphere.vert" />
     <None Include="PointLightShader.frag" />
     <None Include="PointLightShader.vert" />
     <None Include="DeferredShading0.frag" />

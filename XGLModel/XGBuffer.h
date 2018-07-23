@@ -21,10 +21,18 @@ namespace XGLModel {
 		void bindForReading();
 		void bindForSampleTexture();
 		void setReadBuffer(GBUFFER_TEXTURE_TYPE gbuffer_texture);
+
+		void initPass(unsigned int width, unsigned int height);
+		void startFrame();
+		void bindGeoPass();
+		void bindStencilPass();
+		void bindLightPass();
+		void bindFinalPass();
 	private:
 		GLuint m_fbo;
 		GLuint m_textures[4];
 		GLuint m_depthTex;
+		GLuint m_final;
 	};
 
 

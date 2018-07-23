@@ -59,7 +59,7 @@ void XGLModel::DeferredShading0::draw()
 	m_Mesh1->Render();
 
 	//
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 	m_Gbuffer->bindForReading();
 	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
