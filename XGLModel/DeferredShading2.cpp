@@ -80,18 +80,29 @@ void XGLModel::DeferredShading2::draw()
 {
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
+	//1. 激活fbo，绑定渲染屏幕的colorbuffer，清除颜色缓存
 	m_Gbuffer->startFrame();
+	//2. 几何阶段： 激活fbo, 绑定drawbuffer至顶点属性的colorbuffer
+	//清除绑定drawbuffer的颜色缓存，开启深度测试
 	dsGeometryPass();
 
+	//3. 点光源阶段： 开启模板测试，通过正面、反面渲染深度测试的结果更新模板值
+	//锁定当点光源在视点和模型之间时，模板测试失败，光照阶段像素不会绘制
 	glEnable(GL_STENCIL_TEST);
 	for (int i = 0; i < 2; ++i)
 	{
+		//a.模板阶段， 开启深度测试，禁止深度写入，禁止颜色写入
 		dsStencilPass(i);
+		//b. 光照阶段， 绑定fbo的渲染colorbuffer至gl_drawbuffer,  禁止深度测试，开启混合
+		//以反面绘制，正面剔除， 解决当视点位于模型内时无光照bug
 		dsPointLightPass(i);
 	}
 	glDisable(GL_STENCIL_TEST);
 
+	//4. 归一化大小矩形，直接渲染，禁止深度测试，开启混合
 	dsDirectionLightPass();
+	//5. 渲染阶段： 激活默认fbo绑定到drawbuffer， 激活ds fbo 绑定至readbuffer
+	//glbitframebuffer从read到draw
 	dsFinalPass();
 }
 
