@@ -204,6 +204,12 @@
     <ClInclude Include="DSSphere.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="EdgeDetection.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardPointLightShader.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -369,6 +375,12 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="DSSphere.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="EdgeDetection.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardPointLightShader.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -581,6 +593,21 @@
       <Filter>shader</Filter>
     </None>
     <None Include="DSSphere.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="EdgeDetection.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="EdgeDetection.geom">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="EdgeDetection.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ForwardPointLightShader.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="ForwardPointLightShader.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

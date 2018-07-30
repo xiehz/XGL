@@ -165,6 +165,8 @@
     <ClInclude Include="DepthImage.h" />
     <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="DSSphere.h" />
+    <ClInclude Include="EdgeDetection.h" />
+    <ClInclude Include="ForwardPointLightShader.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="IXMesh.h" />
     <ClInclude Include="ModelGL.h" />
@@ -240,6 +242,8 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DSSphere.cpp" />
+    <ClCompile Include="EdgeDetection.cpp" />
+    <ClCompile Include="ForwardPointLightShader.cpp" />
     <ClCompile Include="IXMesh.cpp" />
     <ClCompile Include="ModelGL.cpp" />
     <ClCompile Include="NormalMap.cpp" />
@@ -312,6 +316,11 @@
     <None Include="DirLightShader.vert" />
     <None Include="DSSphere.frag" />
     <None Include="DSSphere.vert" />
+    <None Include="EdgeDetection.frag" />
+    <None Include="EdgeDetection.geom" />
+    <None Include="EdgeDetection.vert" />
+    <None Include="ForwardPointLightShader.frag" />
+    <None Include="ForwardPointLightShader.vert" />
     <None Include="PointLightShader.frag" />
     <None Include="PointLightShader.vert" />
     <None Include="DeferredShading0.frag" />
