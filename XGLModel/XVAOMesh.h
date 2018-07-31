@@ -19,11 +19,11 @@ namespace XGLModel {
 		XVAOMesh();
 		~XVAOMesh();
 
-		bool LoadMesh(const std::string& Filename);
+		virtual bool LoadMesh(const std::string& Filename);
 
-		void Render();
+		virtual void Render();
 
-		void Render(unsigned int NumInstances,  const float* WorldMats);
+		virtual void Render(unsigned int NumInstances,  const float* WorldMats);
 
 		XGL::Quat& GetOrientation() { return m_orientation; }
 
@@ -37,10 +37,10 @@ namespace XGLModel {
 		void XVAOMesh::Clear();
 
 		bool InitMaterials(const aiScene* pScene, const std::string& Filename);
-	private:
+	protected:
 		GLuint m_VAO;
 		GLuint m_Buffers[5];
-	private:
+	protected:
 		std::vector<XVAOEntry> m_Entries;
 		std::vector<XTexture*> m_Textures;
 		XGL::Quat m_orientation;

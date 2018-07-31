@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "xgl\XOrbitCamera.h"
-#include "IXMesh.h"
+#include "XAdjacencyMesh.h"
 #include "AxesShape.h"
 #include "ForwardPointLightShader.h"
 #include "EdgeDetection.h"
@@ -19,6 +19,7 @@ XGLModel::EdgeDetection::EdgeDetection()
 	m_pBox = 0;
 	m_PointLight = 0;
 	m_pAxesShader = 0;
+	m_lightWorlds = 0;
 }
 
 
@@ -39,6 +40,10 @@ XGLModel::EdgeDetection::~EdgeDetection()
 	if (m_pAxesShader)
 		delete[] m_pAxesShader;
 	m_pAxesShader = 0;
+
+	if (m_lightWorlds)
+		delete[] m_lightWorlds;
+	m_lightWorlds = 0;
 }
 
 void XGLModel::EdgeDetection::initGL()
@@ -51,6 +56,9 @@ void XGLModel::EdgeDetection::initGL()
 	m_fpLightShader->setName("ForwardPointLightShader");
 	m_fpLightShader->initShader();
 
+	m_lightWorlds = new XGL::Vec3f[NLIGHT];
+	m_lightWorlds[0] = XGL::Vec3f(3.0f, -0.0f, 3.0f);
+	m_lightWorlds[1] = XGL::Vec3f(-3.f, -0.f, 3.0f);
 
 	m_PointLight = new TagPointLight[NLIGHT];
 
@@ -65,7 +73,7 @@ void XGLModel::EdgeDetection::initGL()
 	m_PointLight[0].Color = XGL::Vec3f(1.0f, .0f, .0f);
 	m_PointLight[0].DiffuseIntensity = 1.f;
 	m_PointLight[0].Attenuation = attenuation;
-	m_PointLight[0].Eposition = XGL::Vec3f(1.0f, -0.0f, 1.0f) * view;
+	m_PointLight[0].Eposition = m_lightWorlds[0] * view;
 
 	attenuation.Constant = 1.0f;
 	attenuation.Linear = .5f;
@@ -74,9 +82,9 @@ void XGLModel::EdgeDetection::initGL()
 	m_PointLight[1].Color = XGL::Vec3f(0.0f, 0.0f, 1.0f);
 	m_PointLight[1].DiffuseIntensity = 1.f;
 	m_PointLight[1].Attenuation = attenuation;
-	m_PointLight[1].Eposition = XGL::Vec3f(-1.f, -0.f, 1.0f) *view;
+	m_PointLight[1].Eposition = m_lightWorlds[1] *view;
 
-	m_pBox = new IXMesh();
+	m_pBox = new XAdjacencyMesh();
 	m_pBox->LoadMesh("E:/2018/opengl/Assimp/data/box.obj");
 
 
@@ -90,10 +98,6 @@ void XGLModel::EdgeDetection::initGL()
 		m_pAxesShader[i].setCamera(view);
 
 	}
-
-	m_pAxesShader[0].setModel(lightToWorld(XGL::Vec3f(1.0f, -0.0f, 1.0f)));
-	m_pAxesShader[1].setModel(lightToWorld(XGL::Vec3f(-1.f, -0.f, 1.0f)));
-
 
 }
 Matrixf XGLModel::EdgeDetection::lightToWorld(XGL::Vec3f worldposition) {
@@ -130,32 +134,49 @@ Matrixf XGLModel::EdgeDetection::lightToWorld(XGL::Vec3f worldposition) {
 
 void XGLModel::EdgeDetection::draw()
 {
+	Matrixf view = camera->getInverseMatrix();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(m_fpLightShader->program);
 	m_fpLightShader->activeLights();
 	for (int i = 0; i < NLIGHT; ++i)
 	{
+		m_PointLight[i].Eposition = m_lightWorlds[i] * view;
+
 		m_fpLightShader->updateLight(m_PointLight[i], i, 1.0f, 16.0f);
-		m_fpLightShader->updateMT(camera->getInverseMatrix(), projectMatrix);
+		m_fpLightShader->updateMT(view, projectMatrix);
 	}
 	m_pBox->Render();
 
+	glLineWidth(1.f);
 	for (int i = 0; i < NLIGHT; ++i)
 	{
 		glUseProgram(m_pAxesShader[i].program);
+		m_pAxesShader[i].setModel(lightToWorld(m_lightWorlds[i]));
+		m_pAxesShader[i].setCamera(view);
 		m_pAxesShader[i].render();
 	}
+
+	glUseProgram(program);
+	Matrixf mvp = projectMatrix;
+	mvp.preMult(view);
+	glUniformMatrix4fv(g_mvp, 1, GL_FALSE, mvp.ptr());
+	glUniformMatrix4fv(g_world, 1, GL_FALSE, Matrixf::identity().ptr());
+
+	glUniform3f(g_lightPos, m_lightWorlds[0].x(), m_lightWorlds[0].y(), m_lightWorlds[0].z() );
+	glLineWidth(16.f);
+	m_pBox->Render();
 }
 
 void XGLModel::EdgeDetection::initUniform()
 {
-	g_eye = glGetUniformLocation(program, "g_eye");
-	g_pers = glGetUniformLocation(program, "g_vp");
-	g_sampler2d = glGetUniformLocation(program, "g_sampler2d");
+	g_world = glGetUniformLocation(program, "g_world");
+	g_mvp	 = glGetUniformLocation(program, "g_mvp");
+	g_lightPos = glGetUniformLocation(program, "g_lightPos");
 	//getErrorInformation(GetLastError());
-	if (g_eye < 0
-		|| g_pers< 0
-		|| g_sampler2d< 0)
+	if (g_world < 0
+		|| g_mvp< 0
+		|| g_lightPos< 0)
 	{
 		XGLERROR("get uniform failed");
 	}

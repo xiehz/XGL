@@ -3,7 +3,7 @@
 #include "TutorialFactory.h"
 
 namespace XGLModel {
-	class IXMesh;
+	class XAdjacencyMesh;
 	class ForwardPointLightShader;
 	class AxesShape;
 	class EdgeDetection : public TutorialInterface
@@ -20,13 +20,14 @@ namespace XGLModel {
 		virtual void initCamera() override;
 	public:
 		static unsigned int NLIGHT;
-		GLuint g_eye;
-		GLuint g_pers;
-		GLuint g_sampler2d;
+		GLuint g_world;
+		GLuint g_mvp;
+		GLuint g_lightPos;
 
+		XGL::Vec3f* m_lightWorlds;
 		TagPointLight* m_PointLight;
 		ForwardPointLightShader * m_fpLightShader;
-		IXMesh* m_pBox;
+		XAdjacencyMesh* m_pBox;
 		AxesShape* m_pAxesShader;
 	};
 
