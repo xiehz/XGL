@@ -152,7 +152,7 @@ Matrixf XGLModel::StencilShadow::lightToWorld(XGL::Vec3f worldposition) {
 
 void XGLModel::StencilShadow::draw()
 {
-	//必须注意模板值的更新， 深度值的更新
+
 	glDepthMask(GL_TRUE);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
@@ -228,7 +228,6 @@ void XGLModel::StencilShadow::shadowStencilPass()
 	glEnable(GL_DEPTH_CLAMP);
 	glDisable(GL_CULL_FACE);
 
-	//深度测试的结果，写入模板值
 	glStencilFunc(GL_ALWAYS, 0, 0XFF);
 	glStencilOpSeparate(GL_BACK, GL_KEEP, GL_INCR_WRAP, GL_KEEP);
 	glStencilOpSeparate(GL_FRONT, GL_KEEP, GL_DECR_WRAP, GL_KEEP);
@@ -251,9 +250,7 @@ void XGLModel::StencilShadow::shadowedPass()
 {
 	Matrixf view = camera->getInverseMatrix();
 	glDrawBuffer(GL_BACK);
-	//模板测试， 必须等于0才能通过
 	glStencilFunc(GL_EQUAL, 0, 0XFF);
-	//模板测试、深度测试不改变模板值gl_keep
 	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
 
 
