@@ -121,7 +121,7 @@ namespace XGLModel {
 	class XAdjacencyMesh : XVAOMesh
 	{
 	public:
-		XAdjacencyMesh();
+		XAdjacencyMesh(bool adjacency = true);
 		~XAdjacencyMesh();
 
 		virtual bool LoadMesh(const std::string& Filename) override;

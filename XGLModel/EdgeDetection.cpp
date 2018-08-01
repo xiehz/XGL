@@ -144,8 +144,8 @@ void XGLModel::EdgeDetection::draw()
 		m_PointLight[i].Eposition = m_lightWorlds[i] * view;
 
 		m_fpLightShader->updateLight(m_PointLight[i], i, 1.0f, 16.0f);
-		m_fpLightShader->updateMT(view, projectMatrix);
 	}
+	m_fpLightShader->updateMT(view, projectMatrix);
 	m_pBox->Render();
 
 	glLineWidth(1.f);

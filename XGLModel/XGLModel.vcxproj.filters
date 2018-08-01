@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -22,43 +18,47 @@
     <Filter Include="shader">
       <UniqueIdentifier>{6bab329b-4a76-4374-ada3-31dccce0a543}</UniqueIdentifier>
     </Filter>
+    <Filter Include="tutorial\头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="XGLModel.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Primitives.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="ModelGL.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="BitmapFont.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Vertices.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Tga.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Tokenizer.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="objmodel.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Headers.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="TutorialFactory.h">
       <Filter>tutorial</Filter>
@@ -97,7 +97,7 @@
       <Filter>tutorial</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
+      <Filter>tutorial\头文件</Filter>
     </ClInclude>
     <ClInclude Include="XMesh.h">
       <Filter>Util</Filter>
@@ -212,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="XAdjacencyMesh.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="StencilShadow.h">
+      <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="XAdjacencyMesh.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="StencilShadow.cpp">
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -614,6 +620,15 @@
       <Filter>shader</Filter>
     </None>
     <None Include="ForwardPointLightShader.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="StencilShadow.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="StencilShadow.geom">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="StencilShadow.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

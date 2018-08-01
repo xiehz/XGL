@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "XAdjacencyMesh.h"
 
-XGLModel::XAdjacencyMesh::XAdjacencyMesh()
+XGLModel::XAdjacencyMesh::XAdjacencyMesh(bool adjacency )
 {
-	m_withAdjacency = true;
+	m_withAdjacency = adjacency;
 }
 
 
