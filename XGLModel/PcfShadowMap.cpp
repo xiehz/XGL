@@ -2,16 +2,16 @@
 #include "xgl\XOrbitCamera.h"
 #include "xgl\Error.h"
 #include "IXMesh.h"
-#include "ShadowMap2.h"
+#include "PcfShadowMap.h"
 #include "AxesShape.h"
 #include "SphereShape.h"
 #include "DepthImage.h"
 
 namespace XGLModel {
-	REGISTER(ShadowMap2)
+	REGISTER(PcfShadowMap)
 }
 
-XGLModel::ShadowMap2::ShadowMap2()
+XGLModel::PcfShadowMap::PcfShadowMap()
 {
 	m_pMesh = new IXMesh();
 	m_pQuad = new IXMesh();
@@ -32,7 +32,7 @@ XGLModel::ShadowMap2::ShadowMap2()
 }
 
 
-XGLModel::ShadowMap2::~ShadowMap2()
+XGLModel::PcfShadowMap::~PcfShadowMap()
 {
 	delete m_pMesh;
 	m_pMesh = nullptr;
@@ -72,17 +72,13 @@ XGLModel::ShadowMap2::~ShadowMap2()
 	}
 }
 
-void XGLModel::ShadowMap2::draw()
+void XGLModel::PcfShadowMap::draw()
 {
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 	static double t = 0;
-	spotlight.Eposition = XGL::Vec3f(1 * cosf(t), 0, 1 * sinf(t));
+	spotlight.Eposition = XGL::Vec3f( 1 *cosf(t), 0, 1 * sinf(t));
 	t += 0.001;
-
-	spotlight.Eposition = XGL::Vec3f(1, 0, 0);
-	Matrixf rotate = Matrixf::rotate(XGL::Quat(0, sin(t / 2.0f), 0, cos(t / 2.0f)));
-	spotlight.Eposition = spotlight.Eposition * rotate;
 
 	spotlight.Direction = -spotlight.Eposition;
 	spotlight.Direction.normalize();
@@ -93,7 +89,7 @@ void XGLModel::ShadowMap2::draw()
 	render();
 }
 
-void XGLModel::ShadowMap2::initGL()
+void XGLModel::PcfShadowMap::initGL()
 {
 	m_Axes->bindHandle(getHandle());
 	m_Axes->init();
@@ -106,15 +102,15 @@ void XGLModel::ShadowMap2::initGL()
 	glClearColor(0.341176f, 0.98f, 1.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
-	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK);
 
 	glGenFramebuffers(1, &m_fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
 
 	glGenTextures(1, &m_texShadow);
 	glBindTexture(GL_TEXTURE_2D,m_texShadow);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT,
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32,
 		windowWith,
 		windowHeight,
 		0,
@@ -123,7 +119,12 @@ void XGLModel::ShadowMap2::initGL()
 		0);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+	//普通纹理采样
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+	//使用阴影采样器
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
@@ -143,18 +144,20 @@ void XGLModel::ShadowMap2::initGL()
 
 }
 
-void XGLModel::ShadowMap2::initUniform()
+void XGLModel::PcfShadowMap::initUniform()
 {
 	g_mv = glGetUniformLocation(program, "g_mv");
 	g_perspective = glGetUniformLocation(program, "g_pers");
 	g_sampler = glGetUniformLocation(program, "g_sampler2d");
 	g_lv = glGetUniformLocation(program, "g_lv");
 	g_samplerShadow = glGetUniformLocation(program, "g_samplerShadow");
+	g_ScreenSize = glGetUniformLocation(program, "g_MapSize");
 	if (g_mv < 0
 		|| g_perspective< 0
 		|| g_sampler< 0
 		|| g_lv < 0
-		|| g_samplerShadow < 0)
+		|| g_samplerShadow < 0
+		|| g_ScreenSize < 0)
 	{
 		XGLERROR("get uniform failed");
 	}
@@ -164,7 +167,7 @@ void XGLModel::ShadowMap2::initUniform()
 	//m_Sphere->initUniform();
 }
 
-void XGLModel::ShadowMap2::initCamera()
+void XGLModel::PcfShadowMap::initCamera()
 {
 	camera = new XGL::XOrbitCamera();
 
@@ -173,30 +176,20 @@ void XGLModel::ShadowMap2::initCamera()
 		Vec3f(0.0f, 0.0f, 0.0f), Vec3f(0.0f, 1.f, 0.0f));
 }
 
-void XGLModel::ShadowMap2::renderShadow()
+void XGLModel::PcfShadowMap::renderShadow()
 {
-	XGL::Vec3f right, up, forward;
-	forward = spotlight.Direction;
-	up = Vec3f(0.0f, 1.0f, 0.0f);
+	XOrbitCamera lightView;
+	XGL::Vec3f zero(0,0,0);
+	XGL::Vec3f up = Vec3f(0,1,0);
 
-	right = up ^ forward;
-	right.normalize();
-
-	up = forward ^ right;
-
-	float lightView[4][4] = {
-		right.x(), up.x(), -forward.x(),0,
-		right.y(), up.y(), -forward.y(),0,
-		right.z(), up.z(), -forward.z(),0,
-		-spotlight.Eposition * right , -spotlight.Eposition* up, spotlight.Eposition* forward,1,
-	};
+	lightView.setTransformation(spotlight.Eposition, zero, up);
 
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_fbo);
 		glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 
 		//模型变换g_mv->>>模型缩小100分之一
-		Matrixf lvMat(*lightView);
+		Matrixf lvMat = lightView.getInverseMatrix();
 		lvMat.preMult(Matrixf::scale(0.01f, 0.01f, 0.01f));
 		glUniformMatrix4fv(g_mv, 1, GL_FALSE,lvMat.ptr());
 
@@ -216,53 +209,39 @@ void XGLModel::ShadowMap2::renderShadow()
 
 g_mv has nothing to do with the g_mv
 */
-void XGLModel::ShadowMap2::render()
+void XGLModel::PcfShadowMap::render()
 {
 	Matrixf cameraMatrix = camera->getInverseMatrix();
 
-	XGL::Vec3f right, up, forward;
-	forward = spotlight.Direction;
-	up = Vec3f(0.0f, 1.0f, 0.0f);
+	XOrbitCamera lightView;
+	XGL::Vec3f zero(0, 0, 0);
+	XGL::Vec3f up = Vec3f(0, 1, 0);
 
-	right = up ^ forward;
-	right.normalize();
-
-	up = forward ^ right;
-
-	float lightView[4][4] = {
-		right.x(), up.x(), -forward.x(),0,
-		right.y(), up.y(), -forward.y(),0,
-		right.z(), up.z(), -forward.z(),0,
-		-spotlight.Eposition * right , -spotlight.Eposition * up, spotlight.Eposition * forward,1,
-	};
-	Matrixf lvMat(*lightView);
+	lightView.setTransformation(spotlight.Eposition, zero, up);
+	Matrixf lvMat = lightView.getInverseMatrix();
 	lvMat.preMult(Matrixf::scale(0.01f, 0.01f, 0.01f));
+
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
 
 		glUseProgram(m_DepthImage->program);
 		m_DepthImage->setCamera(cameraMatrix);
-		m_DepthImage->setModel(Matrixf::scale(1.f, 1.f, 1.f )* Matrixf::translate(0.f, 2.f, -0.f));
+		//getErrorInformation(GetLastError());
+		m_DepthImage->setModel(Matrixf::scale(2.f, 2.f, 2.f )* Matrixf::translate(0.f, 4.f, -0.f));
 		m_DepthImage->BindTexture(GL_TEXTURE_2D, 1, m_texShadow);
 		m_DepthImage->render();
-		//--------------------------------------
-		float lightWorld[4][4] = {
-			right.x(), right.y(), right.z(),0,
-			up.x(), up.y(), up.z(), 0,
-			-forward.x(),-forward.y(),-forward.z(),0,
-			spotlight.Eposition.x(),spotlight.Eposition.y(),-spotlight.Eposition.z(),1.0f
-		};
-		Matrixf lightCamera(*lightWorld);
+
+		Matrixf lightCamera =lightView.getMatrix();
 
 		glUseProgram(m_Axes->program);
-		m_Axes->setCamera(cameraMatrix);
+		m_Axes->setCamera(Matrixf::translate(0,0,-2));
 		m_Axes->setModel(lightCamera);
 		m_Axes->render();
 		//--------------------------------------
 
 		glUseProgram(m_Sphere->program);
-		m_Sphere->setCamera(cameraMatrix);
+		m_Sphere->setCamera(Matrixf::translate(0, 0, -2));
 		lightCamera.preMult(Matrixf::scale(0.1, 0.1, 0.1));
 		m_Sphere->setModel(lightCamera);
 		m_Sphere->render();
@@ -270,18 +249,15 @@ void XGLModel::ShadowMap2::render()
 
 		glUseProgram(program);
 		glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
-
+		glUniform2f(g_ScreenSize, windowWith, windowHeight);
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, m_texShadow);
 		glUniform1i(g_samplerShadow, 1);
 		glUniform1i(g_sampler, 0);
-	//	spotlight.Eposition = spotlight.Eposition * cameraMatrix;
-		spotlight.Eposition = spotlight.Eposition * Matrixf::translate(0, 0, 10);
-		spotlight.Direction = -spotlight.Eposition;
-		spotlight.Direction.normalize();
+		spotlight.Eposition = spotlight.Eposition * Matrixf::translate(0, 0, -2);
 		lightShader.updateUniform(spotlight, 1.0f, 16.0f);
 		//直接使用未缩小的光源视野变换，因为quad很小，大概是模型的百分之一，取纹理时正常
-		glUniformMatrix4fv(g_lv, 1, GL_FALSE,*lightView);
+		glUniformMatrix4fv(g_lv, 1, GL_FALSE, lightView.getInverseMatrix().ptr());
 		Matrixf quadMat = cameraMatrix;
 		float r = 180.f * 3.1415926f / 360.0f;
 		quadMat.preMult(Matrixf::rotate(XGL::Quat(sinf(r), 0, 0, cosf(r))));

@@ -1,5 +1,5 @@
 #version 330
-
+#define EPSILON 0.00001
 struct tagBaseLight{
 	vec3 Color;
 	float AmbientIntensity;
@@ -25,7 +25,8 @@ uniform float g_specularIntensity;
 uniform float g_shineness;
 uniform tagSpotLight spotlight;
 uniform sampler2D g_sampler2d;
-uniform sampler2D g_samplerShadow;
+uniform sampler2DShadow g_samplerShadow;
+uniform vec2 g_MapSize;
 
 in vec3 tnormal;
 in vec2 otex;
@@ -35,29 +36,36 @@ in vec4 lpos;
 out vec4 color ;
 
 vec4 calcLight(in vec3 tn, in vec3 eyep);
+float calcFactor();
 void main()
 {
-	vec3 lndc = lpos.xyz / lpos.w;
+	vec4 light = calcLight(tnormal,eyep ) ;
+	float f = calcFactor();
 
+	color =f* light* texture2D(g_sampler2d, otex);
+
+}
+
+float calcFactor(){
+	vec3 lndc = lpos.xyz / lpos.w;
 	vec2 luv;
 	luv.x = 0.5 * ( lndc.x + 1.0);
-	luv.y = 1.0 -0.5 * (lndc.y + 1.0);
+	luv.y = 1.0 - 0.5 * (lndc.y + 1.0);
 
 	float z = 0.5 *(lndc.z + 1.0);
 
-	float ldepth = texture(g_samplerShadow,luv ).x;
-	vec4 light = calcLight(tnormal,eyep ) ;
+	float xoffset = 1.0/g_MapSize.x;
+    float yoffset = 1.0/g_MapSize.y;
+    float factor = 0.0;
 
-	if( z <= ldepth + 0.000001)
-	{
-		color =light * texture2D(g_sampler2d, otex);		
-	}
-	else{
-		color =0.1* light * texture2D(g_sampler2d, otex);
-	}
-
-//	ldepth = 1.0 - (1.0 - ldepth)  * 25.0;
-//	color = vec4(ldepth);
+    for (int y = -1 ; y <= 1 ; y++) {
+        for (int x = -1 ; x <= 1 ; x++) {
+            vec2 offsets = vec2(x * xoffset, y * yoffset);
+            vec3 uvc = vec3(luv + offsets, z + EPSILON);
+            factor += texture(g_samplerShadow, uvc);
+        }
+    }
+	return (0.5 + (factor / 18.0));
 }
 
 

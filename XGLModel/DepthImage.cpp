@@ -30,7 +30,11 @@ void XGLModel::DepthImage::BindTexture(GLenum target, GLuint texUnit, GLint texO
 void XGLModel::DepthImage::render()
 {
 	Matrixf& mv = camera->getInverseMatrix();
+	float r = 180.f * 3.1415926f / 360.0f;
+
+	model.preMult(Matrixf::rotate(XGL::Quat(sinf(r), 0, 0, cosf(r))));
 	mv.preMult(model);
+
 
 	glUniformMatrix4fv(g_mv, 1, GL_FALSE, mv.ptr());
 	glUniformMatrix4fv(g_pers, 1, GL_FALSE, projectMatrix.ptr());

@@ -41,8 +41,9 @@ void XGLModel::ShadowMap::initGL()
 	glClearColor(0.341176f,0.98f,1.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
-	//glCullFace(GL_BACK);
-	//glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
+
 
 	m_pMesh->LoadMesh("E:/2018/opengl/Assimp/nanosuit/nanosuit.obj");
 	m_pQuad->LoadMesh("E:/2018/opengl/Assimp/data/quad.obj");
@@ -82,6 +83,7 @@ void XGLModel::ShadowMap::draw()
 
 	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
+	glCullFace(GL_FRONT);
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER,m_fbo);
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -93,6 +95,7 @@ void XGLModel::ShadowMap::draw()
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
+	glCullFace(GL_BACK);
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -102,7 +105,13 @@ void XGLModel::ShadowMap::draw()
 		c.setTransformation(XGL::Vec3f(0.0f, 0.0f, 2.0f),
 			XGL::Vec3f(0.0f, 0.0f, 0.0f),
 			XGL::Vec3f(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(g_mv, 1, GL_FALSE, c.getInverseMatrix().ptr());
+
+		Matrixf model = c.getInverseMatrix();
+		float r = 180.f * 3.1415926f / 360.0f;
+
+		model.preMult(Matrixf::rotate(XGL::Quat(sinf(r), 0, 0, cosf(r))));
+
+		glUniformMatrix4fv(g_mv, 1, GL_FALSE, model.ptr());
 		glUniformMatrix4fv(g_perspective, 1, GL_FALSE, projectMatrix.ptr());
 		glUniform1i(g_sampler, 0);
 		m_pQuad->Render();

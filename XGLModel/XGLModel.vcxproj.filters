@@ -216,6 +216,9 @@
     <ClInclude Include="StencilShadow.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="PcfShadowMap.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -393,6 +396,9 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="StencilShadow.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="PcfShadowMap.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -629,6 +635,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="StencilShadow.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PcfShadowMap.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="PcfShadowMap.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
