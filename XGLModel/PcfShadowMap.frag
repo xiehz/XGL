@@ -50,7 +50,7 @@ float calcFactor(){
 	vec3 lndc = lpos.xyz / lpos.w;
 	vec2 luv;
 	luv.x = 0.5 * ( lndc.x + 1.0);
-	luv.y = 1.0 - 0.5 * (lndc.y + 1.0);
+	luv.y = 0.5 * (lndc.y + 1.0);
 
 	float z = 0.5 *(lndc.z + 1.0);
 

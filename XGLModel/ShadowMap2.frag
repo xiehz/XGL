@@ -41,14 +41,14 @@ void main()
 
 	vec2 luv;
 	luv.x = 0.5 * ( lndc.x + 1.0);
-	luv.y = 1.0 -0.5 * (lndc.y + 1.0);
+	luv.y = 0.5 * (lndc.y + 1.0);
 
 	float z = 0.5 *(lndc.z + 1.0);
 
 	float ldepth = texture(g_samplerShadow,luv ).x;
 	vec4 light = calcLight(tnormal,eyep ) ;
 
-	if( z <= ldepth + 0.000001)
+	if( z <= ldepth + 0.001)
 	{
 		color =light * texture2D(g_sampler2d, otex);		
 	}

@@ -137,7 +137,7 @@ void XGLModel::ShadowMap2::initGL()
 	}
 
 	m_pMesh->LoadMesh("E:/2018/opengl/Assimp/data/phoenix_ugv.md2");
-	m_pQuad->LoadMesh("E:/2018/opengl/Assimp/data/quad.obj");
+	m_pQuad->LoadMesh("E:/2018/opengl/Assimp/data/quad1.obj");
 	bkg = new XTexture(GL_TEXTURE_2D, "E:/2018/opengl/Assimp/data/test.png");
 	bkg->Load();
 
@@ -284,7 +284,7 @@ void XGLModel::ShadowMap2::render()
 		glUniformMatrix4fv(g_lv, 1, GL_FALSE,*lightView);
 		Matrixf quadMat = cameraMatrix;
 		float r = 180.f * 3.1415926f / 360.0f;
-		quadMat.preMult(Matrixf::rotate(XGL::Quat(sinf(r), 0, 0, cosf(r))));
+	//	quadMat.preMult(Matrixf::rotate(XGL::Quat(sinf(r), 0, 0, cosf(r))));
 		//Matrixf translate = Matrixf::translate(0.0f, -1.0f, -1.f);
 		//quadMat.preMult(translate);
 		//Matrixf scale = Matrixf::scale(10.f, 10.f, 10.f);
