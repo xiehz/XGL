@@ -79,3 +79,18 @@ void XGLModel::SphereShape::render()
 
 	m_sphere.Render();
 }
+
+void XGLModel::SphereShape::setupPers()
+{
+	//90透视投影，刚好看向6个方向
+	static float fov = 90.0f * 3.1415926f / 180.0f;
+	float tanha = tanf(fov / 2);
+	float aspect = (float)windowWith / (float)windowHeight;
+	float nearclip = 1.0f, farclip = 10000.0f;
+
+	double right = tanha * aspect * nearclip;
+	double left = -right;
+	double top = tanha * nearclip;
+	double bottom = -top;
+	ModelGL::project(left, right, bottom, top, nearclip, farclip);
+}

@@ -158,6 +158,7 @@
     <ClInclude Include="BasicTesselation.h" />
     <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
+    <ClInclude Include="CubeShadowMap.h" />
     <ClInclude Include="DeferredShading2.h" />
     <ClInclude Include="DirLightShader.h" />
     <ClInclude Include="DeferredShading0.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="EdgeDetection.h" />
     <ClInclude Include="ForwardPointLightShader.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="MultiChannelShadowMap.h" />
     <ClInclude Include="PcfShadowMap.h" />
     <ClInclude Include="StencilShadow.h" />
     <ClInclude Include="XAdjacencyMesh.h" />
@@ -206,6 +208,7 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Vertices.h" />
     <ClInclude Include="XCubemapTexture.h" />
+    <ClInclude Include="XCubeShadowBuffer.h" />
     <ClInclude Include="XGBuffer.h" />
     <ClInclude Include="XGLModel.h" />
     <ClInclude Include="XGLUtil.h" />
@@ -224,6 +227,7 @@
     <ClCompile Include="BasicTesselation.cpp" />
     <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
+    <ClCompile Include="CubeShadowMap.cpp" />
     <ClCompile Include="DeferredShading2.cpp" />
     <ClCompile Include="DirLightShader.cpp" />
     <ClCompile Include="DeferredShading0.cpp" />
@@ -247,6 +251,7 @@
     <ClCompile Include="DSSphere.cpp" />
     <ClCompile Include="EdgeDetection.cpp" />
     <ClCompile Include="ForwardPointLightShader.cpp" />
+    <ClCompile Include="MultiChannelShadowMap.cpp" />
     <ClCompile Include="PcfShadowMap.cpp" />
     <ClCompile Include="StencilShadow.cpp" />
     <ClCompile Include="XAdjacencyMesh.cpp" />
@@ -287,6 +292,7 @@
     <ClCompile Include="VAOInstance.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="XCubemapTexture.cpp" />
+    <ClCompile Include="XCubeShadowBuffer.cpp" />
     <ClCompile Include="XGBuffer.cpp" />
     <ClCompile Include="XGLModel.cpp" />
     <ClCompile Include="XGLUtil.cpp" />
@@ -316,6 +322,8 @@
     <None Include="Billboarding.frag" />
     <None Include="Billboarding.geom" />
     <None Include="Billboarding.vert" />
+    <None Include="CubeShadowMap.frag" />
+    <None Include="CubeShadowMap.vert" />
     <None Include="DeferredShading2.frag" />
     <None Include="DeferredShading2.vert" />
     <None Include="DirLightShader.frag" />
@@ -327,6 +335,8 @@
     <None Include="EdgeDetection.vert" />
     <None Include="ForwardPointLightShader.frag" />
     <None Include="ForwardPointLightShader.vert" />
+    <None Include="MultiChannelShadowMap.frag" />
+    <None Include="MultiChannelShadowMap.vert" />
     <None Include="PcfShadowMap.frag" />
     <None Include="PcfShadowMap.vert" />
     <None Include="PointLightShader.frag" />

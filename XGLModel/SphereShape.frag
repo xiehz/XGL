@@ -10,5 +10,4 @@ out vec4 color;
 void main(){
 
 	color = normalize(tnormal) ; 	
-
 }

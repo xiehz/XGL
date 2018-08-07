@@ -1,6 +1,6 @@
 #pragma once
 #include "XGLModel.h"
-#include "xgl\Vec3f";
+#include "xgl/Vec3f";
 
 namespace XGLModel {
 	typedef struct TagLight

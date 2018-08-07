@@ -20,6 +20,7 @@ namespace XGLModel {
 		void setCamera(const Matrixf& m );
 		void setModel(const Matrixf& m);
 		void render();
+		void setupPers();
 	public:
 		GLuint g_mv;
 		GLuint g_pers;

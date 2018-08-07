@@ -69,6 +69,13 @@ namespace XGL3D
             return base.OnViewMsg(id,mgs);
         }
 
-
+        void test1()
+        {
+            test(out byte[] tempvar);
+        }
+        void test(out byte[] msg)
+        {
+            msg = null;
+        }
     }
 }

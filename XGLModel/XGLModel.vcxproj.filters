@@ -18,7 +18,7 @@
     <Filter Include="shader">
       <UniqueIdentifier>{6bab329b-4a76-4374-ada3-31dccce0a543}</UniqueIdentifier>
     </Filter>
-    <Filter Include="tutorial\头文件">
+    <Filter Include="头文件">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
@@ -28,37 +28,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="XGLModel.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Primitives.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ModelGL.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="BitmapFont.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Vertices.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Tga.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Tokenizer.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="objmodel.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Headers.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TutorialFactory.h">
       <Filter>tutorial</Filter>
@@ -97,7 +97,7 @@
       <Filter>tutorial</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>tutorial\头文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="XMesh.h">
       <Filter>Util</Filter>
@@ -217,6 +217,15 @@
       <Filter>tutorial</Filter>
     </ClInclude>
     <ClInclude Include="PcfShadowMap.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiChannelShadowMap.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="XCubeShadowBuffer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeShadowMap.h">
       <Filter>tutorial</Filter>
     </ClInclude>
   </ItemGroup>
@@ -399,6 +408,15 @@
       <Filter>tutorial</Filter>
     </ClCompile>
     <ClCompile Include="PcfShadowMap.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiChannelShadowMap.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XCubeShadowBuffer.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeShadowMap.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -641,6 +659,18 @@
       <Filter>shader</Filter>
     </None>
     <None Include="PcfShadowMap.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="MultiChannelShadowMap.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="MultiChannelShadowMap.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="CubeShadowMap.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="CubeShadowMap.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
