@@ -59,13 +59,12 @@ float calcShadowFactor(vec3 l)
 {
     float sampledDistance = texture(g_shadowmap, l).r;
 
-	return sampledDistance;
-//    float distance = length(l);
+    float distance = length(l);
 
-//    if (distance <= sampledDistance + EPSILON)
-//        return 1.0;
-//    else
-//        return 0.5;
+    if (distance <= sampledDistance + EPSILON)
+        return 1.0;
+    else
+        return 0.5;
 }   
 
 void main(){
@@ -85,11 +84,7 @@ void main(){
 		L = normalize(L);
 
 		vec3 R = reflect(L, N);
-//		lightColor += (calcPointLight(N,E,L,LD,R, g_pointlight[i]) * factor);
-		lightColor =vec3(factor,factor, factor);
-//		lightColor +=L;
-
+		lightColor += (calcPointLight(N,E,L,LD,R, g_pointlight[i]) * factor) * factor;
 	}
 	fcolor = vec4(lightColor,1.0) * texture(g_sampler2d, otex);
-//	fcolor = vec4(worldn,1.0);
 }

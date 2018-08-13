@@ -10,6 +10,6 @@ out float color ;
 
 void main()
 {
-	color =length( worldp - g_eyeworld ) / 10.0f;
+	color =length( worldp - g_eyeworld ) ;
 }
 

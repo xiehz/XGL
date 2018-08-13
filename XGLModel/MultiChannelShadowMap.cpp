@@ -186,7 +186,7 @@ void XGLModel::MultiChannelShadowMap::renderShadow()
 			m_cubeShadowShader->setWorld( world);
 			m_pMesh->Render();
 
-			world = Matrixf::translate(2.0f, -1.0f, -3.0f);
+			world = Matrixf::translate(-2.5f, -1.0f, -3.0f);
 			m_cubeShadowShader->setWorld( world);
 			m_pMesh->Render();
 		}
@@ -215,18 +215,18 @@ void XGLModel::MultiChannelShadowMap::render()
 	glClearColor(0.2, 0.2, 0.2, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glUseProgram(m_CubeShape->program);
-	glUniformMatrix4fv(m_CubeShape->g_world, 1, GL_FALSE, Matrixf::scale(5.12f, 5.12f, 5.12f).ptr());
-	Matrixf view = cameraMatrix;
-	view.postMult(projectMatrix);
-	glUniformMatrix4fv(m_CubeShape->g_vp, 1, GL_FALSE, view.ptr());
-	//m_pCubeTex->bindTexture(GL_TEXTURE1);
-	glUniform1i(m_CubeShape->g_cubeSampler, 1);
+	//------------测试渲染两个球在点光源下的深度纹理
+	//glUseProgram(m_CubeShape->program);
+	//glUniformMatrix4fv(m_CubeShape->g_world, 1, GL_FALSE, Matrixf::scale(5.12f, 5.12f, 5.12f).ptr());
+	//Matrixf view = cameraMatrix;
+	//view.postMult(projectMatrix);
+	//glUniformMatrix4fv(m_CubeShape->g_vp, 1, GL_FALSE, view.ptr());
+	////m_pCubeTex->bindTexture(GL_TEXTURE1);
+	//glUniform1i(m_CubeShape->g_cubeSampler, 1);
 
-	m_CubeShape->m_pCube->Render();
-	return;
+	//m_CubeShape->m_pCube->Render();
+	//return;
 
-	/*
 	glUseProgram(program);
 	glUniform1ui(g_N, N);
 	m_pTexture->Bind(GL_TEXTURE0);
@@ -248,7 +248,7 @@ void XGLModel::MultiChannelShadowMap::render()
 		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
 		m_pMesh->Render();
 
-		world = Matrixf::translate(0.0f, -2, 1.0f);
+		world = Matrixf::translate(-2.5f, -1.0f, -3.0f);
 		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
 		m_pMesh->Render();
 
@@ -284,7 +284,7 @@ void XGLModel::MultiChannelShadowMap::render()
 		m_Sphere->setModel(lightCamera);
 		m_Sphere->render();
 	}
-	*/
+
 	//--------------------------------------
 }
 
