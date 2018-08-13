@@ -53,19 +53,32 @@ vec3 calcPointLight(in vec3 N, in vec3 E, in vec3 L, in float LD, in vec3 R, in 
 }
 
 
-
+vec3 sampleOffsetDirections[20] = vec3[]
+(
+   vec3( 1,  1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1,  1,  1), 
+   vec3( 1,  1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1,  1, -1),
+   vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1,  1,  0),
+   vec3( 1,  0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1,  0, -1),
+   vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
+);
 
 float calcShadowFactor(vec3 l)
 {
-    float sampledDistance = texture(g_shadowmap, l).r;
-
-    float distance = length(l);
-
-    if (distance <= sampledDistance + EPSILON)
-        return 1.0;
-    else
-        return 0.5;
+	float shadow = 0.0;
+	float bias = 0.15;
+	int samples = 20;
+	float viewDistance = length(l);
+	float diskRadius = 0.05;
+	for(int i = 0; i < samples; ++i)
+	{
+		float closestDepth = texture(g_shadowmap, l + sampleOffsetDirections[i] * diskRadius).r;
+		if(viewDistance - EPSILON > closestDepth)
+			shadow += 1.0;
+	}
+	shadow /= float(samples);
+	return shadow * 0.8;
 }   
+
 
 void main(){
 
@@ -84,7 +97,7 @@ void main(){
 		L = normalize(L);
 
 		vec3 R = reflect(L, N);
-		lightColor += (calcPointLight(N,E,L,LD,R, g_pointlight[i]) * factor) * factor;
+		lightColor += (calcPointLight(N,E,L,LD,R, g_pointlight[i]) * (1-factor)) ;
 	}
 	fcolor = vec4(lightColor,1.0) * texture(g_sampler2d, otex);
 }

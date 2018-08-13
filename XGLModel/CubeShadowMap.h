@@ -23,6 +23,10 @@ namespace XGLModel {
 		virtual void initGL() override;
 		virtual void initUniform() override;
 
+		XGL::Matrixf calcLightView(
+			const XGL::Vec3f& eye, 
+			const XGL::Vec3f& look, const XGL::Vec3f& up0);
+
 		void setupPers(XGL::Vec3f eye, int face);
 
 		void setWorld(const XGL::Matrixf& world);
@@ -33,7 +37,7 @@ namespace XGLModel {
 
 	struct XCameraDirection {
 		GLenum cubeMapFace;
-		XGL::Vec3f target;
+		XGL::Vec3f forward;
 		XGL::Vec3f up;
 	};
 

@@ -87,7 +87,7 @@ void XGLModel::MultiChannelShadowMap::initGL()
 	stream.clear();
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
+	glDepthFunc(GL_LESS);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_TEXTURE_CUBE_MAP);
 	glEnable(GL_CULL_FACE);
@@ -113,7 +113,7 @@ void XGLModel::MultiChannelShadowMap::initGL()
 	m_pCubeBuffer = new XCubeShadowBuffer();
 	m_pCubeBuffer->init(512 , 512);
 
-	m_PointLight = new TagPointLight[N];
+	m_PointLight = new TagPointLight[2];
 
 	TagAttenuation attenuation;
 	attenuation.Constant = 1.0f;
@@ -125,9 +125,21 @@ void XGLModel::MultiChannelShadowMap::initGL()
 	m_PointLight[0].Color = XGL::Vec3f(1.0f, 1.0f, 1.0f);
 	m_PointLight[0].DiffuseIntensity = 1.f;
 	m_PointLight[0].Attenuation = attenuation;
-	m_PointLight[0].Eposition = XGL::Vec3f(0.0, 0.0, 0.0f);
+	m_PointLight[0].Eposition = XGL::Vec3f();
 
-	m_pointLocation = new TagPointLightLocation[N];
+	//TagAttenuation attenuation;
+	//attenuation.Constant = 1.0f;
+	//attenuation.Linear = 0.0f;
+	//attenuation.Exp = .0f;
+
+
+	m_PointLight[1].AmbientIntensity = 0.1f;
+	m_PointLight[1].Color = XGL::Vec3f(1.0f, 1.0f, 1.0f);
+	m_PointLight[1].DiffuseIntensity = 1.f;
+	m_PointLight[1].Attenuation = attenuation;
+	m_PointLight[1].Eposition = XGL::Vec3f(1, 1.0, 1.0f);
+
+	m_pointLocation = new TagPointLightLocation[2];
 
 	m_pTexture = new XTexture(GL_TEXTURE_2D, "E:/2018/opengl/Assimp/data/test.png");
 	m_pTexture->Load();
@@ -174,25 +186,25 @@ void XGLModel::MultiChannelShadowMap::renderShadow()
 	glClearColor(FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX);
 
 	glUseProgram(m_cubeShadowShader->program);
-	for (int lightnum = 0; lightnum < N; ++lightnum)
+
+	for (int i = 0; i < 6; ++i)
 	{
-		for (int i = 0; i < 6; ++i)
+		m_pCubeBuffer->bindForWriting(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
+
+		for (int lightnum = 0; lightnum < N; ++lightnum)
 		{
-			m_pCubeBuffer->bindForWriting(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
+			m_cubeShadowShader->setupPers(m_PointLight[lightnum].Eposition, i);
 
-			m_cubeShadowShader->setupPers(m_PointLight[lightnum].Eposition,i);
-
-			Matrixf world = Matrixf::translate(0, 0, -2);
-			m_cubeShadowShader->setWorld( world);
+			Matrixf world = Matrixf::translate(0, 1, -2);
+			m_cubeShadowShader->setWorld(world);
 			m_pMesh->Render();
 
-			world = Matrixf::translate(-2.5f, -1.0f, -3.0f);
-			m_cubeShadowShader->setWorld( world);
+			world = Matrixf::translate(-2.f, -4.0f, 2.0f);
+			m_cubeShadowShader->setWorld(world);
 			m_pMesh->Render();
 		}
+
 	}
-
-
 }
 
 /*
@@ -237,41 +249,40 @@ void XGLModel::MultiChannelShadowMap::render()
 	vp.preMult(cameraMatrix);
 	glUniformMatrix4fv(g_vp, 1, GL_FALSE, vp.ptr());
 
+	glUniform3f(g_eye_world, 0.0f, 0.0f, 10.0f);
+
 	for (int lightnum = 0; lightnum < N; ++lightnum)
 	{
-		TagPointLight& poingLight = m_PointLight[lightnum];
-		glUniform3f(g_eye_world, 0.0f, 0.0f, 10.0f);
-
-		updateLight(poingLight, lightnum, 1.0, 16.0);
-
-		Matrixf world = Matrixf::translate(0, 0, -2);
-		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
-		m_pMesh->Render();
-
-		world = Matrixf::translate(-2.5f, -1.0f, -3.0f);
-		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
-		m_pMesh->Render();
-
-		world = Matrixf::scale(10.0f, 10.0f ,10.0f);
-		world.postMult(Matrixf::translate(0, 0, -10));
-		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
-		m_pQuad->Render();
-
-		float rad = 45.0f * 3.1415926f / 180.0f;
-		float rsin = sinf(rad) ,rcos = cosf(rad);
-
-		world = Matrixf::scale(10.0f, 10.0f, 10.0f);
-		world.postMultRotate(XGL::Quat(-rsin, 0, 0, rcos));
-		world.postMult(Matrixf::translate(0, -10, 0));
-		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
-		m_pQuad->Render();
-
-		world = Matrixf::scale(10.0f, 10.0f, 10.0f);
-		world.postMultRotate(XGL::Quat(0, rsin, 0, rcos));
-		world.postMult(Matrixf::translate(-10, 0, 0));
-		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
-		m_pQuad->Render();
+		updateLight(m_PointLight[lightnum], lightnum, 1.0, 16.0);
 	}
+
+	Matrixf world = Matrixf::translate(0, 1, -2);
+	glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
+	m_pMesh->Render();
+
+	world = Matrixf::translate(-2.f, -4.0f, 2.0f);
+	glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
+	m_pMesh->Render();
+
+	world = Matrixf::scale(10.0f, 10.0f, 10.0f);
+	world.postMult(Matrixf::translate(0, 0, -10));
+	glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
+	m_pQuad->Render();
+
+	float rad = 45.0f * 3.1415926f / 180.0f;
+	float rsin = sinf(rad), rcos = cosf(rad);
+
+	world = Matrixf::scale(10.0f, 10.0f, 10.0f);
+	world.postMultRotate(XGL::Quat(-rsin, 0, 0, rcos));
+	world.postMult(Matrixf::translate(0, -10, 0));
+	glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
+	m_pQuad->Render();
+
+	world = Matrixf::scale(10.0f, 10.0f, 10.0f);
+	world.postMultRotate(XGL::Quat(0, rsin, 0, rcos));
+	world.postMult(Matrixf::translate(-10, 0, 0));
+	glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
+	m_pQuad->Render();
 
 	//--------------------------------------
 	glUseProgram(m_Sphere->program);
@@ -280,7 +291,7 @@ void XGLModel::MultiChannelShadowMap::render()
 		Matrixf lightCamera = Matrixf::translate(m_PointLight[lightnum].Eposition);
 		m_Sphere->setupPers();
 		m_Sphere->setCamera(cameraMatrix);
-		//	lightCamera.preMult(Matrixf::scale(0.1, 0.1, 0.1));
+		lightCamera.preMult(Matrixf::scale(0.5, 0.5, 0.5));
 		m_Sphere->setModel(lightCamera);
 		m_Sphere->render();
 	}
