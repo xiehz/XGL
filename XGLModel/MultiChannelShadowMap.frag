@@ -1,4 +1,4 @@
-#version 330
+#version 460 core
 #define EPSILON 0.00001
 
 const unsigned int MAX_LIGHT_NUM = 8u;
@@ -78,16 +78,17 @@ void main(){
 	for( unsigned int i = 0u; i < g_N; i++)
 	{
 		vec3 L = worldp - g_pointlight[i].Eposition ;
-		float factor = calcShadowFactor(-L);
+		float factor = calcShadowFactor(L);
 
 		float LD = length(L);
 
 		L = normalize(L);
 
 		vec3 R = reflect(L, N);
-		lightColor += calcPointLight(N,E,L,LD,R, g_pointlight[i]) ;
 //		lightColor += (calcPointLight(N,E,L,LD,R, g_pointlight[i]) * factor);
-//		lightColor +=vec3(factor,factor, factor);
+		lightColor =vec3(factor,factor, factor);
+//		lightColor +=L;
+
 	}
 	fcolor = vec4(lightColor,1.0) * texture(g_sampler2d, otex);
 //	fcolor = vec4(worldn,1.0);

@@ -70,15 +70,22 @@ void XGLModel::SkyCube::initUniform()
 
 void XGLModel::SkyCube::loadModel()
 {
+	//std::string  dir = "E:/2018/opengl/Assimp/data/";
+	//m_pCubeTex = new XCubemapTexture(dir,
+	//	"skycube/sp3right.jpg",
+	//	"skycube/sp3left.jpg",
+	//	"skycube/sp3top.jpg",
+	//	"skycube/sp3bot.jpg",
+	//	"skycube/sp3front.jpg",
+	//	"skycube/sp3back.jpg");
 	std::string  dir = "E:/2018/opengl/Assimp/data/";
 	m_pCubeTex = new XCubemapTexture(dir,
-		"skycube/sp3right.jpg",
-		"skycube/sp3left.jpg",
-		"skycube/sp3top.jpg",
-		"skycube/sp3bot.jpg",
-		"skycube/sp3front.jpg",
-		"skycube/sp3back.jpg");
-
+		"darkskies/darkskies_rt.tga",
+		"darkskies/darkskies_lf.tga",
+		"darkskies/darkskies_up.tga",
+		"darkskies/darkskies_dn.tga",
+		"darkskies/darkskies_ft.tga",
+		"darkskies/darkskies_bk.tga");
 	
 	if (!m_pCubeTex->load()) {
 		XGLERROR("load cube texture failed!");

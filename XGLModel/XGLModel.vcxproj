@@ -159,6 +159,7 @@
     <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
     <ClInclude Include="CubeShadowMap.h" />
+    <ClInclude Include="CubeShape.h" />
     <ClInclude Include="DeferredShading2.h" />
     <ClInclude Include="DirLightShader.h" />
     <ClInclude Include="DeferredShading0.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="CubeShadowMap.cpp" />
+    <ClCompile Include="CubeShape.cpp" />
     <ClCompile Include="DeferredShading2.cpp" />
     <ClCompile Include="DirLightShader.cpp" />
     <ClCompile Include="DeferredShading0.cpp" />
@@ -324,6 +326,8 @@
     <None Include="Billboarding.vert" />
     <None Include="CubeShadowMap.frag" />
     <None Include="CubeShadowMap.vert" />
+    <None Include="CubeShape.frag" />
+    <None Include="CubeShape.vert" />
     <None Include="DeferredShading2.frag" />
     <None Include="DeferredShading2.vert" />
     <None Include="DirLightShader.frag" />

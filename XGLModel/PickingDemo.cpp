@@ -55,13 +55,18 @@ void XGLModel::PickingDemo::draw()
 {
 	drawPicking();
 
-	//必须在unbind前read
-	m_picking->readPixel(400, 400);
+	//2018/8/9修订， gl_read_framebuffer， 绑定目标为Read_Framebuffer的句柄进行读操作，如glReadPixel;
+	//gl_draw_framebuffer，绑定目标为Draw_framebuffer的句柄进行写入操作，如draw，渲染命令；
+	// opengl允许读、写同时绑定到不同的帧缓存对象上，如离屏渲染
+	//gl_framebuffer， 绑定目标为GL_FRAMEBUFFER, 读和写都是在该帧缓存上操作。
+	////必须在unbind前read
+	//m_picking->readPixel(400, 400);
 
 	drawScene(m_picking->m_pixel);
 }
 void XGLModel::PickingDemo::drawPicking() {
-	glBindFramebuffer(GL_FRAMEBUFFER, m_picking->m_fbo);
+
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_picking->m_fbo);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(m_picking->program);
@@ -84,9 +89,13 @@ void XGLModel::PickingDemo::drawPicking() {
 
 void XGLModel::PickingDemo::drawScene(const XGLModel::PixelInfo& pixel) {
 	//
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPolygonMode(GL_FRONT, GL_LINE);
+
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, m_picking->m_fbo);
+	m_picking->readPixel(400, 400);
+
 
 	const Matrixf& mv = camera->getInverseMatrix();
 	Matrixf world = camera->getInverseMatrix();

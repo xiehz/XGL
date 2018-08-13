@@ -14,6 +14,9 @@ namespace XGLModel {
 	class XCubeShadowBuffer;
 	class CubeShadowMap;
 	struct TagPointLightLocation;
+	class XCubemapTexture;
+	class CubeShape;
+
 	class MultiChannelShadowMap : public TutorialInterface
 	{
 	public:
@@ -36,6 +39,7 @@ namespace XGLModel {
 		IXMesh * m_pMesh;
 		IXMesh* m_pQuad;
 		CubeShadowMap* m_cubeShadowShader;
+		XCubemapTexture* m_pCubeTex;
 
 		GLint g_world;
 		GLint g_vp;
@@ -50,6 +54,7 @@ namespace XGLModel {
 		XCubeShadowBuffer* m_pCubeBuffer;
 		XTexture* m_pTexture;
 		SphereShape* m_Sphere;
+		CubeShape* m_CubeShape;
 	};
 	struct TagPointLightLocation
 	{

@@ -9,6 +9,8 @@
 #include "DepthImage.h"
 #include "XCubeShadowBuffer.h"
 #include "CubeShadowMap.h"
+#include "XCubemapTexture.h"
+#include "CubeShape.h"
 
 namespace XGLModel {
 	REGISTER(MultiChannelShadowMap)
@@ -27,6 +29,7 @@ XGLModel::MultiChannelShadowMap::MultiChannelShadowMap()
 	m_pointLocation = 0;
 	m_PointLight = 0;
 	m_pTexture = 0;
+	m_CubeShape = 0;
 }
 
 
@@ -59,12 +62,13 @@ XGLModel::MultiChannelShadowMap::~MultiChannelShadowMap()
 
 	if(m_pTexture)
 		delete m_pTexture;
+
+	if (m_CubeShape)
+		delete m_CubeShape;
 }
 
 void XGLModel::MultiChannelShadowMap::draw()
 {
-	//glDisable(GL_CULL_FACE);
-	glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 	glCullFace(GL_FRONT);
 	renderShadow();
 	glCullFace(GL_BACK);
@@ -73,9 +77,22 @@ void XGLModel::MultiChannelShadowMap::draw()
 
 void XGLModel::MultiChannelShadowMap::initGL()
 {
+	std::ostringstream stream;
+	stream << "\nVendor: " << glGetString(GL_VENDOR) << ".";
+	stream << "\nRenderer: " << glGetString(GL_RENDERER) << ".";
+	stream << "\nVersion: " << glGetString(GL_VERSION) << ".";
+	stream << "\nGLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << ".";
+
+	XGLERROR(stream.str().c_str());
+	stream.clear();
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_CULL_FACE);
+	glEnable(GL_TEXTURE_CUBE_MAP);
+	glEnable(GL_CULL_FACE);
+
+	glViewport(0, 0, 512, 512);
 
 	m_Sphere->bindHandle(getHandle());
 	m_Sphere->init();
@@ -83,15 +100,18 @@ void XGLModel::MultiChannelShadowMap::initGL()
 	m_cubeShadowShader = new CubeShadowMap();
 	m_cubeShadowShader->bindHandle(getHandle());
 	m_cubeShadowShader->setName("CubeShadowMap");
-	m_cubeShadowShader->initShader();
+	m_cubeShadowShader->init();
 
-	glClearColor(0.341176f, 0.98f, 1.0f, 1.0f);
+	m_CubeShape = new CubeShape();
+	m_CubeShape->setName("CubeShape");
+	m_CubeShape->initShader();
+	m_CubeShape->loadModel();
 
 	m_pMesh->LoadMesh("E:/2018/opengl/Assimp/data/sphere.obj");
 	m_pQuad->LoadMesh("E:/2018/opengl/Assimp/data/quad1.obj");
 
 	m_pCubeBuffer = new XCubeShadowBuffer();
-	m_pCubeBuffer->init(windowWith , windowHeight);
+	m_pCubeBuffer->init(512 , 512);
 
 	m_PointLight = new TagPointLight[N];
 
@@ -111,6 +131,17 @@ void XGLModel::MultiChannelShadowMap::initGL()
 
 	m_pTexture = new XTexture(GL_TEXTURE_2D, "E:/2018/opengl/Assimp/data/test.png");
 	m_pTexture->Load();
+
+	std::string  dir = "E:/2018/opengl/Assimp/data/";
+	m_pCubeTex = new XCubemapTexture(dir,
+		"skycube/sp3right.jpg",
+		"skycube/sp3left.jpg",
+		"skycube/sp3top.jpg",
+		"skycube/sp3bot.jpg",
+		"skycube/sp3front.jpg",
+		"skycube/sp3back.jpg");
+	m_pCubeTex->load();
+
 }
 
 
@@ -128,7 +159,7 @@ void XGLModel::MultiChannelShadowMap::setupPers()
 	//90透视投影，刚好看向6个方向
 	static float fov = 90.0f * 3.1415926f / 180.0f;
 	float tanha = tanf(fov / 2);
-	float aspect = (float)windowWith / (float)windowHeight;
+	float aspect = (float)512 / (float)512;
 	float nearclip = 1.0f, farclip = 10000.0f;
 
 	double right = tanha * aspect * nearclip;
@@ -140,24 +171,23 @@ void XGLModel::MultiChannelShadowMap::setupPers()
 
 void XGLModel::MultiChannelShadowMap::renderShadow()
 {
-	glClearColor(FLT_MAX, FLT_MAX, FLT_MAX,FLT_MAX);
+	glClearColor(FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX);
 
 	glUseProgram(m_cubeShadowShader->program);
-	m_cubeShadowShader->setupPers();
-
 	for (int lightnum = 0; lightnum < N; ++lightnum)
 	{
 		for (int i = 0; i < 6; ++i)
 		{
 			m_pCubeBuffer->bindForWriting(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			Matrixf world = Matrixf::translate(0, 3, 0);
-			m_cubeShadowShader->setWorld(m_PointLight[lightnum].Eposition, i, world);
+			m_cubeShadowShader->setupPers(m_PointLight[lightnum].Eposition,i);
+
+			Matrixf world = Matrixf::translate(0, 0, -2);
+			m_cubeShadowShader->setWorld( world);
 			m_pMesh->Render();
 
-			world = Matrixf::translate(0.0f, 5.0f, 3.0f);
-			m_cubeShadowShader->setWorld(m_PointLight[lightnum].Eposition, i, world);
+			world = Matrixf::translate(2.0f, -1.0f, -3.0f);
+			m_cubeShadowShader->setWorld( world);
 			m_pMesh->Render();
 		}
 	}
@@ -178,51 +208,47 @@ g_mv has nothing to do with the g_mv
 void XGLModel::MultiChannelShadowMap::render()
 {
 	Matrixf cameraMatrix = camera->getInverseMatrix();
+	setupPers();
 
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClearColor(0, 0, 0, 0);
+	m_pCubeBuffer->bindForTexture(GL_TEXTURE1);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+	glClearColor(0.2, 0.2, 0.2, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//--------------------------------------
-	glUseProgram(m_Sphere->program);
-	for (int lightnum = 0; lightnum < N; ++lightnum)
-	{
-		Matrixf lightCamera = Matrixf::translate(m_PointLight[lightnum].Eposition);
-		m_Sphere->setupPers();
-		m_Sphere->setCamera(cameraMatrix);
-	//	lightCamera.preMult(Matrixf::scale(0.1, 0.1, 0.1));
-		m_Sphere->setModel(lightCamera);
-		m_Sphere->render();
-	}
+	glUseProgram(m_CubeShape->program);
+	glUniformMatrix4fv(m_CubeShape->g_world, 1, GL_FALSE, Matrixf::scale(5.12f, 5.12f, 5.12f).ptr());
+	Matrixf view = cameraMatrix;
+	view.postMult(projectMatrix);
+	glUniformMatrix4fv(m_CubeShape->g_vp, 1, GL_FALSE, view.ptr());
+	//m_pCubeTex->bindTexture(GL_TEXTURE1);
+	glUniform1i(m_CubeShape->g_cubeSampler, 1);
 
-	//--------------------------------------
+	m_CubeShape->m_pCube->Render();
+	return;
 
+	/*
 	glUseProgram(program);
 	glUniform1ui(g_N, N);
-	m_pCubeBuffer->bindForReading(GL_TEXTURE1);
-	glUniform1i(g_shadowmap, 1);
 	m_pTexture->Bind(GL_TEXTURE0);
 	glUniform1i(g_sampler, 0);
-	setupPers();
+
+	glUniform1i(g_shadowmap, 1);
+	Matrixf vp = projectMatrix;
+	vp.preMult(cameraMatrix);
+	glUniformMatrix4fv(g_vp, 1, GL_FALSE, vp.ptr());
 
 	for (int lightnum = 0; lightnum < N; ++lightnum)
 	{
 		TagPointLight& poingLight = m_PointLight[lightnum];
-
-		Matrixf vp = projectMatrix;
-		vp.preMult(cameraMatrix);
-
-		glUniformMatrix4fv(g_vp, 1, GL_FALSE, vp.ptr());
 		glUniform3f(g_eye_world, 0.0f, 0.0f, 10.0f);
-
 
 		updateLight(poingLight, lightnum, 1.0, 16.0);
 
-		Matrixf world = Matrixf::translate(0, 3, 0);
+		Matrixf world = Matrixf::translate(0, 0, -2);
 		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
 		m_pMesh->Render();
 
-		world = Matrixf::translate(0.0f, 5.0f, 3.0f);
+		world = Matrixf::translate(0.0f, -2, 1.0f);
 		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
 		m_pMesh->Render();
 
@@ -246,6 +272,20 @@ void XGLModel::MultiChannelShadowMap::render()
 		glUniformMatrix4fv(g_world, 1, GL_FALSE, world.ptr());
 		m_pQuad->Render();
 	}
+
+	//--------------------------------------
+	glUseProgram(m_Sphere->program);
+	for (int lightnum = 0; lightnum < N; ++lightnum)
+	{
+		Matrixf lightCamera = Matrixf::translate(m_PointLight[lightnum].Eposition);
+		m_Sphere->setupPers();
+		m_Sphere->setCamera(cameraMatrix);
+		//	lightCamera.preMult(Matrixf::scale(0.1, 0.1, 0.1));
+		m_Sphere->setModel(lightCamera);
+		m_Sphere->render();
+	}
+	*/
+	//--------------------------------------
 }
 
 void XGLModel::MultiChannelShadowMap::initUniform()

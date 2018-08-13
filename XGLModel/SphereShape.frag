@@ -1,4 +1,5 @@
-#version 330
+#version 430 core
+
 
 in vec2 texcoord;
 in vec4 tnormal;

@@ -11,7 +11,6 @@ namespace XGLModel {
 	class AxesShape;
 	class SphereShape;
 	class DepthImage;
-	class XCubeShadowBuffer;
 
 	class CubeShadowMap : public TutorialInterface
 	{
@@ -24,11 +23,12 @@ namespace XGLModel {
 		virtual void initGL() override;
 		virtual void initUniform() override;
 
-		void setupPers();
+		void setupPers(XGL::Vec3f eye, int face);
 
-		void setWorld(XGL::Vec3f eye, int face, const XGL::Matrixf& world);
-		GLint g_mv;
-		GLint g_pers;
+		void setWorld(const XGL::Matrixf& world);
+		GLint g_world;
+		GLint g_vp;
+		GLint g_eyeworld;
 	};
 
 	struct XCameraDirection {

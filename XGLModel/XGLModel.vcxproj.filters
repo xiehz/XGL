@@ -225,6 +225,9 @@
     <ClInclude Include="XCubeShadowBuffer.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="CubeShape.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
     <ClInclude Include="CubeShadowMap.h">
       <Filter>tutorial</Filter>
     </ClInclude>
@@ -415,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="XCubeShadowBuffer.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeShape.cpp">
+      <Filter>tutorial</Filter>
     </ClCompile>
     <ClCompile Include="CubeShadowMap.cpp">
       <Filter>tutorial</Filter>
@@ -671,6 +677,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="CubeShadowMap.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="CubeShape.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="CubeShape.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

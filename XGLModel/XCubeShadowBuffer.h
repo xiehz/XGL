@@ -10,7 +10,9 @@ namespace XGLModel {
 
 		bool init(unsigned int width, unsigned int height);
 		void bindForWriting(GLenum glFace);
+		void bindForTexture(GLenum texUnit);
 		void bindForReading(GLenum texUnit);
+
 
 	public:
 		GLuint m_fbo;
