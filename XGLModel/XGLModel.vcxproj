@@ -158,6 +158,7 @@
     <ClInclude Include="BasicTesselation.h" />
     <ClInclude Include="Billboarding.h" />
     <ClInclude Include="BitmapFont.h" />
+    <ClInclude Include="Blur.h" />
     <ClInclude Include="CubeShadowMap.h" />
     <ClInclude Include="CubeShape.h" />
     <ClInclude Include="DeferredShading2.h" />
@@ -172,6 +173,9 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="MultiChannelShadowMap.h" />
     <ClInclude Include="PcfShadowMap.h" />
+    <ClInclude Include="SSAOCore.h" />
+    <ClInclude Include="SSAOGeometry.h" />
+    <ClInclude Include="SSAOLight.h" />
     <ClInclude Include="StencilShadow.h" />
     <ClInclude Include="XAdjacencyMesh.h" />
     <ClInclude Include="IXMesh.h" />
@@ -213,6 +217,7 @@
     <ClInclude Include="XGBuffer.h" />
     <ClInclude Include="XGLModel.h" />
     <ClInclude Include="XGLUtil.h" />
+    <ClInclude Include="XIOBuffer.h" />
     <ClInclude Include="XLight.h" />
     <ClInclude Include="XLightShader.h" />
     <ClInclude Include="XMesh.h" />
@@ -228,6 +233,7 @@
     <ClCompile Include="BasicTesselation.cpp" />
     <ClCompile Include="Billboarding.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
+    <ClCompile Include="Blur.cpp" />
     <ClCompile Include="CubeShadowMap.cpp" />
     <ClCompile Include="CubeShape.cpp" />
     <ClCompile Include="DeferredShading2.cpp" />
@@ -255,6 +261,9 @@
     <ClCompile Include="ForwardPointLightShader.cpp" />
     <ClCompile Include="MultiChannelShadowMap.cpp" />
     <ClCompile Include="PcfShadowMap.cpp" />
+    <ClCompile Include="SSAOCore.cpp" />
+    <ClCompile Include="SSAOGeometry.cpp" />
+    <ClCompile Include="SSAOLight.cpp" />
     <ClCompile Include="StencilShadow.cpp" />
     <ClCompile Include="XAdjacencyMesh.cpp" />
     <ClCompile Include="IXMesh.cpp" />
@@ -298,6 +307,7 @@
     <ClCompile Include="XGBuffer.cpp" />
     <ClCompile Include="XGLModel.cpp" />
     <ClCompile Include="XGLUtil.cpp" />
+    <ClCompile Include="XIOBuffer.cpp" />
     <ClCompile Include="XLightShader.cpp" />
     <ClCompile Include="XMesh.cpp" />
     <ClCompile Include="XPatchMesh.cpp" />
@@ -324,6 +334,8 @@
     <None Include="Billboarding.frag" />
     <None Include="Billboarding.geom" />
     <None Include="Billboarding.vert" />
+    <None Include="Blur.frag" />
+    <None Include="Blur.vert" />
     <None Include="CubeShadowMap.frag" />
     <None Include="CubeShadowMap.vert" />
     <None Include="CubeShape.frag" />
@@ -386,6 +398,12 @@
     <None Include="SphereShape.vert" />
     <None Include="SpotLight.frag" />
     <None Include="SpotLight.vert" />
+    <None Include="SSAOCore.frag" />
+    <None Include="SSAOCore.vert" />
+    <None Include="SSAOGeometry.frag" />
+    <None Include="SSAOGeometry.vert" />
+    <None Include="SSAOLight.frag" />
+    <None Include="SSAOLight.vert" />
     <None Include="StencilShadow.frag" />
     <None Include="StencilShadow.geom" />
     <None Include="StencilShadow.vert" />

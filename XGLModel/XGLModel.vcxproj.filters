@@ -231,6 +231,21 @@
     <ClInclude Include="CubeShadowMap.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="SSAOGeometry.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="SSAOLight.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="SSAOCore.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Blur.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="XIOBuffer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -424,6 +439,21 @@
     </ClCompile>
     <ClCompile Include="CubeShadowMap.cpp">
       <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="SSAOGeometry.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="SSAOLight.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="SSAOCore.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Blur.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="XIOBuffer.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -683,6 +713,30 @@
       <Filter>shader</Filter>
     </None>
     <None Include="CubeShape.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Blur.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Blur.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SSAOCore.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SSAOCore.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SSAOGeometry.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SSAOGeometry.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SSAOLight.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="SSAOLight.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
