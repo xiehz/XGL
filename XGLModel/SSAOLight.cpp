@@ -86,7 +86,7 @@ void XGLModel::SSAOLight::initGL()
 	m_blur->initShader();
 
 	m_geo_buffer = new XIOBuffer();
-	m_geo_buffer->init(windowWith,windowHeight, true, GL_RGB32F);
+	m_geo_buffer->init(windowWith,windowHeight, TRUE, GL_NONE);
 
 	m_core_buffer = new XIOBuffer();
 	m_core_buffer->init(windowWith, windowHeight, false,GL_R32F);
@@ -144,10 +144,9 @@ void XGLModel::SSAOLight::geometryPass()
 {
 	glUseProgram(m_geometry->program);
 	m_geo_buffer->bindForWriting();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT);
 
 	Matrixf view = m_mv;
-	glUniformMatrix4fv(m_geometry->g_mv, 1, GL_FALSE, view.ptr());
 
 	view.postMult(projectMatrix);
 	glUniformMatrix4fv(m_geometry->g_mvp, 1, GL_FALSE, view.ptr());

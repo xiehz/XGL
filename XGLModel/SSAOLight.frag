@@ -17,6 +17,5 @@ void main(){
 	float ambient = texture(g_aomap, aotexcoord).r;
 
 	fragcolor = ambient  * texture(g_colormap, ftexcoord);
-//	fragcolor =vec4( ambient  );
 
 }

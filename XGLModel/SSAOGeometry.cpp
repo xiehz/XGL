@@ -26,10 +26,10 @@ void XGLModel::SSAOGeometry::draw()
 
 void XGLModel::SSAOGeometry::initUniform()
 {
-	g_mv = glGetUniformLocation(program, "g_mv");
+	//g_mv = glGetUniformLocation(program, "g_mv");
 	g_mvp = glGetUniformLocation(program, "g_mvp");
 	//getErrorInformation(GetLastError());
-	if (g_mv < 0|| g_mvp < 0)
+	if (/*g_mv < 0|| */g_mvp < 0)
 	{
 		XGLERROR("get uniform failed");
 	}
