@@ -52,7 +52,7 @@ void main(){
 		float samplerdepth = calcviewz(samplertexcoord);
 		if(abs(pos.z - samplerdepth) < g_samplerrad)
 		{
-			AO += step(samplerdepth, samplerPos.z);	
+			AO += step(samplerdepth + 0.00001, samplerPos.z);	
 			pass += 1;
 		}
 
@@ -62,8 +62,4 @@ void main(){
 
 	fragao = pow(AO,2.0) ;
 
-//	fragao = viewx;
-//	fragao = pos.x;
-//	fragao =1.0 - pass/C_MAX_KERNEL_SIZE;
-//	fragao = AO /C_MAX_KERNEL_SIZE;
 } 
