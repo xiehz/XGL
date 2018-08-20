@@ -42,7 +42,7 @@ void main(){
 	float pass = 0;
 	for(int i = 0; i< C_MAX_KERNEL_SIZE; i++){
 		
-		vec4 samplerPos = vec4(pos + g_kernels[i], 1.0);
+		vec4 samplerPos = vec4(pos + g_kernels[i] , 1.0);
 
 		samplerPos = g_pers * samplerPos;
 		samplerPos.xy /= samplerPos.w;
@@ -50,16 +50,17 @@ void main(){
 		vec2 samplertexcoord = (samplerPos.xy + vec2(1))/2.0;
 
 		float samplerdepth = calcviewz(samplertexcoord);
-		if(abs(pos.z - samplerdepth) < g_samplerrad)
+		if(abs(pos.z - samplerdepth) < g_samplerrad )
 		{
-			AO += step(samplerdepth + 0.00001, samplerPos.z);	
-			pass += 1;
+			AO += step(samplerdepth, samplerPos.z );	
+//			pass += 1;
 		}
-
+		pass += samplerdepth;
 	}
 	
 	AO = 1.0 - AO /C_MAX_KERNEL_SIZE;
 
 	fragao = pow(AO,2.0) ;
 
+//	fragao = pass / C_MAX_KERNEL_SIZE;
 } 

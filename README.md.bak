@@ -3,7 +3,7 @@ Interesting
 
 如有侵权，请联系删除！
 
-学的很用心但好像开始要忘了..........
+学过好像又忘了..........
 
 1. 立即模式 glbegin(traget); glvertex3f()...glcolor3f()... glend();
 2. 矩阵栈 当前矩阵入栈 glpushmatrix(); 变换矩阵入栈RST ; glpopmatrix()退栈，恢复；
