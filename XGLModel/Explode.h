@@ -5,6 +5,7 @@
 namespace XGLModel {
 
 	class IXMesh;
+	class AssimpImport;
 	class Explode : public TutorialInterface
 	{
 	public:
@@ -21,6 +22,7 @@ namespace XGLModel {
 		GLuint g_vp;
 		GLuint g_exploder;
 		IXMesh* m_layer;
+		AssimpImport* m_inner;
 	};
 
 
