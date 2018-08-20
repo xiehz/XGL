@@ -27,7 +27,7 @@ void XGLModel::AssimpImport::initGL()
 	glEnable(GL_DEPTH_TEST);
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
-	m_pMesh->LoadMesh("E:/2018/opengl/Assimp/nanosuit/nanosuit.obj");
+	m_pMesh->LoadMesh("E:/2018/opengl/Assimp/data/closed.obj");
 }
 
 void XGLModel::AssimpImport::draw()

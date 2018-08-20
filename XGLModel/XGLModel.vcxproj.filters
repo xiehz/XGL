@@ -246,6 +246,9 @@
     <ClInclude Include="XIOBuffer.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Explode.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -454,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="XIOBuffer.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Explode.cpp">
+      <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -737,6 +743,15 @@
       <Filter>shader</Filter>
     </None>
     <None Include="SSAOLight.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Explode.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Explode.geom">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Explode.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

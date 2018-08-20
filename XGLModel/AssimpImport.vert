@@ -13,6 +13,7 @@ out vec3 normal0;
 void main(){
 
 	gl_Position = perspective * mv * vec4(pos, 1.0);
-	normal0 = (transpose(inverse(mv))*vec4(normal, 0.0)).xyz;
+	normal0 = normal;
+//	normal0 = (transpose(inverse(mv))*vec4(normal, 0.0)).xyz;
 	texcoord0 = texcoord;
 }

@@ -169,6 +169,7 @@
     <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="DSSphere.h" />
     <ClInclude Include="EdgeDetection.h" />
+    <ClInclude Include="Explode.h" />
     <ClInclude Include="ForwardPointLightShader.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="MultiChannelShadowMap.h" />
@@ -258,6 +259,7 @@
     </ClCompile>
     <ClCompile Include="DSSphere.cpp" />
     <ClCompile Include="EdgeDetection.cpp" />
+    <ClCompile Include="Explode.cpp" />
     <ClCompile Include="ForwardPointLightShader.cpp" />
     <ClCompile Include="MultiChannelShadowMap.cpp" />
     <ClCompile Include="PcfShadowMap.cpp" />
@@ -349,6 +351,9 @@
     <None Include="EdgeDetection.frag" />
     <None Include="EdgeDetection.geom" />
     <None Include="EdgeDetection.vert" />
+    <None Include="Explode.frag" />
+    <None Include="Explode.geom" />
+    <None Include="Explode.vert" />
     <None Include="ForwardPointLightShader.frag" />
     <None Include="ForwardPointLightShader.vert" />
     <None Include="MultiChannelShadowMap.frag" />

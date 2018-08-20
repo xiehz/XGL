@@ -1,28 +1,28 @@
 #pragma once
 
-#include "XGLModel.h"
 #include "TutorialFactory.h"
 
 namespace XGLModel {
+
 	class IXMesh;
-	class AssimpImport : public TutorialInterface
+	class Explode : public TutorialInterface
 	{
 	public:
-		AssimpImport();
-		virtual ~AssimpImport();
+		Explode();
+		~Explode();
 
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initGL() override;
+		void setExploder(float ex);
 		virtual void draw() override;
 		virtual void initUniform() override;
 	public:
-		IXMesh * m_pMesh;
-
-		GLint g_mv;
-		GLint g_perspective;
-		GLint g_sampler;
-
+		GLuint g_world;
+		GLuint g_vp;
+		GLuint g_exploder;
+		IXMesh* m_layer;
 	};
+
 
 }
 

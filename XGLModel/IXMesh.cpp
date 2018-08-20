@@ -38,6 +38,7 @@ bool XGLModel::IXMesh::LoadMesh(const std::string & filename)
 	const aiScene* pScene = importer.ReadFile(filename.c_str(),
 		aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs);
 
+	
 	if (pScene)
 	{
 		ret = InitFromScene(pScene, filename);
