@@ -127,6 +127,10 @@ bool XVAOMesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Buffers[INDEX_BUFFER]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices[0]) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
 
+	/*
+	由于 WVP 矩阵是一个 4 x 4 的矩阵，而且我们希望它作为 VS 的输入变量，
+	所以我们不能将其作为一个单独的顶点属性，因为每个顶点属性最多只能包含 4 个浮点或者整型数据。
+	*/
 	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WORLD_MAT_VB]);
 	const unsigned int size = sizeof(GLfloat) * 16;
 	for (unsigned int i = 0; i < 4; i++) {
@@ -249,9 +253,7 @@ void XVAOMesh::Render()
 void XVAOMesh::Render(unsigned int NumInstances, const float* WorldMats)
 {
 	const unsigned int size = sizeof(GLfloat) * 16;
-	//glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WVP_MAT_VB]);
-	//glBufferData(GL_ARRAY_BUFFER, size* NumInstances, WVPMats, GL_DYNAMIC_DRAW);
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WORLD_MAT_VB]);
 	glBufferData(GL_ARRAY_BUFFER, size* NumInstances, WorldMats, GL_DYNAMIC_DRAW);
 

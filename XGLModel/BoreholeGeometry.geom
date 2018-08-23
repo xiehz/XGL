@@ -1,51 +1,45 @@
 #version 330                                                                        
-layout(triangles) in;                                                                  
+const int count = 12;
+const float pi = 3.1415926;
+const float a = 2 * pi / count;
+layout(points) in;                                                                  
 layout(triangle_strip) out;                                                         
-layout(max_vertices = 3) out;                                                       
-uniform mat4 g_vp;                                                                                                                        
-uniform float g_exploder;                                                       
-in Vertex{
-	vec4 normal;
-}Explode[];
-out vec3 color;
+layout(max_vertices = 26) out;                                                       
+                                                                                    
+uniform mat4 g_vp;          
+
+in Borehole{
+	float depth;
+	int instance;
+}borehole[];
+                 
+out vec2 texcoord;
 
 void main()                                                                         
-{                              
-  vec3 p0 = gl_in[0].gl_Position.xyz;
-  vec3 p1 = gl_in[1].gl_Position.xyz;
-  vec3 p2 = gl_in[2].gl_Position.xyz;
-  vec3 v0 = p0 - p1;
-  vec3 v1 = p2 - p1;
-  vec3 diff = v1 - v0;
-  float diff_len = length(diff);
-  vec3 N = normalize(cross(v1, v0));
+{   
+    vec3 pos = gl_in[0].gl_Position.xyz;
+	vec3 p;
+	float f;
+	for(int i = 0; i<= count; ++i){
+		p.x = cos(a *i);
+		p.y = 0;
+		p.z = sin(a* i);
+		
+		gl_Position = g_vp *vec4(p + pos,1.0);
+		f = float(i) / float(count);
+		texcoord.x = f;
+		texcoord.y = 1.0;
+		EmitVertex();
 
-  if (length(diff_len) > 0.001)
-  {
-    int i;
-    for(i=0; i<gl_in.length(); i++)
-    {
-      vec4 p = gl_in[i].gl_Position;
-      vec3 N = normalize(cross(v1, v0));
-      float len = sqrt(p.x*p.x + p.z*p.z);
+		p.y =  - borehole[0].depth;
+		gl_Position = g_vp *vec4(p + pos,1.0);
+		texcoord.x = f;
+		texcoord.y =1.0 - p.y / 100.0;
+		EmitVertex();
+	}
 
-      p = vec4(p.xyz + (N  * g_exploder) + 
-          (N * vec3(0.05, 0.05, 0.05)), 1.0);
-
-      gl_Position = g_vp * p;
-
-	  vec3 t = N + vec3(0, 0, 1);
-	  if(length(t) - 0.00001 < 0)
-	  {
-			color = vec3(0.2, 0.2, 0.2);
-	  }
-	  else{
-			color = abs(N);
-	  }
-      EmitVertex();
-    }
-    EndPrimitive();
-  }                                                          
+	EndPrimitive();
+	                        
 }                                                                                   
 
 

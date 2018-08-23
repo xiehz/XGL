@@ -4,26 +4,28 @@
 
 namespace XGLModel {
 
-	class IXMesh;
-	class AssimpImport;
+	class XVAOMesh;
+	class XTexture;
 	class Background;
-	class Explode : public TutorialInterface
+	class BoreholeGeometry : public TutorialInterface
 	{
 	public:
-		Explode();
-		~Explode();
+		BoreholeGeometry();
+		~BoreholeGeometry();
 
 		// Í¨¹ý TutorialInterface ¼Ì³Ð
 		virtual void initGL() override;
-		void setExploder(float ex);
 		virtual void draw() override;
 		virtual void initUniform() override;
-	public:
-		GLuint g_world;
+
 		GLuint g_vp;
-		GLuint g_exploder;
-		IXMesh* m_layer;
-		AssimpImport* m_inner;
+		GLuint g_sampler;
+		float	 (*m_Instances)[3];
+		const int N;
+
+		GLuint m_VAO;
+		GLuint m_DepthBuffer;
+		XTexture* m_pTex;
 		Background* m_pSky;
 
 	};

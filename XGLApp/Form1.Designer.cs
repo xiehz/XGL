@@ -79,8 +79,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1104, 569);
-            this.splitContainer1.SplitterDistance = 879;
+            this.splitContainer1.Size = new System.Drawing.Size(1338, 702);
+            this.splitContainer1.SplitterDistance = 1189;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -98,8 +98,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(221, 569);
-            this.splitContainer2.SplitterDistance = 83;
+            this.splitContainer2.Size = new System.Drawing.Size(145, 702);
+            this.splitContainer2.SplitterDistance = 102;
             this.splitContainer2.SplitterWidth = 8;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -111,7 +111,7 @@
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(3, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(215, 71);
+            this.groupBox1.Size = new System.Drawing.Size(139, 90);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "XGL";
@@ -159,10 +159,14 @@
             "PcfShadowMap",
             "MultiChannelShadowMap",
             "CubeShape",
-            "SSAOLight"});
+            "SSAOLight",
+            "Explode",
+            "Borehole",
+            "BoreholeGeometry",
+            "Background"});
             this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(203, 20);
+            this.comboBox1.Size = new System.Drawing.Size(127, 20);
             this.comboBox1.TabIndex = 0;
             // 
             // tabControl1
@@ -176,7 +180,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(221, 478);
+            this.tabControl1.Size = new System.Drawing.Size(145, 592);
             this.tabControl1.TabIndex = 1;
             // 
             // vs_tabPage1
@@ -185,7 +189,7 @@
             this.vs_tabPage1.Location = new System.Drawing.Point(4, 22);
             this.vs_tabPage1.Name = "vs_tabPage1";
             this.vs_tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.vs_tabPage1.Size = new System.Drawing.Size(213, 452);
+            this.vs_tabPage1.Size = new System.Drawing.Size(137, 566);
             this.vs_tabPage1.TabIndex = 0;
             this.vs_tabPage1.Text = "vertex";
             this.vs_tabPage1.UseVisualStyleBackColor = true;
@@ -195,7 +199,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(207, 446);
+            this.richTextBox1.Size = new System.Drawing.Size(131, 560);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -205,7 +209,7 @@
             this.gs_tabPage2.Location = new System.Drawing.Point(4, 22);
             this.gs_tabPage2.Name = "gs_tabPage2";
             this.gs_tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.gs_tabPage2.Size = new System.Drawing.Size(213, 452);
+            this.gs_tabPage2.Size = new System.Drawing.Size(137, 566);
             this.gs_tabPage2.TabIndex = 1;
             this.gs_tabPage2.Text = "geometry";
             this.gs_tabPage2.UseVisualStyleBackColor = true;
@@ -215,7 +219,7 @@
             this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox2.Location = new System.Drawing.Point(3, 3);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(207, 446);
+            this.richTextBox2.Size = new System.Drawing.Size(131, 560);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
@@ -224,7 +228,7 @@
             this.fs_tabPage4.Controls.Add(this.richTextBox4);
             this.fs_tabPage4.Location = new System.Drawing.Point(4, 22);
             this.fs_tabPage4.Name = "fs_tabPage4";
-            this.fs_tabPage4.Size = new System.Drawing.Size(213, 452);
+            this.fs_tabPage4.Size = new System.Drawing.Size(137, 566);
             this.fs_tabPage4.TabIndex = 3;
             this.fs_tabPage4.Text = "fragment";
             this.fs_tabPage4.UseVisualStyleBackColor = true;
@@ -234,7 +238,7 @@
             this.richTextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox4.Location = new System.Drawing.Point(0, 0);
             this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(213, 452);
+            this.richTextBox4.Size = new System.Drawing.Size(137, 566);
             this.richTextBox4.TabIndex = 1;
             this.richTextBox4.Text = "";
             // 
@@ -243,7 +247,7 @@
             this.tcs_tabPage.Controls.Add(this.richTextBox3);
             this.tcs_tabPage.Location = new System.Drawing.Point(4, 22);
             this.tcs_tabPage.Name = "tcs_tabPage";
-            this.tcs_tabPage.Size = new System.Drawing.Size(213, 452);
+            this.tcs_tabPage.Size = new System.Drawing.Size(137, 566);
             this.tcs_tabPage.TabIndex = 4;
             this.tcs_tabPage.Text = "tcs";
             this.tcs_tabPage.UseVisualStyleBackColor = true;
@@ -253,7 +257,7 @@
             this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox3.Location = new System.Drawing.Point(0, 0);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(213, 452);
+            this.richTextBox3.Size = new System.Drawing.Size(137, 566);
             this.richTextBox3.TabIndex = 0;
             this.richTextBox3.Text = "";
             // 
@@ -263,7 +267,7 @@
             this.tes_tabPage.Location = new System.Drawing.Point(4, 22);
             this.tes_tabPage.Name = "tes_tabPage";
             this.tes_tabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tes_tabPage.Size = new System.Drawing.Size(213, 452);
+            this.tes_tabPage.Size = new System.Drawing.Size(137, 566);
             this.tes_tabPage.TabIndex = 5;
             this.tes_tabPage.Text = "tes";
             this.tes_tabPage.UseVisualStyleBackColor = true;
@@ -273,7 +277,7 @@
             this.richTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox5.Location = new System.Drawing.Point(3, 3);
             this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.Size = new System.Drawing.Size(207, 446);
+            this.richTextBox5.Size = new System.Drawing.Size(131, 560);
             this.richTextBox5.TabIndex = 0;
             this.richTextBox5.Text = "";
             // 
@@ -283,9 +287,9 @@
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1116, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1350, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -305,7 +309,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 596);
+            this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";

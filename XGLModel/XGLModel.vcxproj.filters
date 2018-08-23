@@ -249,6 +249,18 @@
     <ClInclude Include="Explode.h">
       <Filter>tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="Borehole.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="BoreoheMesh.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="BoreholeGeometry.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -459,6 +471,18 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Explode.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Borehole.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="BoreoheMesh.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="BoreholeGeometry.cpp">
+      <Filter>tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
       <Filter>tutorial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -752,6 +776,27 @@
       <Filter>shader</Filter>
     </None>
     <None Include="Explode.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Borehole.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Borehole.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BoreholeGeometry.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BoreholeGeometry.geom">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="BoreholeGeometry.frag">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Background.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Background.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

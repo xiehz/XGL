@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "SkyCube.h"
+#include "Background.h"
+#include "IXMesh.h"
 #include "Explode.h"
 #include  "AssimpImport.h"
 
@@ -13,6 +14,7 @@ XGLModel::Explode::Explode()
 {
 	m_layer = 0;
 	m_inner = 0;
+	m_pSky = 0;
 }
 
 
@@ -25,6 +27,9 @@ XGLModel::Explode::~Explode()
 	if (m_inner)
 		delete m_inner;
 	m_inner = 0;
+
+	if (m_pSky)
+		delete m_pSky;
 }
 
 void XGLModel::Explode::initGL()
@@ -39,6 +44,10 @@ void XGLModel::Explode::initGL()
 	glDisable(GL_CULL_FACE);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
+
+	m_pSky = dynamic_cast<Background*>(TutorialFactory::getInstance().getClass("Background"));
+	m_pSky->bindHandle(getHandle());
+	m_pSky->init();
 }
 void XGLModel::Explode::setExploder(float ex)
 {
@@ -61,14 +70,18 @@ void XGLModel::Explode::draw()
 	m_layer->Render();
 
 	glUseProgram(program);
-
-	glUniform1f(g_exploder, 20.0f);
+	static double i = 0;
+	glUniform1f(g_exploder, 20.0f * (sinf(i) +1));
+	i += 0.01;
 	glUniformMatrix4fv(g_world, 1, GL_FALSE, Matrixf::identity().ptr());
 	Matrixf view = camera->getInverseMatrix();
 	view.postMult(projectMatrix);
 	glUniformMatrix4fv(g_vp, 1, GL_FALSE, view.ptr());
 	
 	m_layer->Render();
+
+	glUseProgram(m_pSky->program);
+	m_pSky->render();
 }
 
 void XGLModel::Explode::initUniform()

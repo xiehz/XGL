@@ -6,7 +6,8 @@
 #include "Magick++.h"
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
 
-static const GLenum types[6] = { GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+static const GLenum types[6] = { 
+GL_TEXTURE_CUBE_MAP_POSITIVE_X,
 GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
 GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
 GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,

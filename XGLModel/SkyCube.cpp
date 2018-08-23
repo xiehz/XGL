@@ -38,7 +38,8 @@ void XGLModel::SkyCube::initGL()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 
 	loadModel();
 	Matrixf scale = Matrixf::identity();
@@ -78,14 +79,15 @@ void XGLModel::SkyCube::loadModel()
 	//	"skycube/sp3bot.jpg",
 	//	"skycube/sp3front.jpg",
 	//	"skycube/sp3back.jpg");
+	
 	std::string  dir = "E:/2018/opengl/Assimp/data/";
 	m_pCubeTex = new XCubemapTexture(dir,
-		"darkskies/darkskies_rt.tga",
-		"darkskies/darkskies_lf.tga",
-		"darkskies/darkskies_up.tga",
-		"darkskies/darkskies_dn.tga",
-		"darkskies/darkskies_ft.tga",
-		"darkskies/darkskies_bk.tga");
+		"sor_lake1/lake1_rt.jpg",
+		"sor_lake1/lake1_lf.jpg",
+		"sor_lake1/lake1_up.jpg",
+		"sor_lake1/lake1_dn.jpg",
+		"sor_lake1/lake1_ft.jpg",
+		"sor_lake1/lake1_bk.jpg");
 	
 	if (!m_pCubeTex->load()) {
 		XGLERROR("load cube texture failed!");
@@ -93,7 +95,7 @@ void XGLModel::SkyCube::loadModel()
 
 	m_pCube = new IXMesh();
 
-	m_pCube->LoadMesh("E:/2018/opengl/Assimp/data/sphere.obj");
+	m_pCube->LoadMesh("E:/2018/opengl/Assimp/data/box.obj");
 
 	m_pSphere->loadModel();
 }
@@ -104,7 +106,7 @@ void XGLModel::SkyCube::render()
 	//Matrix mv = Matrixf::identity();
 	mv.setTrans(0.0f, 0.0f, 0.0f);
 	mv.preMult(model);
-
+	glEnable(GL_CULL_FACE);
 	glUseProgram(program);
 	glUniformMatrix4fv(g_mv, 1, GL_FALSE, mv.ptr());
 	glUniformMatrix4fv(g_pers, 1, GL_FALSE, projectMatrix.ptr());
@@ -121,17 +123,19 @@ void XGLModel::SkyCube::render()
 	m_pCubeTex->bindTexture(GL_TEXTURE0);
 	m_pCube->Render();
 
+	glDisable(GL_CULL_FACE);
+
 	glCullFace(currentCullFaceMode);
 	glDepthFunc(currentDepthFuncMode);
 
-	glUseProgram(m_pSphere->program);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	Matrixf& scale = Matrixf::scale(0.1f, .1f, .1f);
-	scale.preMult(model);
-	m_pSphere->setCamera(camera->getInverseMatrix());
-	m_pSphere->setModel(scale);
-	m_pSphere->render();
+	//glUseProgram(m_pSphere->program);
+	//glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+	//glBindTexture(GL_TEXTURE_2D, 0);
+	//Matrixf& scale = Matrixf::scale(0.1f, .1f, .1f);
+	//scale.preMult(model);
+	//m_pSphere->setCamera(camera->getInverseMatrix());
+	//m_pSphere->setModel(scale);
+	//m_pSphere->render();
 
 }
 
