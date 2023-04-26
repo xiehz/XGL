@@ -1,7 +1,7 @@
 # XGL
 Interesting
 
-如有侵权，请联系删除！
+OpenGL Step By Step
 
 学的很用心但好像开始要忘了..........
 
